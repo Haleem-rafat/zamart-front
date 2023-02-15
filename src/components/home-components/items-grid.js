@@ -4,7 +4,7 @@ import ItemCard from "./item-card";
 const ItemsDrid = () => {
   return (
     <div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-y-10 my-10 mx-5">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-y-10 gap-x-5 my-10 mx-5">
         <ItemCard
           itemImge={imgTest}
           itemName="name of items"
