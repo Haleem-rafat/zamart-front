@@ -7,13 +7,16 @@ const Footer = () => {
   return (
     <div>
       <div>
-        <div className="grid grid-cols-4 text-white text-2xl py-9 pl-36 ">
+        <div className="md:grid grid-cols-4 hidden  text-white text-2xl py-9 md:pl-36 pl-12 ">
           <p>Bikes for sale</p>
           <p>News & Reviews</p>
           <p>General Help</p>
           <p>Our App</p>
         </div>
-        <div className="grid grid-cols-4 bg-black  text-white py-12 pl-36">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-black  text-white py-12 md:pl-36 pl-12">
+          <p className="md:hidden block text-white text-2xl py-4">
+            Bikes for sale
+          </p>
           <div>
             <li className="text-primary-cyan-light py-1.5 cursor-pointer">
               <span className="text-white">Used bikes for sale</span>
@@ -26,6 +29,9 @@ const Footer = () => {
             </li>
           </div>
           <div>
+            <p className="md:hidden block text-white text-2xl py-4">
+              News & Reviews
+            </p>
             <li className="text-primary-cyan-light py-1.5 cursor-pointer">
               <span className="text-white">Bike News</span>
             </li>
@@ -40,6 +46,9 @@ const Footer = () => {
             </li>
           </div>
           <div>
+            <p className="md:hidden block text-white text-2xl py-4">
+              General Help
+            </p>
             <li className="text-primary-cyan-light py-1.5 cursor-pointer">
               <span className="text-white">Terms & Conditions</span>
             </li>
@@ -54,6 +63,7 @@ const Footer = () => {
             </li>
           </div>
           <div>
+            <p className="md:hidden block text-white text-2xl py-4">Our App</p>
             <p className="text-2xl">Download Our App Now</p>
             <p className="text-2xl pt-1">On App Store / Google Play</p>
             <div className="flex gap-x-5 pt-5">

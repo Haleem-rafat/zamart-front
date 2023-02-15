@@ -1,6 +1,5 @@
 import React from "react";
-
-import AuthSidebar from "../components/sidebar/sidebar";
+import AuthSidebar from "../components/shared/sidebar/sidebar";
 
 const AppLayouts = () => {
   return (

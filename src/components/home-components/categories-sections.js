@@ -5,9 +5,9 @@ import appStore from "../../../src/assets/icons/app_store_icon.svg";
 
 const CategoriesSections = () => {
   return (
-    <div>
+    <div className="w-full">
       {/* Categories Sections */}
-      <div className="flex justify-between my-5">
+      <div className="flex flex-col md:flex-row justify-between gap-x-8 gap-y-8 mx-8 my-5">
         <CategoriesCard
           img={
             "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -37,19 +37,21 @@ const CategoriesSections = () => {
         />
       </div>
       {/* google play and app store */}
-      <div className="flex justify-between bg-black mx-8 h-44 px-24 ">
+      <div className="flex md:flex-row flex-col justify-between bg-black mx-8 h-44 md:px-24 px-4 ">
         <div className="text-white my-auto ">
-          <p className="text-5xl">Find amazing deals on the go.</p>
-          <p className="text-xl pt-4">Download the app now!</p>
+          <p className="md:text-5xl text-2xl">Find amazing deals on the go.</p>
+          <p className="md:text-xl text-lg md:pt-4 pt-2">
+            Download the app now!
+          </p>
         </div>
-        <div className="flex my-auto">
+        <div className="flex mx-auto md:mx-0 gap-x-5 md:gap-x-0 my-auto">
           <img
-            className="w-56 h-16 cursor-pointer"
+            className="md:w-56 w-40 h-16 cursor-pointer"
             src={googlePlay}
             alt="googlePlay"
           />
           <img
-            className="w-56 h-16 cursor-pointer"
+            className="md:w-56 w-40 h-16 cursor-pointer"
             src={appStore}
             alt="app store"
           />

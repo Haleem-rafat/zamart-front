@@ -11,7 +11,7 @@ const ItemCard = ({ itemImge, itemName, price, date, adsName, userName }) => {
     } else {
       setMouseMovedelay(false);
     }
-  }, "250");
+  }, "350");
 
   return (
     <div className="mx-auto">
@@ -31,8 +31,8 @@ const ItemCard = ({ itemImge, itemName, price, date, adsName, userName }) => {
                 <p>{price} $</p>
               </div>
               <button
-                onMouseMove={(e) => setMouseMove(true)}
-                onMouseLeave={(e) => setMouseMove(false)}
+                onMouseEnter={() => setMouseMove(true)}
+                onMouseLeave={() => setMouseMove(false)}
                 className="bg-gradient-to-r from-primary-pink to-primary-cyan w-full h-[66px] text-white delay-300 duration-300 hover:delay-300 hover:duration-300 hover:h-[200px]"
               >
                 <div

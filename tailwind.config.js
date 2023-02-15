@@ -7,7 +7,7 @@ module.exports = {
       sm: "640px",
       // => @media (min-width: 640px) { ... }
 
-      md: "768px",
+      md: "821px",
       // => @media (min-width: 768px) { ... }
 
       lg: "1366px",
@@ -36,6 +36,9 @@ module.exports = {
           black: {
             DEFAULT: "#000000",
             light: "#16181A",
+          },
+          gray: {
+            DEFAULT: "#878787",
           },
           pink: {
             DEFAULT: "#BD11FA",

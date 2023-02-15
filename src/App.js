@@ -1,7 +1,6 @@
 import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import AuthSidebar from "./components/sidebar/sidebar";
 import { useLanguage } from "./context/language-context";
 import AppLayouts from "./layouts/app-layouts";
 import Home from "./page/home";
@@ -27,14 +26,30 @@ function App() {
         <Route path={routes.app.default} component={AppLayouts} />
         <Redirect to={routes.app.home} component={Home} />
       </Switch>
-      <ToastContainer
+      <Toaster
         position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        closeOnClick={true}
-        pauseOnHover={true}
-        draggable={true}
-        progress={undefined}
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: "text-xl p-4",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
       />
     </div>
   );
