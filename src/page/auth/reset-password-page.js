@@ -111,7 +111,7 @@ const ResetPasswordPage = () => {
               onClick={() => {
                 history.push(routes.app.home);
               }}
-              className="pt-14 text-primary-gray cursor-pointer text-center"
+              className="pt-14 text-primary-gray cursor-pointer text-center pr-40"
             >
               GO TO HOME
             </p>
