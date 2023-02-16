@@ -4,7 +4,7 @@ import routes from "../routes";
 
 const ResetPassLayouts = () => {
   return (
-    <div className="">
+    <div className="w-full">
       <Switch>
         <Route
           path={routes.auth.resetpass.reset}
