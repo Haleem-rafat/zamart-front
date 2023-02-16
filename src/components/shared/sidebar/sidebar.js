@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Menu, Segment, Sidebar } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import { Off } from "../../../redux/sidebare-slice.js";
+import { Off, On } from "../../../redux/sidebare-slice.js";
 import { Route, Switch } from "react-router-dom";
 import routes from "../../../routes.js";
 import Home from "../../../page/home.js";
 import Login from "../../auth-components/login.js";
 import SignUp from "../../auth-components/signup.js";
+import ReserPassComponents from "../../reset-pass-components/reser-pass-components.js";
 
-const AuthSidebar = () => {
+const AuthSidebar = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
     (state) => state.toggle.enableDeleteButton
   );
@@ -16,6 +17,9 @@ const AuthSidebar = () => {
 
   const [isLogin, setIsLogin] = useState(true);
 
+  if (isreset) {
+    dispatch(On());
+  }
   return (
     <div className="h-screen p-0 m-0 border-none border-0 scrollbar-hide ">
       <Sidebar.Pushable className="p-0 m-0 border-none scrollbar-hide">
@@ -29,9 +33,17 @@ const AuthSidebar = () => {
           direction="right"
           visible={toggleDeleteStatus}
         >
-          <div className="w-full mx-auto bg-black text-white ">
-            <Login isLogin={isLogin} setIsLogin={setIsLogin} />
-            <SignUp isLogin={isLogin} setIsLogin={setIsLogin} />
+          <div className="w-full mx-auto bg-500 text-white ">
+            {isreset ? (
+              <div className="">
+                <ReserPassComponents />
+              </div>
+            ) : (
+              <>
+                <Login isLogin={isLogin} setIsLogin={setIsLogin} />
+                <SignUp isLogin={isLogin} setIsLogin={setIsLogin} />
+              </>
+            )}
           </div>
         </Sidebar>
 

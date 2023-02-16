@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useLanguage } from "./context/language-context";
 import AppLayouts from "./layouts/app-layouts";
+import ResetPassLayouts from "./layouts/reset-pass-layouts";
 import Home from "./page/home";
 import routes from "./routes";
 
@@ -24,6 +25,10 @@ function App() {
     <div className="">
       <Switch>
         <Route path={routes.app.default} component={AppLayouts} />
+        <Route
+          path={routes.auth.resetpass.default}
+          component={ResetPassLayouts}
+        />
         <Redirect to={routes.app.home} component={Home} />
       </Switch>
       <Toaster

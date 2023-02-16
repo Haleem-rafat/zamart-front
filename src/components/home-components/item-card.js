@@ -11,7 +11,7 @@ const ItemCard = ({ itemImge, itemName, price, date, adsName, userName }) => {
     } else {
       setMouseMovedelay(false);
     }
-  }, "350");
+  }, "250");
 
   return (
     <div className="mx-auto">
