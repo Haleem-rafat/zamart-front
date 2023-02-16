@@ -66,7 +66,7 @@ const ReserPassComponents = () => {
         >
           {(formik) => (
             <Form onSubmit={formik.handleSubmit}>
-              <div className="md:w-[600px] pt-5 w-full">
+              <div className="md:w-[600px] pt-5 w-full text-black">
                 <div className="md:w-[460px] w-full mt-10">
                   <FormikInput
                     name="password"

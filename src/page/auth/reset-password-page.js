@@ -4,7 +4,7 @@ import AuthSidebar from "../../components/shared/sidebar/sidebar";
 const ResetPasswordPage = () => {
   return (
     <div className="text-white">
-      <AuthSidebar isreset={true} />
+      <AuthSidebar isreset={"reset"} />
     </div>
   );
 };

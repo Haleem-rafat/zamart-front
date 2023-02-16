@@ -17,9 +17,10 @@ const AuthSidebar = ({ isreset }) => {
 
   const [isLogin, setIsLogin] = useState(true);
 
-  if (isreset) {
+  if (isreset === "reset") {
     dispatch(On());
   }
+
   return (
     <div className="h-screen p-0 m-0 border-none border-0 scrollbar-hide ">
       <Sidebar.Pushable className="p-0 m-0 border-none scrollbar-hide">
@@ -33,8 +34,8 @@ const AuthSidebar = ({ isreset }) => {
           direction="right"
           visible={toggleDeleteStatus}
         >
-          <div className="w-full mx-auto bg-500 text-white ">
-            {isreset ? (
+          <div className="w-full mx-auto ">
+            {isreset === "reset" ? (
               <div className="">
                 <ReserPassComponents />
               </div>
