@@ -7,7 +7,7 @@ import useAxios from "../hooks/use-axios";
 
 const AuthContext = React.createContext();
 
-// const WHITE_LIST = [routes.ediPersonalInfo.default];
+const WHITE_LIST = [routes.auth.resetpass.reset];
 
 function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -36,9 +36,9 @@ function AuthProvider({ children }) {
   React.useEffect(() => {
     Auth.getUser().then((user) => {
       if (!user) {
-        // if (WHITE_LIST.filter((w) => pathname.startsWith(w)).length === 0) {
-        history.push(routes.auth.logIn);
-        // }
+        if (WHITE_LIST.filter((w) => pathname.startsWith(w)).length === 0) {
+          history.push(routes.auth.logIn);
+        }
       }
       setUser(user);
       setIsLoading(false);
