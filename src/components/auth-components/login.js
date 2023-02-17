@@ -6,27 +6,32 @@ import ZAMARTlogo from "../../../src/assets/logo/ZAMART_logo.svg";
 import FormikInput from "../shared/formik/formik-input";
 import * as Yup from "yup";
 import api from "../../api";
-import auth from "../../utils/auth";
 import useAxios from "../../hooks/use-axios";
 import { axios } from "../../config/axios-config";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { Off } from "../../redux/sidebare-slice.js";
+import { useDispatch } from "react-redux";
+import auth from "../../utils/auth";
 
 const Login = ({ isLogin, setIsLogin }) => {
-  const { run, isLoading } = useAxios();
+  const [IsForgetPass, setIsForgetPass] = useState(false);
+  const dispatch = useDispatch();
 
+  const { run, isLoading } = useAxios();
   const logIn = (values) => {
     run(axios.post(api.auth.login, values))
       .then((res) => {
+        const { accessToken, refreshToken, fullName } = res.data.data;
         console.log("====================================");
         console.log(res);
-        console.log(res.data.data);
         console.log("====================================");
-        // const { accessToken, refreshToken } = res.data.data;
-        // auth.setToken({
-        //   newAccessToken: accessToken,
-        //   newRefreshToken: refreshToken,
-        // });
-        toast.success("done");
+        auth.setToken({
+          newAccessToken: accessToken,
+          newRefreshToken: refreshToken,
+        });
+        dispatch(Off());
+        toast.success("welcome " + fullName);
       })
       .catch((err) => {
         toast.error(err.errors[0].message);
@@ -36,6 +41,23 @@ const Login = ({ isLogin, setIsLogin }) => {
     email: Yup.string().required("Required field"),
     password: Yup.string().min(3).max(20, "").required("Required field"),
   });
+
+  const { run: runForgetPass, isLoading: isLoadingForgetPass } = useAxios();
+  const forgetPass = (values) => {
+    runForgetPass(axios.post(api.auth.fogetpass, values))
+      .then((res) => {
+        toast.loading(
+          "A verification mail has been sent to your mail please check it...."
+        );
+      })
+      .catch((err) => {
+        toast.error(err.errors[0].message);
+      });
+  };
+  const forgetPassSchema = Yup.object({
+    email: Yup.string().required("Required field"),
+  });
+
   return (
     <div
       className={`${
@@ -54,7 +76,7 @@ const Login = ({ isLogin, setIsLogin }) => {
         results to suit your desired job type
       </p>
 
-      <div>
+      <div className={IsForgetPass ? "animate-out hidden h-0" : "animate-in"}>
         <Formik
           initialValues={{
             email: "",
@@ -83,7 +105,10 @@ const Login = ({ isLogin, setIsLogin }) => {
                   />
                 </div>
                 <div className="flex md:gap-x-48 gap-x-14 mx-1 mt-6">
-                  <Link className="text-gray-500 text-xs sm:text-base font-normal pt-1">
+                  <Link
+                    onClick={() => setIsForgetPass(true)}
+                    className="text-gray-500 text-xs sm:text-base font-normal pt-1"
+                  >
                     FORGOT PASSWORD ?
                   </Link>
                   <div>
@@ -122,6 +147,56 @@ const Login = ({ isLogin, setIsLogin }) => {
           className="pt-14 text-primary-gray cursor-pointer text-center"
         >
           CREATE NEW ACCOUNT
+        </p>
+      </div>
+
+      <div className={IsForgetPass ? "animate-in" : "animate-out hidden h-0"}>
+        <Formik
+          initialValues={{
+            email: "",
+          }}
+          onSubmit={forgetPass}
+          validationSchema={forgetPassSchema}
+        >
+          {(formik) => (
+            <Form onSubmit={formik.handleSubmit}>
+              <div className="md:w-[600px] w-full">
+                <div className="md:w-[460px] w-full mt-10">
+                  <FormikInput
+                    name="email"
+                    type={"email"}
+                    label={"E-mail"}
+                    placeholder={"E-mail"}
+                  />
+                </div>
+
+                <div className="">
+                  <Button
+                    loading={isLoadingForgetPass}
+                    onClick={() => {
+                      // history.push(routes.dashboard.app);
+                    }}
+                    className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white"
+                  >
+                    sent verification
+                  </Button>
+                </div>
+              </div>
+            </Form>
+          )}
+        </Formik>
+        <div className="mx-auto relative mt-20">
+          <p className="border-t-[1px] border-[#707070] md:w-[460px] w-full my-2 left-0.5">
+            <p className="absolute text-white bg-black px-4 -bottom-3 md:left-56 left-36 text-xl">
+              OR
+            </p>
+          </p>
+        </div>
+        <p
+          onClick={() => setIsForgetPass(false)}
+          className="pt-14 text-primary-gray cursor-pointer text-center"
+        >
+          BACK TO LOGIN
         </p>
       </div>
     </div>

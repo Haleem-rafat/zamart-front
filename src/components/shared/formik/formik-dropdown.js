@@ -17,20 +17,12 @@ function FormikMultiDropdown({
       {({ form, field }) => {
         const { setFieldValue, setFieldTouched, errors, touched } = form;
         return (
-          <div className="flex flex-col mt-1.5 ">
+          <div className="flex flex-col mt-1.5  ">
             <Form.Dropdown
+              className={`block mt-2 ${className} Edit_Dropdown `}
               id={name}
               {...field}
               {...props}
-              label={
-                <label
-                  htmlFor={name}
-                  className={`font-bold text-base mt-2  ${className}`}
-                >
-                  {label}
-                </label>
-              }
-              className={`block mt-2 ${className}`}
               error={Boolean(touched[name] && errors[name])}
               onBlur={() => setFieldTouched(name, true)}
               onChange={(e, { value }) => {

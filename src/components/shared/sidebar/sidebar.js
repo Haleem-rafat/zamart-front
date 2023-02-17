@@ -8,6 +8,9 @@ import Home from "../../../page/home.js";
 import Login from "../../auth-components/login.js";
 import SignUp from "../../auth-components/signup.js";
 import ReserPassComponents from "../../reset-pass-components/reser-pass-components.js";
+import AddAds from "../../../page/add-ads.js";
+import Footer from "../../home-components/footer.js";
+import HeaderHome from "../../home-components/header.js";
 
 const AuthSidebar = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
@@ -54,9 +57,12 @@ const AuthSidebar = ({ isreset }) => {
         >
           <div className="p-0 m-0 border-none ">
             <Segment basic>
+              <HeaderHome />
               <Switch>
                 <Route path={routes.app.home} component={Home} />
+                <Route path={routes.app.ceratitems} component={AddAds} />
               </Switch>
+              <Footer />
             </Segment>
           </div>
         </Sidebar.Pusher>

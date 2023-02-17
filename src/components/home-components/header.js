@@ -1,21 +1,88 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ZAMARTlogo from "../../../src/assets/logo/ZAMART_logo.svg";
 import ZAMARTname from "../../../src/assets/logo/ZAMART_name.svg";
 import plusIcon from "../../../src/assets/icons/plus-icon.svg";
-import { Dropdown, Icon } from "semantic-ui-react";
+import { Dimmer, Dropdown, Icon, Loader } from "semantic-ui-react";
 
 import { useDispatch } from "react-redux";
 import { On } from "../../redux/sidebare-slice.js";
+import routes from "../../routes";
+import { useHistory } from "react-router-dom";
+import useAxios from "../../hooks/use-axios";
+import { axios } from "../../config/axios-config";
+
+import api from "../../api";
+import { useLanguage } from "../../context/language-context";
+import useFilter from "../../hooks/use-filter";
+import useLocalStorage from "../../hooks/use-localstorage";
 
 const HeaderHome = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [categories, setCategories] = useState();
+  const [SubCategories, setSubCategories] = useState();
+  const [sameId, setSameId] = useState();
+  const [lang] = useLanguage("");
+  const [categoriesFilter, setCategoriesFiter] = useFilter("categories", "");
+  const [subCategoriesFilter, setSubCategoriesFilter] = useFilter(
+    "subCategories",
+    ""
+  );
+  const [SubCategoriesStorage, setSubCategoriesStorage] = useLocalStorage(
+    "SubCategoriesFilte",
+    ""
+  );
+
+  const onRouteClick = ({ route }) => {
+    const anchor = document.querySelector(route);
+    anchor.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  };
+
+  const { run, isLoading } = useAxios([]);
+
+  const { run: rungetSubCategories, isLoading: isLoadinggetSubCategories } =
+    useAxios([]);
+
+  useEffect(() => {
+    run(
+      axios.get(api.app.viewCategories).then((res) => {
+        setCategories(res?.data?.data);
+      })
+    );
+    if (categories)
+      rungetSubCategories(
+        axios
+          .get(api.app.viewSubCategories(categories && categories[0]?._id))
+          .then((res) => {
+            setSubCategories(res?.data?.data);
+            setSubCategoriesStorage(categories && categories[0]?._id);
+          })
+      );
+  }, [run, rungetSubCategories, categories?.length && categories[0]?._id]);
+
+  const getSubCategories = (categoriesId) => {
+    rungetSubCategories(
+      axios.get(api.app.viewSubCategories(categoriesId)).then((res) => {
+        setSubCategories(res?.data?.data);
+      })
+    );
+  };
 
   return (
     <div className="">
       <div className="flex justify-between  md:mx-28 mx-2 h-[95px]">
         {/*  ZAMART logo */}
-        <div className="flex">
+        <div
+          onClick={() => {
+            history.push(routes.app.home);
+          }}
+          className="flex cursor-pointer"
+        >
           <img
             className="md:h-[40px] h-[30px] my-8"
             src={ZAMARTlogo}
@@ -31,7 +98,12 @@ const HeaderHome = () => {
         <div className="flex">
           {/* button */}
           <div>
-            <button className="md:w-56 w-32 md:h-16 h-10 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple drop-shadow-3xl md:mt-6 mt-8">
+            <button
+              onClick={() => {
+                history.push(routes.app.ceratitems);
+              }}
+              className="md:w-56 w-32 md:h-16 h-10 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple drop-shadow-3xl md:mt-6 mt-8"
+            >
               <div className="flex justify-center px-1 gap-x-2">
                 <img className="w-4 md:w-auto" src={plusIcon} alt="plusIcon" />
                 <p className="text-white text-xs md:text-xl md:pt-1 pt-0">
@@ -57,28 +129,42 @@ const HeaderHome = () => {
         </div>
       </div>
       <div className=" bg-white md:h-[76px] h-[40px]">
-        <div className=" flex justify-center text-primary-black-light text-xl">
-          <div className="w-72 h-[76px] pt-6 hover:bg-gradient-to-r hover:from-primary-cyan hover:to-primary-pink hover:shadow-primary-purple hover:text-white text-center cursor-pointer border-r-2 hidden md:block">
-            text one
-          </div>
-          <div className="w-72 h-[76px] pt-6 hover:bg-gradient-to-r hover:from-primary-cyan hover:to-primary-pink hover:shadow-primary-purple hover:text-white text-center cursor-pointer border-x-2 hidden md:block">
-            text two
-          </div>
-          <div className="w-72 h-[76px] pt-6 hover:bg-gradient-to-r hover:from-primary-cyan hover:to-primary-pink hover:shadow-primary-purple hover:text-white text-center cursor-pointer border-x-2 hidden md:block">
-            text three
-          </div>
-          <div className="w-72 h-[76px] pt-6 hover:bg-gradient-to-r hover:from-primary-cyan hover:to-primary-pink hover:shadow-primary-purple hover:text-white text-center cursor-pointer border-x-2 hidden md:block">
-            text four
-          </div>
-          <div className="w-72 h-[76px] pt-6 hover:bg-gradient-to-r hover:from-primary-cyan hover:to-primary-pink hover:shadow-primary-purple hover:text-white text-center cursor-pointer border-x-2 hidden md:block">
-            text five
-          </div>
+        <div className=" flex justify-center text-primary-black-light text-xl relative">
+          <Dimmer className="" active={isLoadinggetSubCategories} inverted>
+            <Loader active />
+          </Dimmer>
+          {SubCategories?.map((e) => (
+            <a
+              href="#Categories"
+              onClick={() => {
+                setSubCategoriesFilter(e?._id);
+                setSameId(e?._id);
+                onRouteClick();
+              }}
+              id={e?._id}
+              className={`${
+                e?._id === sameId
+                  ? "w-72 h-[76px] pt-7 bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white text-center cursor-pointer border-r-2 hidden md:block"
+                  : "w-72 h-[76px] pt-7 text-center cursor-pointer border-r-2 hidden md:block text-black"
+              }`}
+            >
+              {lang === "en" ? e?.nameEn : e?.nameAr}
+            </a>
+          ))}
+
           <div className="w-72 md:h-[76px] h-[40px] md:pt-6 pt-3 text-center border-x-2">
-            <Dropdown text="All Categories">
-              <Dropdown.Menu>
-                <Dropdown.Item className="text-xl" text="Categories one" />
-                <Dropdown.Item className="text-xl" text="Categories three" />
-                <Dropdown.Item className="text-xl" text="Categories four" />
+            <Dropdown className="px-5 " text="All Categories">
+              <Dropdown.Menu className="w-48 ">
+                {categories?.map((e) => (
+                  <Dropdown.Item
+                    className="text-xl"
+                    text={lang === "en" ? e?.nameEn : e?.nameAr}
+                    onClick={() => {
+                      getSubCategories(e?._id);
+                      setCategoriesFiter(e?._id);
+                    }}
+                  />
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </div>

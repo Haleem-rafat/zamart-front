@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import speedometer from "../../../src/assets/icons/speedometer.svg";
 
-const ItemCard = ({ itemImge, itemName, price, date, adsName, userName }) => {
+const ItemCard = ({
+  itemImge,
+  itemName,
+  price,
+  date,
+  adsName,
+  userName,
+  KM,
+}) => {
   const [mouseMove, setMouseMove] = useState(false);
   const [mouseMovedelay, setMouseMovedelay] = useState(false);
 
@@ -61,7 +69,7 @@ const ItemCard = ({ itemImge, itemName, price, date, adsName, userName }) => {
                         src={speedometer}
                         alt="speedometer"
                       />
-                      <p className="pt-1">72,000 KM</p>
+                      <p className="pt-1">{KM},00 KM</p>
                     </div>
                   </div>
                 </div>
@@ -73,7 +81,8 @@ const ItemCard = ({ itemImge, itemName, price, date, adsName, userName }) => {
           </div>
           <img
             className="w-[400px] h-[534px] object-cover "
-            src={itemImge}
+            // src={itemImge}
+            src={`data:image/jpeg;base64,${itemImge}`}
             alt="imgTest "
           />
         </div>

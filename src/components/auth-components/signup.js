@@ -15,9 +15,6 @@ const SignUp = ({ isLogin, setIsLogin }) => {
   const signup = (values) => {
     run(axios.post(api.auth.registeration, values))
       .then((res) => {
-        console.log("====================================");
-        console.log(res);
-        console.log("====================================");
         toast.loading(
           "A verification mail has been sent to your mail please check it...."
         );

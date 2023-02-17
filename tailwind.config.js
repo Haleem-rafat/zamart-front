@@ -35,10 +35,13 @@ module.exports = {
         primary: {
           black: {
             DEFAULT: "#000000",
+            dark: "#0F0F0F",
             light: "#16181A",
           },
           gray: {
             DEFAULT: "#878787",
+            dark: "#28282C",
+            light: "#ABB6C7",
           },
           pink: {
             DEFAULT: "#BD11FA",

@@ -27,7 +27,7 @@ const ResetPasswordPage = () => {
       token: token,
       newPassword: values.password,
     };
-    run(axios.post(api.auth.resetCredentials, body))
+    run(axios.post(api.auth.resspass, body))
       .then((res) => {
         toast.success(
           lang === "en"

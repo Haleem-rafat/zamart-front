@@ -16,7 +16,20 @@ body {
 .ui.segment{
   @apply p-0 m-0 !important
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+* {
+  scroll-behavior: smooth;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 /* ///////////////////animate//////////////////////////// */
 .animate-in {
   animation: fade-in 350ms ease-in-out forwards;
@@ -49,4 +62,20 @@ body {
     transform: scale(0.98) ;
   }
 }
-/* ///////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////breadcrumb//////////////////////////////////////// */
+.ui.breadcrumb .icon.divider{
+  @apply text-base font-normal text-primary-gray-dark !important
+}
+.ui.breadcrumb .icon.divider{
+  @apply text-base font-normal text-primary-gray-dark !important
+  /* /////////////////////////////breadcrumb//////////////////////////////////////// */
+}
+  /* /////////////////////////////dropdown//////////////////////////////////////// */
+.Edit_Dropdown .ui.selection.dropdown{
+  @apply h-16 rounded-full  text-xl !important
+}
+.Edit_Dropdown .ui.selection.active.dropdown .menu{
+@apply rounded-2xl mt-2
+}
+  /* ///////////////////////////////////////////////////////////////////// */
+
