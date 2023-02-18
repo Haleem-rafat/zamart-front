@@ -12,7 +12,7 @@ const CategoriesCard = ({ img, lable, info }) => {
       <div className=" w-full h-[300px]">
         <img
           className=" object-cover w-full h-full relative"
-          src={img}
+          src={`data:image/jpeg;base64,${img}`}
           alt="img"
         />
       </div>

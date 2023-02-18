@@ -24,19 +24,19 @@ const ItemsDrid = () => {
 
   return (
     <div id="Categories">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-y-10 gap-x-5 my-10 mx-5 relative ">
-        <Dimmer className="h-full" active={isLoading}>
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-y-10 gap-x-5 my-10 mx-5 relative  sm:h-[534px] h-auto ">
+        <Dimmer className=" animate-pulse h-[534px]" active={isLoading}>
           <Loader active />
         </Dimmer>
         {data?.map((e) => (
           <ItemCard
-            itemImge={e?.images[0]?.img}
-            itemName={e?.brand}
-            price={e?.price}
-            date={new Date(e?.updatedAt).toLocaleDateString("en-GB")}
-            adsName={e?.title}
-            userName={e?.user?.fullName}
-            KM={e?.kiloMeters}
+            itemImge={e?.images[0]?.img || ""}
+            itemName={e?.brand || ""}
+            price={e?.price || ""}
+            date={new Date(e?.updatedAt).toLocaleDateString("en-GB") || ""}
+            adsName={e?.title || ""}
+            userName={e?.user?.fullName || ""}
+            KM={e?.kiloMeters || ""}
           />
         ))}
       </div>

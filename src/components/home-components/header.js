@@ -10,12 +10,11 @@ import { On } from "../../redux/sidebare-slice.js";
 import routes from "../../routes";
 import { useHistory } from "react-router-dom";
 import useAxios from "../../hooks/use-axios";
-import { axios } from "../../config/axios-config";
+import { authAxios, axios } from "../../config/axios-config";
 
 import api from "../../api";
 import { useLanguage } from "../../context/language-context";
 import useFilter from "../../hooks/use-filter";
-import useLocalStorage from "../../hooks/use-localstorage";
 
 const HeaderHome = () => {
   const dispatch = useDispatch();
@@ -23,14 +22,11 @@ const HeaderHome = () => {
   const [categories, setCategories] = useState();
   const [SubCategories, setSubCategories] = useState();
   const [sameId, setSameId] = useState();
+  const [myProfileData, setMyProfileData] = useState();
   const [lang] = useLanguage("");
   const [categoriesFilter, setCategoriesFiter] = useFilter("categories", "");
   const [subCategoriesFilter, setSubCategoriesFilter] = useFilter(
     "subCategories",
-    ""
-  );
-  const [SubCategoriesStorage, setSubCategoriesStorage] = useLocalStorage(
-    "SubCategoriesFilte",
     ""
   );
 
@@ -60,7 +56,6 @@ const HeaderHome = () => {
           .get(api.app.viewSubCategories(categories && categories[0]?._id))
           .then((res) => {
             setSubCategories(res?.data?.data);
-            setSubCategoriesStorage(categories && categories[0]?._id);
           })
       );
   }, [run, rungetSubCategories, categories?.length && categories[0]?._id]);
@@ -72,6 +67,20 @@ const HeaderHome = () => {
       })
     );
   };
+
+  const { run: runMyProfile, isLoading: isLoadingMyProfile } = useAxios([]);
+  useEffect(() => {
+    runMyProfile(
+      authAxios
+        .get(api.app.getMyProfile)
+        .then((res) => {
+          setMyProfileData(res?.data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  }, [runMyProfile]);
 
   return (
     <div className="">
@@ -115,14 +124,23 @@ const HeaderHome = () => {
           {/* auth sidare button */}
           <div>
             <div
-              onClick={() => dispatch(On())}
+              onClick={
+                myProfileData?.fullName
+                  ? () => history.push(routes.app.myProfile)
+                  : () => dispatch(On())
+              }
               className="md:mt-6 mt-9 ml-12 cursor-pointer"
             >
               <p className="text-primary-cyan-light md:text-sm text-xs font-normal">
                 Welcome
               </p>
-              <p className="text-white md:text-2xl text-sm font-medium ">
-                User Login
+              <p className="text-white md:text-2xl text-sm font-medium relative">
+                <Dimmer className="animate-pulse" active={isLoadingMyProfile}>
+                  <Loader active />
+                </Dimmer>
+                {myProfileData?.fullName
+                  ? myProfileData?.fullName
+                  : "User Login"}
               </p>
             </div>
           </div>
@@ -130,7 +148,11 @@ const HeaderHome = () => {
       </div>
       <div className=" bg-white md:h-[76px] h-[40px]">
         <div className=" flex justify-center text-primary-black-light text-xl relative">
-          <Dimmer className="" active={isLoadinggetSubCategories} inverted>
+          <Dimmer
+            className="animate-pulse"
+            active={isLoadinggetSubCategories}
+            inverted
+          >
             <Loader active />
           </Dimmer>
           {SubCategories?.map((e) => (

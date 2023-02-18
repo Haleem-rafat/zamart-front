@@ -9,6 +9,7 @@ const ItemCard = ({
   adsName,
   userName,
   KM,
+  isSmall,
 }) => {
   const [mouseMove, setMouseMove] = useState(false);
   const [mouseMovedelay, setMouseMovedelay] = useState(false);
@@ -56,8 +57,18 @@ const ItemCard = ({
                       {adsName}
                     </p>
                   </div>
-                  <div className="flex justify-between mt-6 px-10">
-                    <button className="w-[174px] h-[54px] rounded bg-white text-black ">
+                  <div
+                    className={
+                      isSmall
+                        ? "flex justify-center mt-8 px-10 "
+                        : "flex justify-between mt-6 px-10"
+                    }
+                  >
+                    <button
+                      className={`${
+                        isSmall && "hidden"
+                      } w-[174px] h-[54px] rounded bg-white text-black `}
+                    >
                       <div className="flex gap-x-2 justify-center ">
                         <p className="font-thin pt-1">BUY</p>
                         <p className="text-lg ">${price}</p>
@@ -80,7 +91,9 @@ const ItemCard = ({
             </div>
           </div>
           <img
-            className="w-[400px] h-[534px] object-cover "
+            className={`${
+              isSmall ? "w-[307px] h-[368px] " : "w-[400px] h-[534px] "
+            } object-cover `}
             // src={itemImge}
             src={`data:image/jpeg;base64,${itemImge}`}
             alt="imgTest "

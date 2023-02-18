@@ -11,6 +11,12 @@ const api = {
     viewSubCategories: (SubCategoriesId) =>
       `/categories/sub-categories/all?category=${SubCategoriesId}`,
     viewAllItems: "/items/user/all",
+    createItemUser: "/items",
+    getMyProfile: "/user/my-profile",
+    getUserProfile: (UserProfileID) => `/user/seller-profile/${UserProfileID}`,
+  },
+  cities: {
+    default: "regions/cities",
   },
 };
 

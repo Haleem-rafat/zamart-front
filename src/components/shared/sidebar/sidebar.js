@@ -11,6 +11,7 @@ import ReserPassComponents from "../../reset-pass-components/reser-pass-componen
 import AddAds from "../../../page/add-ads.js";
 import Footer from "../../home-components/footer.js";
 import HeaderHome from "../../home-components/header.js";
+import MyProfile from "../../../page/my-profile.js";
 
 const AuthSidebar = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
@@ -61,6 +62,7 @@ const AuthSidebar = ({ isreset }) => {
               <Switch>
                 <Route path={routes.app.home} component={Home} />
                 <Route path={routes.app.ceratitems} component={AddAds} />
+                <Route path={routes.app.myProfile} component={MyProfile} />
               </Switch>
               <Footer />
             </Segment>

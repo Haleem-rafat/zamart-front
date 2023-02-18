@@ -7,7 +7,7 @@ import TryApp from "../components/home-components/typ-app";
 
 const Home = () => {
   return (
-    <div>
+    <div className="animate-in">
       <HeroSection />
       <CategoriesSections />
       <FilterSections />

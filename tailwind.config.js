@@ -42,6 +42,7 @@ module.exports = {
             DEFAULT: "#878787",
             dark: "#28282C",
             light: "#ABB6C7",
+            med: "#707070",
           },
           pink: {
             DEFAULT: "#BD11FA",

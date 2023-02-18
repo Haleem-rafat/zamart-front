@@ -23,9 +23,6 @@ const Login = ({ isLogin, setIsLogin }) => {
     run(axios.post(api.auth.login, values))
       .then((res) => {
         const { accessToken, refreshToken, fullName } = res.data.data;
-        console.log("====================================");
-        console.log(res);
-        console.log("====================================");
         auth.setToken({
           newAccessToken: accessToken,
           newRefreshToken: refreshToken,

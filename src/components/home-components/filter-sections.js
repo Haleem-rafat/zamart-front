@@ -13,7 +13,7 @@ const FilterSections = () => {
             Fresh recommendations
           </p>
         </div>
-        <div className="my-auto flex gap-x-3 overflow-y-auto scrollbar-hide">
+        <div className="my-auto flex gap-x-3 overflow-x-auto scrollbar-hide">
           <button className="h-11 px-8 border-[1px] rounded-full text-white hover:bg-primary-cyan-light md:text-lg text-sm">
             all
           </button>

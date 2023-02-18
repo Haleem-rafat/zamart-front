@@ -10,6 +10,9 @@ const routes = {
     home: "/zamart/home",
     ceratitems: "/zamart/add-ads",
     selectcategory: "/zamart/add-ads/Select-Category",
+    myProfile: "/zamart/my-profile",
+    userProfile: (userProfileId = ":userProfileId") =>
+      `/zamart/user-profile/${userProfileId}`,
   },
 };
 
