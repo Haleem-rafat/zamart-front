@@ -8,7 +8,16 @@ const routes = {
   app: {
     default: "/zamart",
     home: "/zamart/home",
-    ceratitems: "/zamart/add-ads",
+    ceratitems: {
+      default: "/zamart/add-ads",
+      selectCategory: `/zamart/add-ads/category`,
+      selectSubCategory: (categoryId = ":categoryId") =>
+        `/zamart/add-ads/${categoryId}/sub`,
+      selectComplementCategory: (subCategoryId = ":subCategoryId") =>
+        `/zamart/add-ads/${subCategoryId}/complement`,
+      addDescription: "/zamart/add-ads/add-description",
+      uploadImage: "/zamart/add-ads/upload-image",
+    },
     selectcategory: "/zamart/add-ads/Select-Category",
     myProfile: "/zamart/my-profile",
     userProfile: (userProfileId = ":userProfileId") =>

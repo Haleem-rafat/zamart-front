@@ -8,12 +8,17 @@ const api = {
   },
   app: {
     viewCategories: "/categories/all",
-    viewSubCategories: (SubCategoriesId) =>
-      `/categories/sub-categories/all?category=${SubCategoriesId}`,
+    viewSubCategories: (categoriesId) =>
+      `/categories/sub-categories/all?category=${categoriesId}`,
+    ViewComplmentartCategories: (SubCategoriesId) =>
+      `/categories/complementary-categories/all?subCategory=${SubCategoriesId}`,
+    ViewCategoriesFromData: (categoriesId) =>
+      `categories/${categoriesId}/form-data`,
     viewAllItems: "/items/user/all",
     createItemUser: "/items",
     getMyProfile: "/user/my-profile",
     getUserProfile: (UserProfileID) => `/user/seller-profile/${UserProfileID}`,
+    viewAllOwner: "/items/user/owns-items",
   },
   cities: {
     default: "regions/cities",

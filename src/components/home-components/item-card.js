@@ -24,9 +24,13 @@ const ItemCard = ({
 
   return (
     <div className="mx-auto">
-      <div className="relative w-full h-[534px] overflow-hidden">
+      <div className="relative w-full h-auto mb-8 overflow-hidden">
         <div className="">
-          <div className="w-full h-[534px] flex items-end absolute  z-20 bg-gradient-to-t from-black text-white">
+          <div
+            className={`${
+              isSmall && " h-[418px] overflow-hidden"
+            } w-full  h-[534px] flex items-end absolute  z-20 bg-gradient-to-t from-black text-white `}
+          >
             <div className="w-full">
               <div
                 className={
@@ -50,10 +54,10 @@ const ItemCard = ({
                   } h-[200px] delay-300 `}
                 >
                   <div className="text-start  px-2 ">
-                    <p className="text-base font-normal py-5 px-10">
+                    <p className="text-base font-normal py-5 px-8">
                       SUBMIT {date} . {userName}
                     </p>
-                    <p className="text-2xl border-b-[1px] border-white  pb-5 px-10">
+                    <p className="text-2xl border-b-[1px] border-white  pb-5 px-8">
                       {adsName}
                     </p>
                   </div>
@@ -92,9 +96,8 @@ const ItemCard = ({
           </div>
           <img
             className={`${
-              isSmall ? "w-[307px] h-[368px] " : "w-[400px] h-[534px] "
+              isSmall ? "w-[307px] h-[418px] " : "w-[400px] h-[534px] "
             } object-cover `}
-            // src={itemImge}
             src={`data:image/jpeg;base64,${itemImge}`}
             alt="imgTest "
           />

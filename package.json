@@ -20,6 +20,7 @@
     "react-geocode": "^0.2.3",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
+    "react-image-file-resizer": "^0.4.8",
     "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",

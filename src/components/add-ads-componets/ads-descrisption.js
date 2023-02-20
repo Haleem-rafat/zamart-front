@@ -15,9 +15,7 @@ import FormikTextarea from "../shared/formik/formik-textarea";
 const AdsDescrisption = ({ steper, setSetper, setAdsDescrisption }) => {
   const [lang] = useLanguage("");
   const [citiesOptions, setCitiesOptions] = useState([]);
-
   const { run: getCities, isLoading: isGettingCiites } = useAxios({});
-
   useEffect(() => {
     getCities(axios.get(`${api.cities.default}`)).then(({ data }) => {
       console.log(data);
@@ -31,8 +29,9 @@ const AdsDescrisption = ({ steper, setSetper, setAdsDescrisption }) => {
   }, [getCities, lang]);
 
   const adsDescrisption = (values) => {
+    console.log(values);
     setAdsDescrisption(values);
-    setSetper(4);
+    setSetper(5);
   };
 
   const adsDescrisptionSchema = Yup.object({

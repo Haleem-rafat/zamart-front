@@ -109,7 +109,7 @@ const HeaderHome = () => {
           <div>
             <button
               onClick={() => {
-                history.push(routes.app.ceratitems);
+                history.push(routes.app.ceratitems.selectCategory);
               }}
               className="md:w-56 w-32 md:h-16 h-10 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple drop-shadow-3xl md:mt-6 mt-8"
             >
@@ -138,9 +138,7 @@ const HeaderHome = () => {
                 <Dimmer className="animate-pulse" active={isLoadingMyProfile}>
                   <Loader active />
                 </Dimmer>
-                {myProfileData?.fullName
-                  ? myProfileData?.fullName
-                  : "User Login"}
+                {myProfileData?.fullName ? myProfileData?.fullName : "Login"}
               </p>
             </div>
           </div>

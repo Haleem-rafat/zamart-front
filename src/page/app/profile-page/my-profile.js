@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FiHome } from "react-icons/fi";
 import { Breadcrumb, Dimmer, Loader } from "semantic-ui-react";
-import myProfileImg from "../../src/assets/img/my_profile_img.png";
-import api from "../api";
-import ItemCard from "../components/home-components/item-card";
-import { authAxios } from "../config/axios-config";
-import useAxios from "../hooks/use-axios";
+import myProfileImg from "../../../../src/assets/img/my_profile_img.png";
+import api from "../../../api";
+import ItemCard from "../../../components/home-components/item-card";
+import { authAxios } from "../../../config/axios-config";
+import useAxios from "../../../hooks/use-axios";
 
 const MyProfile = () => {
   const sectionsOne = [
@@ -21,6 +21,7 @@ const MyProfile = () => {
   ];
 
   const [myProfileData, setMyProfileData] = useState();
+  const [viewAllOwner, setViewAllOwner] = useState();
 
   const { run: runMyProfile, isLoading: isLoadingMyProfile } = useAxios([]);
   useEffect(() => {
@@ -36,9 +37,28 @@ const MyProfile = () => {
     );
   }, [runMyProfile]);
 
+  const { run: runviewAllOwner, isLoading: isLoadingviewAllOwner } = useAxios(
+    []
+  );
+  useEffect(() => {
+    runviewAllOwner(
+      authAxios
+        .get(api.app.viewAllOwner)
+        .then((res) => {
+          setViewAllOwner(res?.data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  }, [runviewAllOwner]);
+
   return (
     <div className="max-w-[1650px] mx-auto  animate-in relative">
-      <Dimmer className=" animate-pulse" active={isLoadingMyProfile}>
+      <Dimmer
+        className=" animate-pulse"
+        active={isLoadingMyProfile || isLoadingviewAllOwner}
+      >
         <Loader active />
       </Dimmer>
       <p className="flex text-white text-2xl mt-14 pb-8 border-b-[1px] border-primary-gray-dark  ">
@@ -105,63 +125,22 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-      <div className="text-white flex justify-between flex-wrap  sm:h-screen h-full mb-8">
-        <div className="bg-red-300  w-[266px] h-[480px] mx-auto ">left</div>
+      <div className="text-white flex justify-between flex-wrap   mb-8">
+        <div className="bg-red-300  w-[266px] mx-auto ">left</div>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-y-10 gap-x-5  sm:mx-5 relative  sm:h-[534px] h-full mx-auto ">
-          {/* <Dimmer className=" animate-pulse h-[534px]" active={"isLoading"}>
-              <Loader active />
-            </Dimmer> */}
-          <ItemCard
-            itemImge={""}
-            itemName={"test"}
-            price={"test"}
-            date={"test"}
-            adsName={"test"}
-            userName={"test"}
-            KM={"test"}
-            isSmall={true}
-          />
-          <ItemCard
-            itemImge={""}
-            itemName={"test"}
-            price={"test"}
-            date={"test"}
-            adsName={"test"}
-            userName={"test"}
-            KM={"test"}
-            isSmall={true}
-          />
-          <ItemCard
-            itemImge={""}
-            itemName={"test"}
-            price={"test"}
-            date={"test"}
-            adsName={"test"}
-            userName={"test"}
-            KM={"test"}
-            isSmall={true}
-          />
-          <ItemCard
-            itemImge={""}
-            itemName={"test"}
-            price={"test"}
-            date={"test"}
-            adsName={"test"}
-            userName={"test"}
-            KM={"test"}
-            isSmall={true}
-          />
-          <ItemCard
-            itemImge={""}
-            itemName={"test"}
-            price={"test"}
-            date={"test"}
-            adsName={"test"}
-            userName={"test"}
-            KM={"test"}
-            isSmall={true}
-          />
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-x-5  sm:mx-5 relative  h-fit mx-auto ">
+          {viewAllOwner?.map((e) => (
+            <ItemCard
+              itemImge={e?.images[0]?.img}
+              itemName={e?.brand}
+              price={e?.price}
+              date={new Date(e?.updatedAt).toLocaleDateString("en-GB")}
+              adsName={e?.model}
+              userName={e?.user?.fullName}
+              KM={e?.kiloMeters}
+              isSmall={true}
+            />
+          ))}
         </div>
       </div>
     </div>

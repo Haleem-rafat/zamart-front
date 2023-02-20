@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useLanguage } from "./context/language-context";
-import AppLayouts from "./layouts/app-layouts";
+import AuthSidebarLayouts from "./layouts/auth-sidebar-layouts";
 import ResetPassLayouts from "./layouts/reset-pass-layouts";
-import Home from "./page/home";
+import Home from "./page/app/home-page/home";
 import routes from "./routes";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="">
       <Switch>
-        <Route path={routes.app.default} component={AppLayouts} />
+        <Route path={routes.app.default} component={AuthSidebarLayouts} />
         <Route
           path={routes.auth.resetpass.default}
           component={ResetPassLayouts}

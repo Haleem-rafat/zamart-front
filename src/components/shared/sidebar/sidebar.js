@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Off, On } from "../../../redux/sidebare-slice.js";
 import { Route, Switch } from "react-router-dom";
 import routes from "../../../routes.js";
-import Home from "../../../page/home.js";
+import Home from "../../../page/app/home-page/home.js";
 import Login from "../../auth-components/login.js";
 import SignUp from "../../auth-components/signup.js";
 import ReserPassComponents from "../../reset-pass-components/reser-pass-components.js";
-import AddAds from "../../../page/add-ads.js";
+import AddAds from "../../../page/app/add-ads/add-ads-old.js";
 import Footer from "../../home-components/footer.js";
 import HeaderHome from "../../home-components/header.js";
-import MyProfile from "../../../page/my-profile.js";
+import MyProfile from "../../../page/app/profile-page/my-profile.js";
 
 const AuthSidebar = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
