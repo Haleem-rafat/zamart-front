@@ -29,6 +29,7 @@ const Login = ({ isLogin, setIsLogin }) => {
         });
         dispatch(Off());
         toast.success("welcome " + fullName);
+        window.location.reload();
       })
       .catch((err) => {
         toast.error(err.errors[0].message);

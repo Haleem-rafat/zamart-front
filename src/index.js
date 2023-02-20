@@ -6,13 +6,16 @@ import "./index.css";
 import { LanguageProvider } from "./context/language-context";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { AuthProvider } from "./context/auth-context";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <LanguageProvider>
         <Provider store={store}>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </Provider>
       </LanguageProvider>
     </BrowserRouter>

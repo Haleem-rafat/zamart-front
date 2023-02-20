@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import speedometer from "../../../src/assets/icons/speedometer.svg";
 
-const ItemCard = ({
+const ItemCardSmall = ({
   itemImge,
   itemName,
   price,
@@ -27,9 +27,9 @@ const ItemCard = ({
       <div className="relative w-full h-auto mb-8 overflow-hidden">
         <div className="">
           <div
-            className={`${
-              isSmall && " h-[417px] overflow-hidden"
-            } w-full  h-[534px] flex items-end absolute  z-20 bg-gradient-to-t from-black text-white `}
+            className={
+              " h-[417px] overflow-hidden w-full flex items-end absolute  z-20 bg-gradient-to-t from-black text-white "
+            }
           >
             <div className="w-full">
               <div
@@ -61,23 +61,7 @@ const ItemCard = ({
                       {adsName}
                     </p>
                   </div>
-                  <div
-                    className={
-                      isSmall
-                        ? "flex justify-center mt-8 px-10 "
-                        : "flex justify-between mt-6 px-10"
-                    }
-                  >
-                    <button
-                      className={`${
-                        isSmall && "hidden"
-                      } w-[174px] h-[54px] rounded bg-white text-black `}
-                    >
-                      <div className="flex gap-x-2 justify-center ">
-                        <p className="font-thin pt-1">BUY</p>
-                        <p className="text-lg ">${price}</p>
-                      </div>
-                    </button>
+                  <div className={"flex justify-center mt-8 px-10 "}>
                     <div className="flex gap-x-4 my-auto">
                       <img
                         className="w-8 h-7"
@@ -95,9 +79,7 @@ const ItemCard = ({
             </div>
           </div>
           <img
-            className={`${
-              isSmall ? "w-[307px] h-[417px] " : "w-[400px] h-[534px] "
-            } object-cover `}
+            className="w-[307px] h-[417px] object-cover "
             src={`data:image/jpeg;base64,${itemImge}`}
             alt="imgTest "
           />
@@ -107,4 +89,4 @@ const ItemCard = ({
   );
 };
 
-export default ItemCard;
+export default ItemCardSmall;

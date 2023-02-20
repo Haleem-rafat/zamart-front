@@ -15,7 +15,7 @@ const HeroSection = () => {
           </p>
 
           <div className="flex justify-center flex-wrap gap-x-2 mt-14">
-            <div className="backdrop-blur-xl bg-gradient-to-r from-white/80 bg-white/40 lg:w-[730px] w-full lg:h-[84px] h-full z-10">
+            <div className="backdrop-blur-xl bg-gradient-to-r from-white/70 bg-white/40 lg:w-[730px] w-full lg:h-[84px] h-full z-10">
               <div className="flex justify-center flex-wrap gap-x-20 pt-7 text-primary-black-light text-2xl  z-20">
                 <div>
                   <Dropdown text="Type">
@@ -95,7 +95,7 @@ const HeroSection = () => {
                 </div>
               </div>
             </div>
-            <button className="bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple drop-shadow-3xl lg:w-[230px] w-full  h-[78px]">
+            <button className="bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple drop-shadow-3xl lg:w-[230px] w-full h-[80px]">
               <div className="flex justify-center gap-x-2">
                 <SlMagnifier size={30} />
                 <p className="text-2xl">SEARCH NOW</p>
@@ -103,8 +103,8 @@ const HeroSection = () => {
             </button>
           </div>
           <div className="flex justify-center flex-wrap">
-            <div className="backdrop-blur-xl bg-gradient-to-r from-white/80 bg-white/40 lg:w-[967px] w-full lg:h-[30px] h-auto ">
-              <div className="flex gap-x-[80px] mx-[80px] pt-2 text-primary-black-light z-20">
+            <div className="backdrop-blur-md bg-gradient-to-r from-white/80 bg-white/25 lg:w-[967px] w-full lg:h-[30px] h-auto mt-[1px] ">
+              <div className="flex gap-x-[80px] mx-[70px] pt-2 text-primary-black-light z-20">
                 <div>
                   <Dropdown text="Location">
                     <Dropdown.Menu>

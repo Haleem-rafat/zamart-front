@@ -23,6 +23,7 @@ module.exports = {
       sans: ["ui-sans-serif", "system-ui"],
       serifAR: ["Cairo"],
       serifEN: ["Roboto"],
+      serifCUS: ["Lora"],
       mono: ["ui-monospace", "SFMono-Regular"],
       display: ["Oswald"],
       body: ["Almarai"],
@@ -46,10 +47,12 @@ module.exports = {
           },
           pink: {
             DEFAULT: "#BD11FA",
+            light: "#E4576C",
           },
           cyan: {
             DEFAULT: "#46C2FF",
             light: "#5ABAC2",
+            med: "#2CA5B5",
           },
           purple: {
             DEFAULT: "#822EFF",

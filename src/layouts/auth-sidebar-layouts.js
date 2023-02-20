@@ -53,34 +53,40 @@ const AuthSidebarLayouts = ({ isreset }) => {
           className="bg-primary-black-light p-0 m-0 border-none  border-0  "
           dimmed={toggleDeleteStatus}
         >
-          <div className="p-0 m-0 border-none  ">
+          <div className="p-0 m-0 border-none ">
             <Segment basic>
-              <HeaderHome />
-              <Switch>
-                <Route path={routes.app.home} component={Home} />
-                <Route path={routes.app.myProfile} component={MyProfile} />
-                <Route
-                  path={routes.app.ceratitems.selectCategory}
-                  component={SelectCategories}
-                />
-                <Route
-                  path={routes.app.ceratitems.selectSubCategory()}
-                  component={SelectSubCategories}
-                />
-                <Route
-                  path={routes.app.ceratitems.selectComplementCategory()}
-                  component={SelectComplementCategory}
-                />
-                <Route
-                  path={routes.app.ceratitems.addDescription}
-                  component={AddDescription}
-                />
-                <Route
-                  path={routes.app.ceratitems.uploadImage}
-                  component={UploadImage}
-                />
-              </Switch>
-              <Footer />
+              <div className="flex flex-col justify-between ">
+                <div className="h-[170px] row-end-1">
+                  <HeaderHome />
+                </div>
+                <div className="row-span-5">
+                  <Switch>
+                    <Route path={routes.app.home} component={Home} />
+                    <Route path={routes.app.myProfile} component={MyProfile} />
+                    <Route
+                      path={routes.app.ceratitems.selectCategory}
+                      component={SelectCategories}
+                    />
+                    <Route
+                      path={routes.app.ceratitems.selectSubCategory()}
+                      component={SelectSubCategories}
+                    />
+                    <Route
+                      path={routes.app.ceratitems.selectComplementCategory()}
+                      component={SelectComplementCategory}
+                    />
+                    <Route
+                      path={routes.app.ceratitems.addDescription}
+                      component={AddDescription}
+                    />
+                    <Route
+                      path={routes.app.ceratitems.uploadImage}
+                      component={UploadImage}
+                    />
+                  </Switch>
+                </div>
+                <Footer />
+              </div>
             </Segment>
           </div>
         </Sidebar.Pusher>

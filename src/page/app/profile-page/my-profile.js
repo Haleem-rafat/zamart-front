@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { FiHome } from "react-icons/fi";
+import { FiHome, FiLogOut } from "react-icons/fi";
+import { useHistory, useLocation } from "react-router-dom";
 import { Breadcrumb, Dimmer, Loader } from "semantic-ui-react";
 import myProfileImg from "../../../../src/assets/img/my_profile_img.png";
 import api from "../../../api";
 import ItemCard from "../../../components/home-components/item-card";
+import ItemCardSmall from "../../../components/shared/card-item-small";
 import { authAxios } from "../../../config/axios-config";
+import { useAuthState } from "../../../context/auth-context";
 import useAxios from "../../../hooks/use-axios";
+import useFilter from "../../../hooks/use-filter";
+import routes from "../../../routes";
 
 const MyProfile = () => {
   const sectionsOne = [
@@ -20,8 +25,16 @@ const MyProfile = () => {
     { key: "My Account", content: "My Account", active: true },
   ];
 
+  const { logout } = useAuthState();
+
   const [myProfileData, setMyProfileData] = useState();
   const [viewAllOwner, setViewAllOwner] = useState();
+  const [viewItemsAnalytics, setViewItemsAnalytics] = useState();
+
+  const [status, setStatus] = useFilter("status", "");
+  const { search } = useLocation();
+
+  const history = useHistory();
 
   const { run: runMyProfile, isLoading: isLoadingMyProfile } = useAxios([]);
   useEffect(() => {
@@ -43,7 +56,7 @@ const MyProfile = () => {
   useEffect(() => {
     runviewAllOwner(
       authAxios
-        .get(api.app.viewAllOwner)
+        .get(`${api.app.viewAllOwner}${search}`)
         .then((res) => {
           setViewAllOwner(res?.data?.data);
         })
@@ -51,13 +64,32 @@ const MyProfile = () => {
           console.log(err);
         })
     );
-  }, [runviewAllOwner]);
+  }, [runviewAllOwner, search]);
+
+  const { run: runviewItemsAnalytics, isLoading: isLoadingviewItemsAnalytics } =
+    useAxios([]);
+  useEffect(() => {
+    runviewItemsAnalytics(
+      authAxios
+        .get(api.app.viewItemsAnalytics)
+        .then((res) => {
+          setViewItemsAnalytics(res?.data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  }, [runviewItemsAnalytics]);
 
   return (
     <div className="max-w-[1650px] mx-auto  animate-in relative">
       <Dimmer
-        className=" animate-pulse"
-        active={isLoadingMyProfile || isLoadingviewAllOwner}
+        className=" animate-pulse bg-primary-black-light"
+        active={
+          isLoadingMyProfile ||
+          isLoadingviewAllOwner ||
+          isLoadingviewItemsAnalytics
+        }
       >
         <Loader active />
       </Dimmer>
@@ -125,12 +157,39 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-      <div className="text-white flex justify-between flex-wrap   mb-8">
-        <div className="bg-red-300  w-[266px] mx-auto ">left</div>
+      <div className="text-white flex justify-between flex-wrap  mb-8">
+        <div className="bg-black w-[266px] h-fit rounded-xl mx-auto overflow-hidden ">
+          {viewItemsAnalytics?.map((e) => (
+            <div
+              key={e?._id}
+              onClick={() => setStatus(e?.status)}
+              className={`${
+                status === e?.status ? "bg-primary-cyan-med text-white" : ""
+              } group flex justify-between text-2xl p-9 cursor-pointer `}
+            >
+              <p>{e?.status}</p>
+              <p
+                className={`${
+                  status === e?.status ? "text-white" : "group-hover:text-white"
+                } text-primary-pink-light `}
+              >{`(${e?.count})`}</p>
+            </div>
+          ))}
+          <div
+            onClick={() => {
+              logout();
+              window.location.reload();
+            }}
+            className="text-2xl flex gap-x-3 p-8 mx-auto cursor-pointer"
+          >
+            <FiLogOut size={30} className="text-primary-cyan-med" />
+            <p>LOGOUT</p>
+          </div>
+        </div>
 
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-x-5  sm:mx-5 relative  h-fit mx-auto ">
           {viewAllOwner?.map((e) => (
-            <ItemCard
+            <ItemCardSmall
               itemImge={e?.images[0]?.img}
               itemName={e?.brand}
               price={e?.price}
@@ -138,7 +197,6 @@ const MyProfile = () => {
               adsName={e?.model}
               userName={e?.user?.fullName}
               KM={e?.kiloMeters}
-              isSmall={true}
             />
           ))}
         </div>

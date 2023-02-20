@@ -29,14 +29,17 @@ const SelectCategories = () => {
     );
   }, [run]);
   return (
-    <div className="text-white max-w-[1500px] mx-auto animate-in relative pb-8">
-      <Dimmer className=" animate-pulse" active={isLoading}>
+    <div className="text-white max-w-[1500px] mx-auto animate-in relative pb-8 ">
+      <Dimmer
+        className=" animate-pulse bg-primary-black-light"
+        active={isLoading}
+      >
         <Loader active />
       </Dimmer>
       <div className="mt-20 border-b-[1px] border-primary-gray-dark w-full pb-12">
         <BreadCrumbAddAds />
       </div>
-      <h1 className="text-center text-6xl pt-12">
+      <h1 className="text-center text-6xl pt-12 font-serifCUS">
         Now choose the right category<br></br> for your ad:
         <p className="text-primary-gray text-2xl pt-6">
           Consultant Psychiatrist - Experience In Adult Psychiatry <br></br>

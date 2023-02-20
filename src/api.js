@@ -17,6 +17,7 @@ const api = {
     viewAllItems: "/items/user/all",
     createItemUser: "/items",
     getMyProfile: "/user/my-profile",
+    viewItemsAnalytics: "/items/user/owns-items/analytics",
     getUserProfile: (UserProfileID) => `/user/seller-profile/${UserProfileID}`,
     viewAllOwner: "/items/user/owns-items",
   },

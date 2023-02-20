@@ -48,24 +48,25 @@ const UploadImage = () => {
   };
 
   const ads = useSelector((state) => state.addAds.addAds);
+  console.log("====================================");
+  console.log(ads);
+  console.log("====================================");
   const dispatch = useDispatch();
 
   const { run: runPostads, isLoading: isLoadingPostads } = useAxios([]);
   const postads = (status) => {
     const formData = new FormData();
-    const test = ads[0];
-    console.log("====================================");
-    console.log(test);
-    console.log("====================================");
-    if (test === undefined) {
+    if (ads === undefined) {
       history.push(routes.app.ceratitems.selectCategory);
     } else
-      Object?.keys(test)?.forEach((key) => {
-        formData?.append(`${key}`, test[key]);
+      Object?.keys(ads)?.forEach((key) => {
+        formData?.append(`${key}`, ads[key]);
       });
     formData.append("category", CatID);
-    formData.append("complementaryCategory", comCatID);
     formData.append("subCategory", subCatID);
+    if (comCatID) {
+      formData.append("complementaryCategory", comCatID);
+    }
     formData.append("images", fileOne);
     formData.append("images", fileTwo);
     formData.append("images", fileThree);
@@ -75,9 +76,10 @@ const UploadImage = () => {
       authAxios
         .post(api.app.createItemUser, formData)
         .then((res) => {
-          if (ads[0].length) {
+          if (ads) {
             history.push(routes.app.ceratitems.selectCategory);
-          } else if (status === "PENDING") {
+          }
+          if (status === "PENDING") {
             toast.success(
               "The ad has been added successfully and is still under review by  ZAMART admin"
             );
@@ -94,7 +96,7 @@ const UploadImage = () => {
             toast.error(
               "There is an error, you must be logged in in order for the ad to be placed"
             );
-          } else toast.error(err.errors[0].message);
+          } else toast.error(err.errors[0].message) || console.log(err);
         })
     );
   };
@@ -106,7 +108,7 @@ const UploadImage = () => {
       </div>
       <div className=" md:grid grid-cols-3 flex flex-wrap">
         <div className="w-full"></div>
-        <h1 className="text-center text-6xl pt-12  animate-in mx-auto mb-4 w-full">
+        <h1 className="text-center text-6xl pt-12  animate-in mx-auto mb-4 w-full font-serifCUS">
           You’re almost there!
           <p className="text-primary-gray text-2xl pt-6">
             Include as much details and pictures as possible, <br></br>and set
@@ -214,7 +216,7 @@ const UploadImage = () => {
                 </FileUploader>
               </div>
             ) : (
-              <div className="w-[404px] h-[393px] bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white mt-14"></div>
+              <div className="w-[404px] h-[393px] bg-primary-gray-med  text-white mt-14"></div>
             )}
           </div>
           <div className="mt-14 mx-5">

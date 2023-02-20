@@ -20,18 +20,20 @@ const CategoriesSections = () => {
       })
     );
   }, [run]);
-  console.log("====================================");
-  console.log(categories);
-  console.log("====================================");
+
   return (
     <div className="w-full relative">
-      <Dimmer className=" animate-pulse h-[534px]" active={isLoading}>
+      <Dimmer
+        className=" animate-pulse bg-primary-black-light h-[534px]"
+        active={isLoading}
+      >
         <Loader active />
       </Dimmer>
       {/* Categories Sections */}
       <div className="flex flex-col md:flex-row justify-between gap-x-8 gap-y-8 mx-8 my-5">
         {categories?.map((e) => (
           <CategoriesCard
+            id={e?._id}
             img={e?.image}
             lable={lang === "en" ? e?.nameEn : e?.nameAr}
             info={
@@ -43,7 +45,9 @@ const CategoriesSections = () => {
       {/* google play and app store */}
       <div className="flex md:flex-row flex-col justify-between bg-black mx-8 h-44 md:px-24 px-4 ">
         <div className="text-white my-auto ">
-          <p className="md:text-5xl text-2xl">Find amazing deals on the go.</p>
+          <p className="md:text-5xl text-2xl font-light">
+            Find amazing deals on the go.
+          </p>
           <p className="md:text-xl text-lg md:pt-4 pt-2">
             Download the app now!
           </p>

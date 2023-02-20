@@ -88,13 +88,16 @@ const AddDescription = () => {
 
   return (
     <div className="text-white max-w-[1500px] mx-auto  animate-in relative pb-8">
-      <Dimmer className=" animate-pulse" active={isLoading}>
+      <Dimmer
+        className=" animate-pulse bg-primary-black-light"
+        active={isLoading}
+      >
         <Loader active />
       </Dimmer>
       <div className="mt-20 border-b-[1px] border-primary-gray-dark w-full pb-12">
         <BreadCrumbAddAds />
       </div>
-      <h1 className="text-center text-6xl pt-12  animate-in mx-auto mb-4">
+      <h1 className="text-center text-6xl pt-12  animate-in mx-auto mb-4 font-serifCUS ">
         You’re almost there!
         <p className="text-primary-gray text-2xl pt-6">
           Include as much details and pictures as possible, <br></br>and set the

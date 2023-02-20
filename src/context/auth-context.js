@@ -30,7 +30,7 @@ function AuthProvider({ children }) {
 
   const logout = () => {
     Auth.setToken({ newAccessToken: "", newRefreshToken: "" });
-    history.push(routes.auth.logIn);
+    history.push(routes.app.home);
   };
 
   React.useEffect(() => {
@@ -61,7 +61,7 @@ function AuthProvider({ children }) {
       }}
     >
       {isLoading ? (
-        <div className="h-screen w-screen flex items-center justify-center">
+        <div className="h-screen w-screen bg-primary-black-light text-white flex items-center justify-center">
           <div className="flex flex-col items-center gap-3">
             <p>Authenticating...</p>
           </div>

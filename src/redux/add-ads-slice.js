@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const addAdsSlice = createSlice({
   name: "addAds",
   initialState: {
-    addAds: [],
+    addAds: {},
   },
   reducers: {
     addAds: (state, action) => {
-      state.addAds.push(action.payload);
+      state.addAds = action.payload;
     },
   },
 });
