@@ -44,6 +44,7 @@ module.exports = {
             dark: "#28282C",
             light: "#ABB6C7",
             med: "#707070",
+            subMed: "#3E3F44",
           },
           pink: {
             DEFAULT: "#BD11FA",

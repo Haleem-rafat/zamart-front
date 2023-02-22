@@ -24,15 +24,16 @@ const ItemsDrid = () => {
 
   return (
     <div id="Categories">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-y-10 gap-x-5 my-10 mx-5 relative  sm:h-[534px] h-auto ">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-y-10 gap-x-5 my-10 mx-5 relative  h-[534px] sm:h-full ">
         <Dimmer
-          className=" animate-pulse bg-primary-black-light h-[534px]"
+          className=" animate-pulse bg-primary-black-light  h-full"
           active={isLoading}
         >
           <Loader active />
         </Dimmer>
         {data?.map((e) => (
           <ItemCard
+            id={e?._id}
             itemImge={e?.images[0]?.img || ""}
             itemName={e?.brand || ""}
             price={e?.price || ""}

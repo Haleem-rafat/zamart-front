@@ -16,10 +16,13 @@ const api = {
       `categories/${categoriesId}/form-data`,
     viewAllItems: "/items/user/all",
     createItemUser: "/items",
+    viewItemById: (itemId) => `/items/${itemId}/details`,
     getMyProfile: "/user/my-profile",
     viewItemsAnalytics: "/items/user/owns-items/analytics",
     getUserProfile: (UserProfileID) => `/user/seller-profile/${UserProfileID}`,
     viewAllOwner: "/items/user/owns-items",
+    sendEnquiry: (id) => `/items/user/${id}/send-enquiry`,
+    sendCallRequest: (id) => `items/user/${id}/make-call`,
   },
   cities: {
     default: "regions/cities",

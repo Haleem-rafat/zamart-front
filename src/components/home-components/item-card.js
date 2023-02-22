@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import speedometer from "../../../src/assets/icons/speedometer.svg";
+import routes from "../../routes";
 
 const ItemCard = ({
   itemImge,
@@ -9,6 +11,7 @@ const ItemCard = ({
   adsName,
   userName,
   KM,
+  id,
   isSmall,
 }) => {
   const [mouseMove, setMouseMove] = useState(false);
@@ -21,6 +24,8 @@ const ItemCard = ({
       setMouseMovedelay(false);
     }
   }, "250");
+
+  const history = useHistory();
 
   return (
     <div className="mx-auto">
@@ -44,6 +49,7 @@ const ItemCard = ({
                 <p>{price} $</p>
               </div>
               <button
+                onClick={() => history.push(routes.app.viewItemById(id))}
                 onMouseEnter={() => setMouseMove(true)}
                 onMouseLeave={() => setMouseMove(false)}
                 className="bg-gradient-to-r from-primary-pink to-primary-cyan w-full h-[66px] text-white delay-300 duration-300 hover:delay-300 hover:duration-300 hover:h-[200px]"

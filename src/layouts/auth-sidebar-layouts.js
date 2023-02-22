@@ -15,6 +15,7 @@ import SelectSubCategories from "../page/app/add-ads/select-sub-category.js";
 import SelectComplementCategory from "../page/app/add-ads/select-complement-category.js";
 import AddDescription from "../page/app/add-ads/add-description.js";
 import UploadImage from "../page/app/add-ads/upload-Image.js";
+import ItemDetails from "../page/app/ads-details/item-details.js";
 
 const AuthSidebarLayouts = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
@@ -82,6 +83,10 @@ const AuthSidebarLayouts = ({ isreset }) => {
                     <Route
                       path={routes.app.ceratitems.uploadImage}
                       component={UploadImage}
+                    />
+                    <Route
+                      path={routes.app.viewItemById()}
+                      component={ItemDetails}
                     />
                   </Switch>
                 </div>

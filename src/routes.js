@@ -18,6 +18,7 @@ const routes = {
       addDescription: "/zamart/add-ads/add-description",
       uploadImage: "/zamart/add-ads/upload-image",
     },
+    viewItemById: (itemId = ":itemId") => `/zamart/${itemId}/ads-details`,
     selectcategory: "/zamart/add-ads/Select-Category",
     myProfile: "/zamart/my-profile",
     userProfile: (userProfileId = ":userProfileId") =>

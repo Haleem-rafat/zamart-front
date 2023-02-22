@@ -19,7 +19,7 @@ const Login = ({ isLogin, setIsLogin }) => {
   const dispatch = useDispatch();
 
   const { run, isLoading } = useAxios();
-  const logIn = (values) => {
+  const logIn = (values, actions) => {
     run(axios.post(api.auth.login, values))
       .then((res) => {
         const { accessToken, refreshToken, fullName } = res.data.data;
@@ -30,6 +30,7 @@ const Login = ({ isLogin, setIsLogin }) => {
         dispatch(Off());
         toast.success("welcome " + fullName);
         window.location.reload();
+        actions.resetForm();
       })
       .catch((err) => {
         toast.error(err.errors[0].message);

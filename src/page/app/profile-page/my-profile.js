@@ -190,6 +190,7 @@ const MyProfile = () => {
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-x-5  sm:mx-5 relative  h-fit mx-auto ">
           {viewAllOwner?.map((e) => (
             <ItemCardSmall
+              id={e?._id}
               itemImge={e?.images[0]?.img}
               itemName={e?.brand}
               price={e?.price}
