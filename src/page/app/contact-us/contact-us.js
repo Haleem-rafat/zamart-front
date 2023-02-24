@@ -33,7 +33,7 @@ const ContactUs = () => {
   });
   return (
     <div>
-      <div className="grid grid-cols-5">
+      <div className="grid grid-cols-5 animate-in">
         <div className="col-span-2 ml-36">
           <p className="text-primary-gray text-xl mt-16">TALK TO US</p>
           <h1 className="text-white text-7xl">

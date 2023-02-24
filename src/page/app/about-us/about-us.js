@@ -3,7 +3,7 @@ import React from "react";
 import aboutus from "../../../../src/assets/img/about-us.png";
 const AboutUs = () => {
   return (
-    <div className="flex justify-between my-5">
+    <div className="flex justify-between my-5 animate-in">
       <div className="mx-40 mt-40">
         <p className="text-primary-gray text-xl font-normal">OUR STORY</p>
         <h1 className=" text-white text-7xl pt-2 pb-12">ABOUT US</h1>
