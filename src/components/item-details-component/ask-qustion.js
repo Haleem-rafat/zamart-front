@@ -6,13 +6,18 @@ import { Button, Form } from "semantic-ui-react";
 import * as Yup from "yup";
 import api from "../../api";
 import { authAxios } from "../../config/axios-config";
+import { useAuthState } from "../../context/auth-context";
 import useAxios from "../../hooks/use-axios";
 import FormikInput from "../shared/formik/formik-input";
 import FormikTextarea from "../shared/formik/formik-textarea";
+import { On } from "../../redux/sidebare-slice.js";
+import { useDispatch } from "react-redux";
 
 const Askqustion = () => {
   const [reason, setReason] = useState("");
   const { itemId } = useParams();
+  const { user } = useAuthState();
+  const dispatch = useDispatch();
 
   const sendEnquirySchema = Yup.object({
     description: Yup.string().required("Required field"),
@@ -30,17 +35,22 @@ const Askqustion = () => {
       enquiryUserPhone: values?.enquiryUserPhone,
       reason: reason,
     };
-    runSendEnquiry(
-      authAxios
-        .post(api.app.sendEnquiry(itemId), body)
-        .then((res) => {
-          toast.success("Send Enquiry success");
-          actions.resetForm();
-        })
-        .catch((err) => {
-          toast.error(err.errors[0].message);
-        })
-    );
+    if (user) {
+      runSendEnquiry(
+        authAxios
+          .post(api.app.sendEnquiry(itemId), body)
+          .then((res) => {
+            toast.success("Send Enquiry success");
+            actions.resetForm();
+          })
+          .catch((err) => {
+            toast.error(err.errors[0].message);
+          })
+      );
+    } else {
+      toast.error("You must be logged in to Send Enquiry this user's profile");
+      dispatch(On());
+    }
   };
   return (
     <div>
@@ -68,22 +78,22 @@ const Askqustion = () => {
                 <div className="md:w-[341px] w-full mt-6">
                   <FormikInput
                     name="enquiryUserFullName"
-                    type={"email"}
-                    placeholder={"E-MAIL"}
+                    type={"FULL NAME"}
+                    placeholder={"FULL NAME"}
                   />
                 </div>
                 <div className="md:w-[341px] w-full mt-6">
                   <FormikInput
                     name="enquiryUserEmail"
-                    type={"text"}
-                    placeholder={"PHONE"}
+                    type={"E-MAIL"}
+                    placeholder={"E-MAIL"}
                   />
                 </div>
                 <div className="md:w-[341px] w-full mt-6">
                   <FormikInput
                     name="enquiryUserPhone"
-                    type={"text"}
-                    placeholder={"PHONE"}
+                    type={"PHONE NUMBER"}
+                    placeholder={"PHONE NUMBER"}
                   />
                 </div>
                 <div className="flex flex-col sm:mt-5 mt-8 ml-2">

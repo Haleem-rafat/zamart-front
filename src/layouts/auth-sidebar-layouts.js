@@ -16,6 +16,7 @@ import SelectComplementCategory from "../page/app/add-ads/select-complement-cate
 import AddDescription from "../page/app/add-ads/add-description.js";
 import UploadImage from "../page/app/add-ads/upload-Image.js";
 import ItemDetails from "../page/app/ads-details/item-details.js";
+import UserProfile from "../page/app/profile-page/user-profile.js";
 
 const AuthSidebarLayouts = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
@@ -64,6 +65,10 @@ const AuthSidebarLayouts = ({ isreset }) => {
                   <Switch>
                     <Route path={routes.app.home} component={Home} />
                     <Route path={routes.app.myProfile} component={MyProfile} />
+                    <Route
+                      path={routes.app.userProfile()}
+                      component={UserProfile}
+                    />
                     <Route
                       path={routes.app.ceratitems.selectCategory}
                       component={SelectCategories}

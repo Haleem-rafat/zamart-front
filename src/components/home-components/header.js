@@ -15,6 +15,7 @@ import { authAxios, axios } from "../../config/axios-config";
 import api from "../../api";
 import { useLanguage } from "../../context/language-context";
 import useFilter from "../../hooks/use-filter";
+import ZamartLoading from "../shared/lotties/zamart-loading";
 
 const HeaderHome = () => {
   const dispatch = useDispatch();
@@ -122,15 +123,39 @@ const HeaderHome = () => {
             </button>
           </div>
           {/* auth sidare button */}
-          <div>
-            <div
-              onClick={
+          <div
+            onClick={
+              myProfileData?.fullName
+                ? () => history.push(routes.app.myProfile)
+                : () => dispatch(On())
+            }
+            className="flex  cursor-pointe ml-12 mt-2"
+          >
+            <p
+              className={
                 myProfileData?.fullName
-                  ? () => history.push(routes.app.myProfile)
-                  : () => dispatch(On())
+                  ? "w-16 h-16 rounded-full mx-auto mt-4 pt-3.5 text-center text-3xl bg-primary-gray-light text-primary-purple cursor-pointer"
+                  : "hidden"
               }
-              className="md:mt-6 mt-9 ml-12 cursor-pointer"
             >
+              {myProfileData?.fullName
+                ?.split(" ")[1]
+                ?.substring(0, 1)
+                .toUpperCase() === undefined
+                ? myProfileData?.fullName
+                    ?.split(" ")[0]
+                    .substring(0, 1)
+                    .toUpperCase()
+                : myProfileData?.fullName
+                    ?.split(" ")[0]
+                    ?.substring(0, 1)
+                    .toUpperCase() +
+                  myProfileData?.fullName
+                    ?.split(" ")[1]
+                    ?.substring(0, 1)
+                    .toUpperCase()}
+            </p>
+            <div className="md:mt-6 mt-9 ml-4 cursor-pointer">
               <p className="text-primary-cyan-light md:text-sm text-xs font-normal">
                 Welcome
               </p>
@@ -148,7 +173,8 @@ const HeaderHome = () => {
             active={isLoadinggetSubCategories}
             inverted
           >
-            <Loader active />
+            {/* <Loader active /> */}
+            <ZamartLoading />
           </Dimmer>
           {SubCategories?.map((e) => (
             <a

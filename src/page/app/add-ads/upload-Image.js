@@ -263,7 +263,7 @@ const UploadImage = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center gap-x-32 my-12">
-        <Button
+        {/* <Button
           loading={isLoadingPostads}
           onClick={() => postads("DRAFTED")}
           className={
@@ -278,22 +278,20 @@ const UploadImage = () => {
               <FaLongArrowAltRight size={25} />
             </p>
           </div>
-        </Button>
+        </Button> */}
         <Button
+          onClick={fileThree ? () => postads("PENDING") : ""}
           loading={isLoadingPostads}
-          onClick={() => postads("PENDING")}
           className={
-            "md:w-[400px] w-full h-16 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple  md:mt-6 mt-8"
+            "md:w-[400px] w-full h-16 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple  md:mt-6 mt-8 flex justify-between px-1 gap-x-2"
           }
         >
-          <div className="flex justify-between px-1 gap-x-2">
-            <p className="text-white text-xl md:pt-1 pt-0 w-full text-end">
-              POST
-            </p>
-            <p className="text-white flex justify-end my-auto md:px-24 px-20">
-              <FaLongArrowAltRight size={25} />
-            </p>
-          </div>
+          <p className="text-white text-xl md:pt-1 pt-0 w-full text-end">
+            POST
+          </p>
+          <p className="text-white flex justify-end my-auto md:px-24 px-20">
+            <FaLongArrowAltRight size={25} />
+          </p>
         </Button>
       </div>
     </div>

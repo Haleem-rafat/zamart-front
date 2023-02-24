@@ -37,7 +37,13 @@ const FilterSections = () => {
           </p>
         </div>
         <div className="my-auto flex gap-x-3 overflow-x-auto scrollbar-hide">
-          <button className="h-11 px-8 border-[1px] rounded-full text-white  md:text-lg text-sm">
+          <button
+            onClick={() => {
+              setCategoriesFiter("");
+              setSubCategoriesFilter("");
+            }}
+            className="h-11 px-8 border-[1px] rounded-full text-white  focus:bg-primary-cyan-light md:text-lg text-sm"
+          >
             ALL
           </button>
           {categories?.map((e) => (

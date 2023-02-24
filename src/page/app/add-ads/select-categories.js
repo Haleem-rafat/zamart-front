@@ -5,6 +5,7 @@ import { Dimmer, Loader } from "semantic-ui-react";
 import api from "../../../api";
 import ButtonCategory from "../../../components/add-ads-componets/category";
 import { BreadCrumbAddAds } from "../../../components/shared/Breadcrumb/bread-crumb-add-ads";
+import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import { axios } from "../../../config/axios-config";
 import { useLanguage } from "../../../context/language-context";
 import useAxios from "../../../hooks/use-axios";
@@ -34,7 +35,8 @@ const SelectCategories = () => {
         className=" animate-pulse bg-primary-black-light"
         active={isLoading}
       >
-        <Loader active />
+        {/* <Loader active /> */}
+        <ZamartLoading />
       </Dimmer>
       <div className="mt-20 border-b-[1px] border-primary-gray-dark w-full pb-12">
         <BreadCrumbAddAds />

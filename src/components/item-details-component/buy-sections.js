@@ -1,39 +1,62 @@
 import React from "react";
-import { toast } from "react-hot-toast";
+import { toast, ToastBar } from "react-hot-toast";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import api from "../../api";
 import { authAxios } from "../../config/axios-config";
+import { useAuthState } from "../../context/auth-context";
 import { useLanguage } from "../../context/language-context";
 import useAxios from "../../hooks/use-axios";
 import routes from "../../routes";
+import { On } from "../../redux/sidebare-slice.js";
 
 const BuySections = ({ data }) => {
   const [lang, setLang] = useLanguage("");
 
   const history = useHistory();
 
+  const { user } = useAuthState();
+  const dispatch = useDispatch();
+
   const { run: runsendCallRequest, isLoading: isLoadingsendCallRequest } =
     useAxios([]);
-  const sendCallRequest = () => {
-    runsendCallRequest(
-      authAxios
-        .post(api.app.sendCallRequest(data?.data?.user?._id))
-        .then((res) => {
-          toast.success(
-            <a className="flex gap-x-5" href={`tel:${res?.data?.data}`}>
-              <p>{res?.data?.data}</p>
-              <FaPhoneAlt size="19" className="nav-linker" />
-            </a>
-          );
-        })
-        .catch((err) => {
-          toast.error(err.errors[0].message);
-        })
-    );
+  const sendCallRequest = (id) => {
+    if (user) {
+      runsendCallRequest(
+        authAxios
+          .post(api.app.sendCallRequest(id))
+          .then((res) => {
+            toast.success(
+              <a className="flex gap-x-5" href={`tel:${res?.data?.data}`}>
+                <p>{res?.data?.data}</p>
+                <FaPhoneAlt size="19" className="nav-linker" />
+              </a>
+            );
+          })
+          .catch((err) => {
+            toast.error(err.errors[0].message);
+          })
+      );
+    } else {
+      toast.error("You must be logged in to call this user's profile");
+      dispatch(On());
+    }
   };
+
+  const handelOnclickShowDelar = (id) => {
+    if (user) {
+      if (user?.id === id) {
+        history.push(routes.app.myProfile);
+      } else history.push(routes.app.userProfile(id));
+    } else {
+      toast.error("You must be logged in to view this user's profile");
+      dispatch(On());
+    }
+  };
+
   return (
     <div className=" mt-12 mr-auto ml-20 ">
       <div className="">
@@ -86,7 +109,7 @@ const BuySections = ({ data }) => {
               {data?.data?.user?.fullName}
             </p>
             <p
-              onClick={() => history.push(routes.app.myProfile)}
+              onClick={() => handelOnclickShowDelar(data?.data?.user?._id)}
               className="text-xs text-primary-cyan-light cursor-pointer"
             >
               ABOUT THIS DEALER
@@ -96,7 +119,7 @@ const BuySections = ({ data }) => {
         <p className="text-6xl text-white mt-9">{data?.data?.price}$</p>
         <Button
           loading={isLoadingsendCallRequest}
-          onClick={() => sendCallRequest()}
+          onClick={() => sendCallRequest(data?.data?.user?._id)}
           className="rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink w-[232px] h-[53px] mt-36 text-lg text-white "
         >
           CALL NOW

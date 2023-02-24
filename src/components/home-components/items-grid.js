@@ -6,6 +6,7 @@ import api from "../../api";
 import { axios } from "../../config/axios-config";
 import useAxios from "../../hooks/use-axios";
 import useFilter from "../../hooks/use-filter";
+import ZamartLoading from "../shared/lotties/zamart-loading";
 import ItemCard from "./item-card";
 
 const ItemsDrid = () => {
@@ -29,7 +30,8 @@ const ItemsDrid = () => {
           className=" animate-pulse bg-primary-black-light  h-full"
           active={isLoading}
         >
-          <Loader active />
+          {/* <Loader active /> */}
+          <ZamartLoading />
         </Dimmer>
         {data?.map((e) => (
           <ItemCard

@@ -22,7 +22,7 @@ const Login = ({ isLogin, setIsLogin }) => {
   const logIn = (values, actions) => {
     run(axios.post(api.auth.login, values))
       .then((res) => {
-        const { accessToken, refreshToken, fullName } = res.data.data;
+        const { accessToken, refreshToken, fullName, _id } = res.data.data;
         auth.setToken({
           newAccessToken: accessToken,
           newRefreshToken: refreshToken,
@@ -30,6 +30,7 @@ const Login = ({ isLogin, setIsLogin }) => {
         dispatch(Off());
         toast.success("welcome " + fullName);
         window.location.reload();
+        window.localStorage.setItem("my_id", _id);
         actions.resetForm();
       })
       .catch((err) => {

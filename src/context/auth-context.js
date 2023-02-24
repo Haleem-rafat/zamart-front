@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import routes from "../routes";
 import { useLocation } from "react-router-dom";
 import useAxios from "../hooks/use-axios";
+import ZamartLoading from "../components/shared/lotties/zamart-loading";
 
 const AuthContext = React.createContext();
 
@@ -63,7 +64,8 @@ function AuthProvider({ children }) {
       {isLoading ? (
         <div className="h-screen w-screen bg-primary-black-light text-white flex items-center justify-center">
           <div className="flex flex-col items-center gap-3">
-            <p>Authenticating...</p>
+            <ZamartLoading />
+            {/* <p>Authenticating...</p> */}
           </div>
         </div>
       ) : (

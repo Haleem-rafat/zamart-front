@@ -18,14 +18,20 @@ const api = {
     createItemUser: "/items",
     viewItemById: (itemId) => `/items/${itemId}/details`,
     getMyProfile: "/user/my-profile",
-    viewItemsAnalytics: "/items/user/owns-items/analytics",
     getUserProfile: (UserProfileID) => `/user/seller-profile/${UserProfileID}`,
+    viewItemsAnalytics: "/items/user/owns-items/analytics",
     viewAllOwner: "/items/user/owns-items",
     sendEnquiry: (id) => `/items/user/${id}/send-enquiry`,
     sendCallRequest: (id) => `items/user/${id}/make-call`,
   },
   cities: {
-    default: "regions/cities",
+    default: "/regions/cities",
+  },
+  brand: {
+    default: (categoriesId) => `/brands?categoryId=${categoriesId}`,
+  },
+  model: {
+    default: (brandId) => `/brands/${brandId}/models`,
   },
 };
 

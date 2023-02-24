@@ -7,6 +7,7 @@ import { LanguageProvider } from "./context/language-context";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { AuthProvider } from "./context/auth-context";
+import ScrollToTop from "../src/hooks/scrool-top.js";
 
 ReactDOM.render(
   <React.StrictMode>

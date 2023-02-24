@@ -10,12 +10,20 @@ import BuySections from "../../../components/item-details-component/buy-sections
 import Askqustion from "../../../components/item-details-component/ask-qustion";
 import axios from "axios";
 import ItemOverview from "../../../components/item-details-component/item-overview";
+import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
+import ItemCard from "../../../components/home-components/item-card";
+import { date } from "yup";
 
 const ItemDetails = () => {
   const [data, setData] = useState();
+  const [itemData, setItemData] = useState();
 
   const { itemId } = useParams();
   const [lang, setLang] = useLanguage("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { run, isLoading } = useAxios([]);
   useEffect(() => {
@@ -26,13 +34,30 @@ const ItemDetails = () => {
     );
   }, [itemId, run, data?.length]);
 
+  const { run: runitemData, isLoading: isloadingitemData } = useAxios([]);
+  useEffect(() => {
+    runitemData(
+      axios
+        .get(`${api.app.viewAllItems}?category=${data?.data?.category?._id}`)
+        .then((res) => {
+          setItemData(res?.data?.data);
+        })
+    );
+  }, [data?.data?.category?._id, runitemData]);
+
+  console.log("====================================");
+  console.log(runitemData);
+  console.log(date);
+  console.log("====================================");
+
   return (
     <div className="w-full animate-in relative mt-10">
       <Dimmer
         className="animate-pulse bg-primary-black-light"
-        active={isLoading}
+        active={isLoading || isloadingitemData}
       >
-        <Loader active />
+        {/* <Loader active /> */}
+        <ZamartLoading />
       </Dimmer>
       <div className="lg:flex justify-between md:grid grid-cols-1 ">
         <div className="mx-auto">
@@ -53,6 +78,30 @@ const ItemDetails = () => {
         <p className="text-xl text-primary-gray-subMed text-center">
           MORE OPTION YOU LIKE
         </p>
+      </div>
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-5 my-12 mx-5 relative h-full ">
+        <Dimmer
+          className="animate-pulse bg-primary-black-light h-full"
+          active={isloadingitemData}
+        >
+          {/* <Loader active /> */}
+          <ZamartLoading />
+        </Dimmer>
+        {itemData?.map(
+          (e, index) =>
+            index < 4 && (
+              <ItemCard
+                id={e?._id}
+                itemImge={e?.images[0]?.img || ""}
+                itemName={e?.brand || ""}
+                price={e?.price || ""}
+                date={new Date(e?.updatedAt).toLocaleDateString("en-GB") || ""}
+                adsName={e?.title || ""}
+                userName={e?.user?.fullName || ""}
+                KM={e?.kiloMeters || ""}
+              />
+            )
+        )}
       </div>
     </div>
   );

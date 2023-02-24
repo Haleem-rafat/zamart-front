@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAds } from "../../../redux/add-ads-slice";
 import { useHistory } from "react-router-dom";
 import routes from "../../../routes";
+import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
+import useGetBrand from "../../../hooks/use-get-brand";
+import useGetModel from "../../../hooks/use-get-model";
 
 const AddDescription = () => {
   const [lang] = useLanguage("");
@@ -23,6 +26,9 @@ const AddDescription = () => {
 
   const [categoriesFromData, setCategoriesFromData] = useState("");
   const [citiesOptions, setCitiesOptions] = useState([]);
+  const [addBrand, setAddBrand] = useState(false);
+  const [brandId, setBrandID] = useState();
+  const [addModel, setAddModel] = useState(false);
 
   const [CatID, setCatID] = useLocalStorage("category_id", "");
 
@@ -31,7 +37,6 @@ const AddDescription = () => {
   const { run: getCities, isLoading: isGettingCiites } = useAxios({});
   useEffect(() => {
     getCities(axios.get(`${api.cities.default}`)).then(({ data }) => {
-      console.log(data);
       const citiesOptions = data?.data?.map((e) => ({
         key: e?._id,
         value: e?._id,
@@ -65,7 +70,7 @@ const AddDescription = () => {
   };
 
   const adsDescrisptionSchema = Yup.object({
-    title: Yup.string().required("Required field"),
+    title: Yup.string().max(10).required("Required field"),
     price: Yup.string().max(8).required("Required field"),
     descrisption: Yup.string().required("Required field"),
     usage: Yup.string().required("Required field"),
@@ -86,13 +91,30 @@ const AddDescription = () => {
     );
   }, [CatID, run]);
 
+  const { BrandOptions, loadingBrand } = useGetBrand({
+    CatID,
+  });
+
+  const handelAddbrand = () => {
+    setAddBrand(!addBrand);
+  };
+
+  const { ModelOptions, loadingModel } = useGetModel({
+    brandId,
+  });
+
+  const handelAddModel = () => {
+    setAddModel(!addModel);
+  };
+
   return (
     <div className="text-white max-w-[1500px] mx-auto  animate-in relative pb-8">
       <Dimmer
         className=" animate-pulse bg-primary-black-light"
         active={isLoading}
       >
-        <Loader active />
+        {/* <Loader active /> */}
+        <ZamartLoading />
       </Dimmer>
       <div className="mt-20 border-b-[1px] border-primary-gray-dark w-full pb-12">
         <BreadCrumbAddAds />
@@ -124,14 +146,57 @@ const AddDescription = () => {
               <div className="w-full mt-10">
                 <FormikInput name="title" type="text" placeholder="TITLE" />
               </div>
-              <div className="w-full mt-10">
-                <FormikInput name="price" type="number" placeholder="PRICE" />
-              </div>
-              <div className="w-full mt-10">
+              <div className={addBrand ? "w-full mt-10 " : "hidden h-0 "}>
                 <FormikInput name="brand" type="text" placeholder="BRAND" />
               </div>
-              <div className="w-full mt-10">
+              <div
+                className={
+                  addBrand ? "hidden " : " mt-10 flex gap-x-3 justify-between "
+                }
+              >
+                <div className="w-full ">
+                  <FormikMultiDropdown
+                    name="brand"
+                    selection
+                    placeholder={"BRAND"}
+                    options={BrandOptions}
+                    loading={loadingBrand}
+                    onChange={(e) => setBrandID(e)}
+                  />
+                </div>
+                <button
+                  className="bg-gradient-to-r from-primary-cyan to-primary-pink rounded-full w-32 h-16 mt-3"
+                  onClick={() => handelAddbrand()}
+                >
+                  Add Brand
+                </button>
+              </div>
+              <div className={addModel ? "w-full mt-10 " : "hidden h-0 "}>
                 <FormikInput name="model" type="text" placeholder="MODEL" />
+              </div>
+              <div
+                className={
+                  addModel ? "hidden " : " mt-10 flex gap-x-3 justify-between "
+                }
+              >
+                <div className="w-full ">
+                  <FormikMultiDropdown
+                    name="model"
+                    selection
+                    placeholder={"MODEL"}
+                    options={ModelOptions}
+                    loading={loadingModel}
+                  />
+                </div>
+                <button
+                  className="bg-gradient-to-r from-primary-cyan to-primary-pink rounded-full w-32 h-16 mt-3"
+                  onClick={() => handelAddModel()}
+                >
+                  Add Model
+                </button>
+              </div>
+              <div className="w-full mt-10">
+                <FormikInput name="price" type="number" placeholder="PRICE" />
               </div>
               <div className="w-full mt-6">
                 <FormikTextarea

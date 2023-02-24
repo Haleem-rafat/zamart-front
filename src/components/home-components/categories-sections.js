@@ -7,6 +7,7 @@ import axios from "axios";
 import api from "../../api";
 import { useLanguage } from "../../context/language-context";
 import { Dimmer, Loader } from "semantic-ui-react";
+import ZamartLoading from "../shared/lotties/zamart-loading";
 
 const CategoriesSections = () => {
   const [lang] = useLanguage("");
@@ -27,7 +28,8 @@ const CategoriesSections = () => {
         className=" animate-pulse bg-primary-black-light h-[534px]"
         active={isLoading}
       >
-        <Loader active />
+        {/* <Loader active /> */}
+        <ZamartLoading />
       </Dimmer>
       {/* Categories Sections */}
       <div className="flex flex-col md:flex-row justify-between gap-x-8 gap-y-8 mx-8 my-5">
