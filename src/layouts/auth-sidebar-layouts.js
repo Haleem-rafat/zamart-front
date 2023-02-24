@@ -17,6 +17,8 @@ import AddDescription from "../page/app/add-ads/add-description.js";
 import UploadImage from "../page/app/add-ads/upload-Image.js";
 import ItemDetails from "../page/app/ads-details/item-details.js";
 import UserProfile from "../page/app/profile-page/user-profile.js";
+import AboutUs from "../page/app/about-us/about-us.js";
+import ContactUs from "../page/app/contact-us/contact-us.js";
 
 const AuthSidebarLayouts = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
@@ -93,6 +95,8 @@ const AuthSidebarLayouts = ({ isreset }) => {
                       path={routes.app.viewItemById()}
                       component={ItemDetails}
                     />
+                    <Route path={routes.app.aboutUs} component={AboutUs} />
+                    <Route path={routes.app.contactUs} component={ContactUs} />
                   </Switch>
                 </div>
                 <Footer />

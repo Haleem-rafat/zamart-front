@@ -72,7 +72,7 @@ const AddDescription = () => {
   const adsDescrisptionSchema = Yup.object({
     title: Yup.string().max(10).required("Required field"),
     price: Yup.string().max(8).required("Required field"),
-    descrisption: Yup.string().required("Required field"),
+    description: Yup.string().required("Required field"),
     usage: Yup.string().required("Required field"),
     year: Yup.string().required("Required field"),
     brand: Yup.string().required("Required field"),
@@ -130,7 +130,7 @@ const AddDescription = () => {
         initialValues={{
           title: "",
           price: "",
-          descrisption: "",
+          description: "",
           model: "",
           brand: "",
           usage: "",
@@ -200,7 +200,7 @@ const AddDescription = () => {
               </div>
               <div className="w-full mt-6">
                 <FormikTextarea
-                  name="descrisption"
+                  name="description"
                   placeholder={"DESCRIPTION YOUR AD"}
                 />
               </div>

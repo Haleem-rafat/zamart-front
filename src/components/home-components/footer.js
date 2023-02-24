@@ -2,8 +2,11 @@ import React from "react";
 import googlePlay from "../../../src/assets/icons/google_play_icon.svg";
 import appStore from "../../../src/assets/icons/app_store_icon.svg";
 import ZAMARTfooter from "../../../src/assets/logo/ZAMART_footer.svg";
+import { useHistory } from "react-router-dom";
+import routes from "../../routes";
 
 const Footer = () => {
+  const history = useHistory();
   return (
     <div>
       <div>
@@ -55,10 +58,16 @@ const Footer = () => {
             <li className="text-primary-cyan-light py-1.5 cursor-pointer">
               <span className="text-white">Privacy</span>
             </li>
-            <li className="text-primary-cyan-light py-1.5 cursor-pointer">
+            <li
+              onClick={() => history.push(routes.app.contactUs)}
+              className="text-primary-cyan-light py-1.5 cursor-pointer"
+            >
               <span className="text-white">Contact Us</span>
             </li>
-            <li className="text-primary-cyan-light py-1.5 cursor-pointer">
+            <li
+              onClick={() => history.push(routes.app.aboutUs)}
+              className="text-primary-cyan-light py-1.5 cursor-pointer"
+            >
               <span className="text-white">About Us</span>
             </li>
           </div>

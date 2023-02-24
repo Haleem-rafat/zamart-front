@@ -23,6 +23,7 @@ const api = {
     viewAllOwner: "/items/user/owns-items",
     sendEnquiry: (id) => `/items/user/${id}/send-enquiry`,
     sendCallRequest: (id) => `items/user/${id}/make-call`,
+    contactUs: "/contact-us",
   },
   cities: {
     default: "/regions/cities",

@@ -23,6 +23,8 @@ const routes = {
     myProfile: "/zamart/my-profile",
     userProfile: (userProfileId = ":userProfileId") =>
       `/zamart/user-profile/${userProfileId}`,
+    aboutUs: "/zamart/about-us",
+    contactUs: "/zamart/contact-us",
   },
 };
 
