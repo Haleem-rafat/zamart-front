@@ -17,7 +17,7 @@ const SelectCategories = () => {
 
   const history = useHistory();
   const query = useQuery();
-  const categoriesId = query.get("categories");
+  const categoriesId = query.get("category");
 
   const [categories, setCategories] = useState();
 

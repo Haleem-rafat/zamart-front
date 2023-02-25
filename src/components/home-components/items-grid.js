@@ -10,8 +10,8 @@ import ZamartLoading from "../shared/lotties/zamart-loading";
 import ItemCard from "./item-card";
 
 const ItemsDrid = () => {
-  const [categoriesFilter] = useFilter("categories", "");
-  const [subCategoriesFilter] = useFilter("subCategories", "");
+  const [categoriesFilter] = useFilter("category", "");
+  const [subCategoriesFilter] = useFilter("subCategory", "");
   const { search } = useLocation();
   const [data, setData] = useState();
   const { run, isLoading } = useAxios([]);

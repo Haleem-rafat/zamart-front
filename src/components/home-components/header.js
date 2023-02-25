@@ -25,9 +25,9 @@ const HeaderHome = () => {
   const [sameId, setSameId] = useState();
   const [myProfileData, setMyProfileData] = useState();
   const [lang] = useLanguage("");
-  const [categoriesFilter, setCategoriesFiter] = useFilter("categories", "");
+  const [categoriesFilter, setCategoriesFiter] = useFilter("category", "");
   const [subCategoriesFilter, setSubCategoriesFilter] = useFilter(
-    "subCategories",
+    "subCategory",
     ""
   );
 
@@ -173,16 +173,16 @@ const HeaderHome = () => {
             active={isLoadinggetSubCategories}
             inverted
           >
-            {/* <Loader active /> */}
             <ZamartLoading />
           </Dimmer>
           {SubCategories?.map((e) => (
-            <a
-              href="#Categories"
+            <div
               onClick={() => {
+                history.push(
+                  `${routes.app.searchPage}?category=${categoriesFilter}&subCategory=${e?._id}`
+                );
                 setSubCategoriesFilter(e?._id);
                 setSameId(e?._id);
-                onRouteClick();
               }}
               id={e?._id}
               className={`${
@@ -192,7 +192,7 @@ const HeaderHome = () => {
               }`}
             >
               {lang === "en" ? e?.nameEn : e?.nameAr}
-            </a>
+            </div>
           ))}
 
           <div className="w-72 md:h-[76px] h-[40px] md:pt-6 pt-3 text-center border-x-[1px]">

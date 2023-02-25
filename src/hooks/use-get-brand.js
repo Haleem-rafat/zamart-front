@@ -18,7 +18,7 @@ const useGetBrand = ({ CatID }) => {
       BrandOptions.forEach((d) =>
         options.push({
           text: d?.name,
-          key: d?.name,
+          key: d._id,
           value: d._id,
         })
       );

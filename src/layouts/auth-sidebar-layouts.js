@@ -19,6 +19,7 @@ import ItemDetails from "../page/app/ads-details/item-details.js";
 import UserProfile from "../page/app/profile-page/user-profile.js";
 import AboutUs from "../page/app/about-us/about-us.js";
 import ContactUs from "../page/app/contact-us/contact-us.js";
+import SearchPage from "../page/app/search-page/search-page.js";
 
 const AuthSidebarLayouts = ({ isreset }) => {
   const toggleDeleteStatus = useSelector(
@@ -59,48 +60,43 @@ const AuthSidebarLayouts = ({ isreset }) => {
         >
           <div className="p-0 m-0 border-none ">
             <Segment basic>
-              <div className="flex flex-col justify-between ">
-                <div className="h-[170px] row-end-1">
-                  <HeaderHome />
-                </div>
-                <div className="row-span-5">
-                  <Switch>
-                    <Route path={routes.app.home} component={Home} />
-                    <Route path={routes.app.myProfile} component={MyProfile} />
-                    <Route
-                      path={routes.app.userProfile()}
-                      component={UserProfile}
-                    />
-                    <Route
-                      path={routes.app.ceratitems.selectCategory}
-                      component={SelectCategories}
-                    />
-                    <Route
-                      path={routes.app.ceratitems.selectSubCategory()}
-                      component={SelectSubCategories}
-                    />
-                    <Route
-                      path={routes.app.ceratitems.selectComplementCategory()}
-                      component={SelectComplementCategory}
-                    />
-                    <Route
-                      path={routes.app.ceratitems.addDescription}
-                      component={AddDescription}
-                    />
-                    <Route
-                      path={routes.app.ceratitems.uploadImage}
-                      component={UploadImage}
-                    />
-                    <Route
-                      path={routes.app.viewItemById()}
-                      component={ItemDetails}
-                    />
-                    <Route path={routes.app.aboutUs} component={AboutUs} />
-                    <Route path={routes.app.contactUs} component={ContactUs} />
-                  </Switch>
-                </div>
-                <Footer />
-              </div>
+              <HeaderHome />
+              <Switch>
+                <Route path={routes.app.searchPage} component={SearchPage} />
+                <Route path={routes.app.home} component={Home} />
+                <Route path={routes.app.myProfile} component={MyProfile} />
+                <Route
+                  path={routes.app.userProfile()}
+                  component={UserProfile}
+                />
+                <Route
+                  path={routes.app.ceratitems.selectCategory}
+                  component={SelectCategories}
+                />
+                <Route
+                  path={routes.app.ceratitems.selectSubCategory()}
+                  component={SelectSubCategories}
+                />
+                <Route
+                  path={routes.app.ceratitems.selectComplementCategory()}
+                  component={SelectComplementCategory}
+                />
+                <Route
+                  path={routes.app.ceratitems.addDescription}
+                  component={AddDescription}
+                />
+                <Route
+                  path={routes.app.ceratitems.uploadImage}
+                  component={UploadImage}
+                />
+                <Route
+                  path={routes.app.viewItemById()}
+                  component={ItemDetails}
+                />
+                <Route path={routes.app.aboutUs} component={AboutUs} />
+                <Route path={routes.app.contactUs} component={ContactUs} />
+              </Switch>
+              <Footer />
             </Segment>
           </div>
         </Sidebar.Pusher>

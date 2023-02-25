@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SlMagnifier } from "react-icons/sl";
 import { Dropdown, Form, Input } from "semantic-ui-react";
-import homeCarImg from "../../../src/assets/img/home_car_img.png";
+import homeCarImg from "../../../src/assets/img/hero_search_img.png";
 import useGetBrand from "../../hooks/use-get-brand";
 import useGetGatogry from "../../hooks/use-get-gatogry";
 import useGetModel from "../../hooks/use-get-model";
@@ -9,7 +9,7 @@ import useGetCities from "../../hooks/use-get-cities";
 import { useHistory } from "react-router-dom";
 import routes from "../../routes";
 
-const HeroSection = () => {
+const HeroSearchSection = () => {
   const [CatID, setGatogryId] = useState();
   const [brandId, setBrandId] = useState();
   const [brandVal, setBrandVal] = useState();
@@ -17,11 +17,6 @@ const HeroSection = () => {
   const [keyword, setKeyword] = useState();
   const [cities, setCities] = useState();
   const [usage, setUsage] = useState();
-
-  console.log("====================================");
-  console.log(brandId);
-  console.log(brandVal);
-  console.log("====================================");
 
   const { GatogryOptions, loadingGatogry } = useGetGatogry();
   const { BrandOptions, loadingBrand } = useGetBrand({ CatID });
@@ -51,15 +46,8 @@ const HeroSection = () => {
   return (
     <div>
       <div className="text-white ">
-        <div className="w-full h-[720px] bg-gradient-to-r from-primary-black absolute z-10">
-          <p className="md:text-7xl text-5xl text-center pt-64">
-            TRY ZAMART APP
-          </p>
-          <p className="md:text-2xl text-xl text-center pt-2 ">
-            Buy, sell and find just about anything using the app on your mobile.
-          </p>
-
-          <div className="flex justify-center flex-wrap gap-x-2 mt-14">
+        <div className="w-full h-[342px] bg-gradient-to-r from-primary-black absolute z-10">
+          <div className="flex justify-center flex-wrap gap-x-2 mt-24">
             <div className="backdrop-blur-xl bg-gradient-to-r from-white/70 bg-white/40 lg:w-[730px] w-full lg:h-[84px] h-full z-10">
               <div className="flex justify-between mx-8 pt-2 flex-wrap  text-primary-black-light text-xl z-20">
                 <div>
@@ -174,7 +162,7 @@ const HeroSection = () => {
           </div>
         </div>
         <img
-          className="w-full h-[720px] relative object-cover "
+          className="w-full  h-[342px] relative object-cover "
           src={homeCarImg}
           alt="homeCareImg"
         />
@@ -183,4 +171,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HeroSearchSection;

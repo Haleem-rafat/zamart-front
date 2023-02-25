@@ -13,9 +13,9 @@ const FilterSections = () => {
   const [lang] = useLanguage("");
 
   const [categories, setCategories] = useState();
-  const [categoriesFilter, setCategoriesFiter] = useFilter("categories", "");
+  const [categoriesFilter, setCategoriesFiter] = useFilter("category", "");
   const [subCategoriesFilter, setSubCategoriesFilter] = useFilter(
-    "subCategories",
+    "subCategory",
     ""
   );
 

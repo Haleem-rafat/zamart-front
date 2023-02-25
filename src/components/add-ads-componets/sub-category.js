@@ -4,7 +4,7 @@ import useFilter from "../../hooks/use-filter";
 
 const ButtonSubCategory = ({ id, ctegoryName, setIScomplment }) => {
   const [subCategoriesFilter, setSubCategoriesFilter] = useFilter(
-    "subCategories",
+    "subCategory",
     ""
   );
 

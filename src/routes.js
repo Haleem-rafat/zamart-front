@@ -8,6 +8,7 @@ const routes = {
   app: {
     default: "/zamart",
     home: "/zamart/home",
+    searchPage: "/zamart/home/search",
     ceratitems: {
       default: "/zamart/add-ads",
       selectCategory: `/zamart/add-ads/category`,

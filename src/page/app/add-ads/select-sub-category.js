@@ -19,7 +19,7 @@ const SelectSubCategories = () => {
   const query = useQuery();
   const history = useHistory();
   const { categoryId } = useParams();
-  const subCategoriesId = query.get("subCategories");
+  const subCategoriesId = query.get("subCategory");
   const complmentartCategoriesID = query.get("complmentartCategories");
   const [subCatID, setCubCatID] = useLocalStorage("subCategory_Id", "");
   const [CatID, setCatID] = useLocalStorage("category_id", "");

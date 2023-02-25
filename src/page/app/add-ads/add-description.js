@@ -19,32 +19,21 @@ import routes from "../../../routes";
 import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import useGetBrand from "../../../hooks/use-get-brand";
 import useGetModel from "../../../hooks/use-get-model";
+import useGetCities from "../../../hooks/use-get-cities";
 
 const AddDescription = () => {
   const [lang] = useLanguage("");
   const history = useHistory();
 
   const [categoriesFromData, setCategoriesFromData] = useState("");
-  const [citiesOptions, setCitiesOptions] = useState([]);
   const [addBrand, setAddBrand] = useState(false);
   const [brandId, setBrandID] = useState();
   const [addModel, setAddModel] = useState(false);
 
   const [CatID, setCatID] = useLocalStorage("category_id", "");
+  const { citiesOptions, loadingcitiesOptions } = useGetCities();
 
   const dispatch = useDispatch();
-
-  const { run: getCities, isLoading: isGettingCiites } = useAxios({});
-  useEffect(() => {
-    getCities(axios.get(`${api.cities.default}`)).then(({ data }) => {
-      const citiesOptions = data?.data?.map((e) => ({
-        key: e?._id,
-        value: e?._id,
-        text: `${lang === "en" ? e.nameEn : e.nameAr}`,
-      }));
-      setCitiesOptions(citiesOptions);
-    });
-  }, [getCities, lang]);
 
   const usageOptions = [
     {
@@ -228,7 +217,7 @@ const AddDescription = () => {
                   name="citie"
                   placeholder={"citie"}
                   options={citiesOptions}
-                  loading={isGettingCiites}
+                  loading={loadingcitiesOptions}
                 />
               </div>
             </div>
