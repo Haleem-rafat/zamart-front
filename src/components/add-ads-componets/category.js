@@ -3,7 +3,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import useFilter from "../../hooks/use-filter";
 
 const ButtonCategory = ({ category, ctegoryName, id }) => {
-  const [categoriesFilter, setCategoriesFiter] = useFilter("categories", "");
+  const [categoriesFilter, setCategoriesFiter] = useFilter("category", "");
 
   return (
     <div key={id} className="">
