@@ -15,7 +15,6 @@ const CategoriesCard = ({ img, lable, info, id }) => {
       className="w-full relative "
     >
       <div>
-        }
         <div className=" w-full h-[300px] bg-gradient-to-t from-primary-black absolute z-10 cursor-pointer">
           <p className="border-t-4 border-primary-cyan w-16 mt-36 text-4xl text-white m-5 pt-3">
             {lable}
