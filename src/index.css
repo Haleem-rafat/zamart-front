@@ -100,3 +100,19 @@ input[type=number] {
 .ui.checkbox input.hidden+label{
   @apply text-white text-xl mx-2 
 }
+
+.edit_Pag.ui.secondary.pointing.menu{
+  @apply text-white 
+}
+.edit_Pag.ui.secondary.pointing.menu .item{
+  @apply text-white  text-2xl mx-4 !important
+}
+.edit_Pag.ui.secondary.pointing.menu .active.item{
+  @apply text-[#5ABAC2] border-[#5ABAC2]  !important
+}
+.edit_Pag.ui.menu>.item:first-child{
+  @apply text-[#5ABAC2] bg-[#27272B] rounded-full min-w-[55px] h-[55px]  !important
+}
+.edit_Pag.ui.pagination.menu .item:last-child{
+  @apply text-black bg-white rounded-full min-w-[55px] h-[55px]  !important
+}

@@ -9,22 +9,22 @@ import HeroSearchSection from "../../../components/search-copmonets/hero-search-
 import CardItemMedium from "../../../components/shared/card-item-medium";
 import ZamartEmty from "../../../components/shared/lotties/zamart-emty";
 import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
+import PaginationApp from "../../../components/shared/pagination";
 import useAxios from "../../../hooks/use-axios";
 
 const SearchPage = () => {
   const { search } = useLocation();
   const [data, setData] = useState();
+  const [pagenationData, setPagenationData] = useState();
   const { run, isLoading } = useAxios([]);
   useEffect(() => {
     run(
       axios.get(`${api.app.viewAllItems}${search}`).then((res) => {
         setData(res?.data?.data);
+        setPagenationData(res?.data?.totalPages);
       })
     );
   }, [run, search]);
-  console.log("====================================");
-  console.log(search);
-  console.log("====================================");
 
   return (
     <div className="h-full">
@@ -69,6 +69,9 @@ const SearchPage = () => {
               </div>
             </div>
           )}
+        </div>
+        <div className="flex justify-center">
+          <PaginationApp totalPages={pagenationData} totalItem={9} />
         </div>
       </div>
     </div>

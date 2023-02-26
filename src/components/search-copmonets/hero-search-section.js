@@ -25,19 +25,14 @@ const HeroSearchSection = () => {
 
   const usageOptions = [
     {
-      key: "USED",
-      text: "USED",
-      value: "USED",
+      key: "used",
+      text: "Used",
+      value: "used",
     },
     {
-      key: "NEW",
-      text: "NEW",
-      value: "NEW",
-    },
-    {
-      key: "OPEN_BOX",
-      text: "OPEN BOX",
-      value: "OPEN_BOX",
+      key: "new",
+      text: "New",
+      value: "new",
     },
   ];
 

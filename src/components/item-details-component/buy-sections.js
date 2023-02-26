@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast, ToastBar } from "react-hot-toast";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button, Dimmer, Modal } from "semantic-ui-react";
 import api from "../../api";
 import { authAxios } from "../../config/axios-config";
 import { useAuthState } from "../../context/auth-context";
@@ -12,6 +12,12 @@ import { useLanguage } from "../../context/language-context";
 import useAxios from "../../hooks/use-axios";
 import routes from "../../routes";
 import { On } from "../../redux/sidebare-slice.js";
+import ProfileModel from "./profile-model";
+import profileBG from "../../../src/assets/img/profile_BG.png";
+import copyicon from "../../../src/assets/icons/copy_icon.svg";
+import shareicon from "../../../src/assets/icons/share_icon.svg";
+import CopyToClipboard from "react-copy-to-clipboard";
+import ZamartLoading from "../shared/lotties/zamart-loading";
 
 const BuySections = ({ data }) => {
   const [lang, setLang] = useLanguage("");
@@ -20,6 +26,10 @@ const BuySections = ({ data }) => {
 
   const { user } = useAuthState();
   const dispatch = useDispatch();
+
+  const [open, setOpen] = React.useState(false);
+  const [userProfileData, setUserProfileData] = React.useState();
+  const [isCopied, setIsCopied] = useState(false);
 
   const { run: runsendCallRequest, isLoading: isLoadingsendCallRequest } =
     useAxios([]);
@@ -46,11 +56,24 @@ const BuySections = ({ data }) => {
     }
   };
 
+  const { run: runUSerProfile, isLoading: isLoadingUserProfile } = useAxios([]);
   const handelOnclickShowDelar = (id) => {
     if (user) {
       if (user?.id === id) {
         history.push(routes.app.myProfile);
-      } else history.push(routes.app.userProfile(id));
+      } else {
+        runUSerProfile(
+          authAxios
+            .get(api.app.getUserProfile(id))
+            .then((res) => {
+              setUserProfileData(res?.data?.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        );
+        setOpen(true);
+      }
     } else {
       toast.error("You must be logged in to view this user's profile");
       dispatch(On());
@@ -125,6 +148,69 @@ const BuySections = ({ data }) => {
           CALL NOW
         </Button>
       </div>
+      <Modal className="w-[617px]" onClose={() => setOpen(false)} open={open}>
+        <Dimmer
+          className=" animate-pulse bg-primary-black-light"
+          active={isLoadingUserProfile}
+        >
+          {/* <Loader active /> */}
+          <ZamartLoading />
+        </Dimmer>
+        <div className="w-[617px] bg-black text-white">
+          <div className="relative">
+            <img src={profileBG} alt="profileBG" />
+            <p className="w-[173px] h-[173px] rounded-full mx-auto mt-0.5 pt-16 text-center text-7xl bg-primary-gray-light text-primary-purple absolute top-1/3 left-[220px] ">
+              {userProfileData?.fullName
+                ?.split(" ")[1]
+                ?.substring(0, 1)
+                .toUpperCase() === undefined
+                ? userProfileData?.fullName
+                    ?.split(" ")[0]
+                    .substring(0, 1)
+                    .toUpperCase()
+                : userProfileData?.fullName
+                    ?.split(" ")[0]
+                    ?.substring(0, 1)
+                    .toUpperCase() +
+                  userProfileData?.fullName
+                    ?.split(" ")[1]
+                    ?.substring(0, 1)
+                    .toUpperCase()}
+            </p>
+          </div>
+          <h1 className="text-white text-center text-4xl mt-32 ">
+            {userProfileData?.fullName}
+          </h1>
+          <p className="text-primary-gray-dark text-2xl text-center pt-3">
+            {userProfileData?.email}
+          </p>
+          <div className="flex justify-center gap-x-12 mt-12">
+            <CopyToClipboard
+              text={userProfileData?.email}
+              onCopy={() => {
+                setIsCopied(true);
+                setTimeout(() => {
+                  setIsCopied(false);
+                }, 1000);
+                toast.success("Email copy success ");
+              }}
+            >
+              <button className="btn flex justify-center">
+                {<img src={copyicon} alt="copyicon" />}
+              </button>
+            </CopyToClipboard>
+            <button>
+              <a
+                href={`mailto:${userProfileData?.email}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={shareicon} alt="shareicon" />
+              </a>
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

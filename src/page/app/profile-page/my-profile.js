@@ -7,6 +7,7 @@ import api from "../../../api";
 import ItemCard from "../../../components/home-components/item-card";
 import ItemCardSmall from "../../../components/shared/card-item-small";
 import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
+import PaginationApp from "../../../components/shared/pagination";
 import { authAxios } from "../../../config/axios-config";
 import { useAuthState } from "../../../context/auth-context";
 import useAxios from "../../../hooks/use-axios";
@@ -31,6 +32,7 @@ const MyProfile = () => {
   const [myProfileData, setMyProfileData] = useState();
   const [viewAllOwner, setViewAllOwner] = useState();
   const [viewItemsAnalytics, setViewItemsAnalytics] = useState();
+  const [pagenationData, setPagenationData] = useState();
 
   const [status, setStatus] = useFilter("status", "");
   const { search } = useLocation();
@@ -60,6 +62,7 @@ const MyProfile = () => {
         .get(`${api.app.viewAllOwner}${search}`)
         .then((res) => {
           setViewAllOwner(res?.data?.data);
+          setPagenationData(res?.data?.totalPages);
         })
         .catch((err) => {
           console.log(err);
@@ -203,6 +206,9 @@ const MyProfile = () => {
             />
           ))}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <PaginationApp totalPages={pagenationData} totalItem={8} />
       </div>
     </div>
   );

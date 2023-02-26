@@ -4,12 +4,16 @@ import {
   IoMdArrowDropleftCircle,
   IoMdArrowDroprightCircle,
 } from "react-icons/io";
+import { useHistory } from "react-router-dom";
 import api from "../../api";
 import { useLanguage } from "../../context/language-context";
 import useAxios from "../../hooks/use-axios";
 import useFilter from "../../hooks/use-filter";
+import routes from "../../routes";
 
 const FilterSections = () => {
+  const history = useHistory();
+
   const [lang] = useLanguage("");
 
   const [categories, setCategories] = useState();
@@ -41,6 +45,9 @@ const FilterSections = () => {
             onClick={() => {
               setCategoriesFiter("");
               setSubCategoriesFilter("");
+              history.push(
+                `${routes.app.searchPage}?category=${categoriesFilter}&subCategory=${subCategoriesFilter}`
+              );
             }}
             className="h-11 px-8 border-[1px] rounded-full text-white  focus:bg-primary-cyan-light md:text-lg text-sm"
           >
@@ -48,7 +55,10 @@ const FilterSections = () => {
           </button>
           {categories?.map((e) => (
             <button
-              onClick={() => setSubCategoriesFilter(e?._id)}
+              onClick={() => {
+                setSubCategoriesFilter(e?._id);
+                history.push(`${routes.app.searchPage}?subCategory=${e?._id}`);
+              }}
               className={
                 subCategoriesFilter === e?._id
                   ? "bg-primary-cyan-light h-11 px-8 border-[1px] rounded-full text-white  md:text-lg text-sm uppercase"
