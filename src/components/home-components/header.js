@@ -21,6 +21,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useAuthState } from "../../context/auth-context";
 import { toast } from "react-hot-toast";
 import Headermob from "./header-mob";
+import DropdownLang from "../shared/drop-down-lang";
 
 const HeaderHome = () => {
   const dispatch = useDispatch();
@@ -235,13 +236,8 @@ const HeaderHome = () => {
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-            <div className=" w-72 md:h-[76px] h-[40px] md:pt-6 pt-3 text-center border-l-[1px]">
-              <Dropdown icon="world" text="lang" direction="left">
-                <Dropdown.Menu>
-                  <Dropdown.Item className="text-xl" text="En" />
-                  <Dropdown.Item className="text-xl" text="Ar" />
-                </Dropdown.Menu>
-              </Dropdown>
+            <div className="w-72 md:h-[76px] h-[40px] md:pt-6 pt-3 text-center border-l-[1px]">
+              <DropdownLang />
             </div>
           </div>
         </div>
