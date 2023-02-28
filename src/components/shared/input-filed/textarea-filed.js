@@ -5,7 +5,7 @@ const TextareaForm = ({ placeholder, value, ...props }) => {
   return (
     <div className=" text-primary-gray-dark ">
       <textarea
-        className="w-full rounded-3xl sm:text-xl text-lg px-4 outline-none"
+        className="w-full rounded-3xl sm:text-xl text-lg px-4 outline-none h-40"
         value={value}
         placeholder={placeholder}
         {...props}

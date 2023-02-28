@@ -33,10 +33,10 @@ const ContactUs = () => {
   });
   return (
     <div>
-      <div className="grid grid-cols-5 animate-in">
-        <div className="col-span-2 ml-36">
+      <div className="grid sm:grid-cols-5 grid-cols-1 gap-x-10  animate-in">
+        <div className="col-span-2 sm:ml-36 ml-0">
           <p className="text-primary-gray text-xl mt-16">TALK TO US</p>
-          <h1 className="text-white text-7xl">
+          <h1 className="text-white text-7xl md:text-6xl">
             CONTACT <br></br>US
           </h1>
           <div className="bg-primary-gray-subdark mt-11 ">
@@ -53,8 +53,8 @@ const ContactUs = () => {
             >
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
-                  <div className=" mx-12">
-                    <h1 className="text-white text-5xl text-center py-7">
+                  <div className="mx-12">
+                    <h1 className="text-white text-5xl md:text-4xl text-center py-7">
                       TAKE A COFFEE WITH US
                     </h1>
                     <div className="flex gap-x-5 ">
@@ -94,7 +94,7 @@ const ContactUs = () => {
                     <div className="">
                       <Button
                         loading={isLoading}
-                        className="md:w-[276px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-5 mb-10 text-white"
+                        className="md:w-[276px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-12 mb-14 text-white"
                       >
                         SEND
                       </Button>
@@ -108,18 +108,20 @@ const ContactUs = () => {
         <div className="mx-auto flex flex-col justify-between gap-y-10 mt-7">
           <div className="bg-primary-gray-subdark text-primary-gray h-full pl-6">
             <p className="text-xl pt-10 ">CONTACT US</p>
-            <h1 className="text-white text-3xl pt-2">
+            <h1 className="text-white text-3xl md:text-2xl pt-2">
               DO YOU <br></br>HAVE ANY<br></br> QUESTIONS?
             </h1>
             <AiOutlineWhatsApp className="mt-8" size={30} />
-            <p className="text-white text-2xl">+20 01111664236</p>
+            <p className="text-white text-2xl md:text-xl">+20 01111664236</p>
             <TbBrandTelegram className="mt-8" size={30} />
-            <p className="text-white text-2xl">PCD@GMAIL.COM.COM</p>
+            <p className="text-white text-2xl md:text-xl pb-8">
+              PCD@GMAIL.COM.COM
+            </p>
           </div>
           <img src={facbook} alt="facbook" />
         </div>
         <div className="col-span-2 bg-primary-gray-subdark mt-7 pl-14">
-          <h1 className="text-7xl text-white pt-16">
+          <h1 className="text-7xl md:text-6xl text-white pt-16">
             For Buyers <br></br>By Buyers
           </h1>
           <p className="border-4 border-primary-cyan-light w-32 my-14"></p>

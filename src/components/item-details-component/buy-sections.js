@@ -12,12 +12,12 @@ import { useLanguage } from "../../context/language-context";
 import useAxios from "../../hooks/use-axios";
 import routes from "../../routes";
 import { On } from "../../redux/sidebare-slice.js";
-import ProfileModel from "./profile-model";
 import profileBG from "../../../src/assets/img/profile_BG.png";
 import copyicon from "../../../src/assets/icons/copy_icon.svg";
 import shareicon from "../../../src/assets/icons/share_icon.svg";
 import CopyToClipboard from "react-copy-to-clipboard";
 import ZamartLoading from "../shared/lotties/zamart-loading";
+import CardItemMedium from "../shared/card-item-medium";
 
 const BuySections = ({ data }) => {
   const [lang, setLang] = useLanguage("");
@@ -80,8 +80,16 @@ const BuySections = ({ data }) => {
     }
   };
 
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + ".....";
+    } else {
+      return str;
+    }
+  };
+
   return (
-    <div className=" mt-12 mr-auto ml-20 ">
+    <div className=" mt-12 mr-auto ml-20 w-[350px] ">
       <div className="">
         <button
           onClick={() => history.push(routes.app.home)}
@@ -97,7 +105,7 @@ const BuySections = ({ data }) => {
             : data?.data?.category?.nameAn}
         </p>
         <p className="text-xl text-primary-gray mt-6">
-          {data?.data?.description || "unkown"}
+          {truncateString(data?.data?.description, 25)}
         </p>
         <div className="flex py-2 mt-14 ">
           <div className="">
@@ -139,16 +147,20 @@ const BuySections = ({ data }) => {
             </p>
           </div>
         </div>
-        <p className="text-6xl text-white mt-9">{data?.data?.price}$</p>
+        <p className="text-6xl text-white mt-9">{data?.data?.price}</p>
         <Button
           loading={isLoadingsendCallRequest}
-          onClick={() => sendCallRequest(data?.data?.user?._id)}
-          className="rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink w-[232px] h-[53px] mt-36 text-lg text-white "
+          onClick={() => sendCallRequest(data?.data?._id)}
+          className="rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink w-[232px] h-[53px] mt-32 text-lg text-white  mb-8"
         >
           CALL NOW
         </Button>
       </div>
-      <Modal className="w-[617px]" onClose={() => setOpen(false)} open={open}>
+      <Modal
+        className="w-[617px] bg-black"
+        onClose={() => setOpen(false)}
+        open={open}
+      >
         <Dimmer
           className=" animate-pulse bg-primary-black-light"
           active={isLoadingUserProfile}
@@ -184,7 +196,33 @@ const BuySections = ({ data }) => {
           <p className="text-primary-gray-dark text-2xl text-center pt-3">
             {userProfileData?.email}
           </p>
-          <div className="flex justify-center gap-x-12 mt-12">
+          <div className="flex justify-center gap-x-5 mt-5">
+            <p>
+              <p className="text-xl uppercase  ">total Calls</p>
+              <p className="text-center text-xl pt-1 text-primary-gray-light">
+                {userProfileData?.mostViewedItem?.totalCalls}
+              </p>
+            </p>
+            <p>
+              <p className="text-xl uppercase  ">total Enquires</p>
+              <p className="text-center text-xl pt-1 text-primary-gray-light">
+                {userProfileData?.mostViewedItem?.totalEnquires}
+              </p>
+            </p>
+            <p>
+              <p className="text-xl uppercase  ">total Search</p>
+              <p className="text-center text-xl pt-1 text-primary-gray-light">
+                {userProfileData?.mostViewedItem?.totalSearch}
+              </p>
+            </p>
+            <p>
+              <p className="text-xl uppercase  ">total Views</p>
+              <p className="text-center text-xl pt-1 text-primary-gray-light">
+                {userProfileData?.mostViewedItem?.totalViews}
+              </p>
+            </p>
+          </div>
+          <div className="flex justify-center gap-x-12 mt-12 mb-8">
             <CopyToClipboard
               text={userProfileData?.email}
               onCopy={() => {
@@ -208,6 +246,22 @@ const BuySections = ({ data }) => {
                 <img src={shareicon} alt="shareicon" />
               </a>
             </button>
+          </div>
+          <div className="w-fit mx-auto ">
+            <CardItemMedium
+              id={userProfileData?.mostViewedItem?._id}
+              itemImge={userProfileData?.mostViewedItem?.image || ""}
+              adsName={userProfileData?.mostViewedItem?.brand || ""}
+              price={userProfileData?.mostViewedItem?.price || ""}
+              date={
+                new Date(
+                  userProfileData?.mostViewedItem?.updatedAt
+                ).toLocaleDateString("en-GB") || ""
+              }
+              itemName={userProfileData?.mostViewedItem?.title || ""}
+              userName={userProfileData?.mostViewedItem?.user?.fullName || ""}
+              KM={userProfileData?.mostViewedItem?.kiloMeters || ""}
+            />
           </div>
         </div>
       </Modal>

@@ -116,3 +116,13 @@ input[type=number] {
 .edit_Pag.ui.pagination.menu .item:last-child{
   @apply text-black bg-white rounded-full min-w-[55px] h-[55px]  !important
 }
+
+.Edit_Lang_Dropdown.ui.inline.dropdown>.text{
+@apply font-normal
+}
+.Edit_Lang_Dropdown.ui.inline.dropdown .dropdown.icon{
+  @apply text-black mx-2
+}
+.Edit_Lang_Dropdown.ui.dropdown .menu>.item{
+  @apply font-normal text-base text-black 
+}

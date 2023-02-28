@@ -29,7 +29,7 @@ const ItemCard = ({
 
   return (
     <div className="mx-auto">
-      <div className="relative w-full h-auto mb-8 overflow-hidden">
+      <div className="relative w-full  mb-8 overflow-hidden">
         <div className="">
           <div
             className={`${
@@ -46,7 +46,7 @@ const ItemCard = ({
               >
                 <p>{itemName}</p>
                 <p className="border-r-[1px] blur-[1px]"></p>
-                <p>{price} $</p>
+                <p>{price}</p>
               </div>
               <button
                 onClick={() => history.push(routes.app.viewItemById(id))}
@@ -81,7 +81,7 @@ const ItemCard = ({
                     >
                       <div className="flex gap-x-2 justify-center ">
                         <p className="font-thin pt-1">BUY</p>
-                        <p className="text-lg ">${price}</p>
+                        <p className="text-lg ">{price}</p>
                       </div>
                     </button>
                     <div className="flex gap-x-4 my-auto">
@@ -90,7 +90,7 @@ const ItemCard = ({
                         src={speedometer}
                         alt="speedometer"
                       />
-                      <p className="pt-1">{KM},00 KM</p>
+                      <p className="pt-1">{KM}KM</p>
                     </div>
                   </div>
                 </div>

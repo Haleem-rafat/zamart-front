@@ -46,7 +46,7 @@ const ItemCardSmall = ({
               >
                 <p>{itemName}</p>
                 <p className="border-r-[1px] blur-[1px]"></p>
-                <p>{price} $</p>
+                <p>{price} </p>
               </div>
               <button
                 onClick={() => history?.push(routes.app.viewItemById(id))}
@@ -74,7 +74,7 @@ const ItemCardSmall = ({
                         src={speedometer}
                         alt="speedometer"
                       />
-                      <p className="pt-1">{KM},00 KM</p>
+                      <p className="pt-1">{KM}KM</p>
                     </div>
                   </div>
                 </div>

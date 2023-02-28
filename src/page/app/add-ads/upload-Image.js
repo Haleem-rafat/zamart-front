@@ -203,20 +203,20 @@ const UploadImage = () => {
         </div>
       </div>
       <div className="flex justify-center animate-in">
-        <div className="flex">
+        <div className="flex ml-5 ">
           <div>
             {fileOne ? (
               <div>
                 <FileUploader handleChange={handleChangeOne} name="file">
                   <img
-                    className="w-[404px] h-[393px] object-cover mt-14 mx-auto"
+                    className="sm:w-[404px] w-[250px] h-[393px] object-cover mt-14 mx-auto"
                     src={URL?.createObjectURL(fileOne)}
                     alt="img two"
                   />
                 </FileUploader>
               </div>
             ) : (
-              <div className="w-[404px] h-[393px] bg-primary-gray-med  text-white mt-14"></div>
+              <div className="sm:w-[404px] w-[250px] h-[393px] bg-primary-gray-med  text-white mt-14"></div>
             )}
           </div>
           <div className="mt-14 mx-5">
@@ -224,40 +224,40 @@ const UploadImage = () => {
               <div>
                 <FileUploader handleChange={handleChangeTwo} name="file">
                   <img
-                    className="w-[157px] h-[121px] object-cover  mx-auto"
+                    className="sm:w-[157px] w-[130px] h-[121px] object-cover  mx-auto"
                     src={URL?.createObjectURL(fileTwo)}
                     alt="img two"
                   />
                 </FileUploader>
               </div>
             ) : (
-              <div className="w-[157px] h-[121px] bg-primary-gray-med "></div>
+              <div className="sm:w-[157px] w-[130px] h-[121px] bg-primary-gray-med "></div>
             )}
             {fileThree ? (
               <div>
                 <FileUploader handleChange={handleChangeThree} name="file">
                   <img
-                    className="w-[157px] h-[121px] object-cover my-[14px] "
+                    className="sm:w-[157px] w-[130px] h-[121px] object-cover my-[14px] "
                     src={URL?.createObjectURL(fileThree)}
                     alt="img two"
                   />
                 </FileUploader>
               </div>
             ) : (
-              <div className="w-[157px] h-[121px]  bg-primary-gray-med my-[14px]  "></div>
+              <div className="sm:w-[157px] w-[130px] h-[121px]  bg-primary-gray-med my-[14px]  "></div>
             )}
             {fileFour ? (
               <div>
                 <FileUploader handleChange={handleChangeFour} name="file">
                   <img
-                    className="w-[157px] h-[121px] object-cover "
+                    className="sm:w-[157px] w-[130px] h-[121px] object-cover "
                     src={URL?.createObjectURL(fileFour)}
                     alt="img two"
                   />
                 </FileUploader>
               </div>
             ) : (
-              <div className="w-[157px] h-[121px] bg-primary-gray-med "></div>
+              <div className="sm:w-[157px] w-[130px] h-[121px] bg-primary-gray-med "></div>
             )}
           </div>
         </div>
@@ -283,7 +283,7 @@ const UploadImage = () => {
           onClick={fileThree ? () => postads("PENDING") : ""}
           loading={isLoadingPostads}
           className={
-            "md:w-[400px] w-full h-16 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple  md:mt-6 mt-8 flex justify-between px-1 gap-x-2"
+            "md:w-[400px] w-full h-16 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple  md:mt-6 mt-8 flex justify-between px-1 gap-x-2 "
           }
         >
           <p className="text-white text-xl md:pt-1 pt-0 w-full text-end">

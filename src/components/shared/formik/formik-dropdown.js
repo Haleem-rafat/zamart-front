@@ -27,7 +27,7 @@ function FormikMultiDropdown({
               onBlur={() => setFieldTouched(name, true)}
               onChange={(e, { value }) => {
                 setFieldValue(name, value);
-                if (typeof onChange === "function") onChange(value);
+                if (typeof onChange === "function") onChange(e);
               }}
               multiple={multiple}
               search

@@ -123,22 +123,6 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      {/* <div className="text-white flex justify-between flex-wrap  mb-8">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-x-5  sm:mx-5 relative  h-fit mx-auto ">
-          {viewAllOwner?.map((e) => (
-            <ItemCardSmall
-              id={e?._id}
-              itemImge={e?.images[0]?.img}
-              itemName={e?.brand}
-              price={e?.price}
-              date={new Date(e?.updatedAt).toLocaleDateString("en-GB")}
-              adsName={e?.model}
-              userName={e?.user?.fullName}
-              KM={e?.kiloMeters}
-            />
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };

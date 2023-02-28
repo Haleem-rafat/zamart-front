@@ -114,9 +114,9 @@ const MyProfile = () => {
           src={myProfileImg}
           alt="myProfileImg"
         />
-        <div className="flex justify-between mx-14">
+        <div className="flex justify-between flex-wrap sm:mx-14 mx-auto">
           {/* left */}
-          <div className="flex py-2 ">
+          <div className="sm:flex block  py-2 ">
             <div className="">
               <p className="w-[116px] h-[116px] border-white border-[1px] mx-auto rounded-full  ">
                 {/* <img
@@ -144,15 +144,17 @@ const MyProfile = () => {
                 </p>
               </p>
             </div>
-            <div className="mx-8 my-auto">
-              <p className=" text-white text-4xl font-medium pb-4">
+            <div className="mx-8 my-auto  ">
+              <p className=" text-white sm:text-4xl text-2xl font-medium pb-4 text-center">
                 {myProfileData?.fullName}
               </p>
-              <p className="text-white/50 text-2xl">{myProfileData?.email}</p>
+              <p className="text-white/50 sm:text-2xl text-xl">
+                {myProfileData?.email}
+              </p>
             </div>
           </div>
           {/* right */}
-          <div className="text-white my-auto">
+          <div className="text-white my-auto mx-auto sm:mx-0">
             <div>
               <h1 className="text-4xl text-center font-medium">
                 {myProfileData?.profileViews}
@@ -162,7 +164,7 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-      <div className="text-white flex justify-between flex-wrap  mb-8">
+      <div className="text-white flex justify-between flex-col sm:flex-row mb-8">
         <div className="bg-black w-[266px] h-fit rounded-xl mx-auto overflow-hidden ">
           {viewItemsAnalytics?.map((e) => (
             <div
@@ -197,17 +199,17 @@ const MyProfile = () => {
             <ItemCardSmall
               id={e?._id}
               itemImge={e?.images[0]?.img}
-              itemName={e?.brand}
+              adsName={e?.brand}
               price={e?.price}
               date={new Date(e?.updatedAt).toLocaleDateString("en-GB")}
-              adsName={e?.model}
+              itemName={e?.model}
               userName={e?.user?.fullName}
               KM={e?.kiloMeters}
             />
           ))}
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-10 mt-3 ">
         <PaginationApp totalPages={pagenationData} totalItem={8} />
       </div>
     </div>

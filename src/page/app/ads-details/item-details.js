@@ -19,7 +19,6 @@ const ItemDetails = () => {
   const [itemData, setItemData] = useState();
 
   const { itemId } = useParams();
-  const [lang, setLang] = useLanguage("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,11 +44,6 @@ const ItemDetails = () => {
     );
   }, [data?.data?.category?._id, runitemData]);
 
-  console.log("====================================");
-  console.log(runitemData);
-  console.log(date);
-  console.log("====================================");
-
   return (
     <div className="w-full animate-in relative mt-10">
       <Dimmer
@@ -63,9 +57,9 @@ const ItemDetails = () => {
         <div className="mx-auto">
           <ImgSlider images={data?.data?.images} />
         </div>
-        <div className="flex justify-end flex-wrap w-full ml-auto">
+        <div className="sm:flex grid grid-cols-1 justify-end md:justify-center  w-full ml-auto mx-auto">
           <BuySections data={data} />
-          <div className="w-[419px] h-[780px] bg-black overflow-y-auto  px-11">
+          <div className="w-[419px] h-[680px] bg-black overflow-y-auto  px-11">
             <Askqustion />
           </div>
         </div>
@@ -79,7 +73,7 @@ const ItemDetails = () => {
           MORE OPTION YOU LIKE
         </p>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-5 my-12 mx-5 relative h-full ">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-5 my-12 sm:mx-5 mx-auto relative h-full ">
         <Dimmer
           className="animate-pulse bg-primary-black-light h-full"
           active={isloadingitemData}

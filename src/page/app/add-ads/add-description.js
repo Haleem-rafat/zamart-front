@@ -2,7 +2,7 @@ import axios from "axios";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { Dimmer, Form, Loader } from "semantic-ui-react";
+import { Dimmer, Dropdown, Form, Loader } from "semantic-ui-react";
 import api from "../../../api";
 import { BreadCrumbAddAds } from "../../../components/shared/Breadcrumb/bread-crumb-add-ads";
 import FormikMultiDropdown from "../../../components/shared/formik/formik-dropdown";
@@ -27,11 +27,17 @@ const AddDescription = () => {
 
   const [categoriesFromData, setCategoriesFromData] = useState("");
   const [addBrand, setAddBrand] = useState(false);
-  const [brandId, setBrandID] = useState();
   const [addModel, setAddModel] = useState(false);
+  const [brandId, setBrandId] = useState();
+
+  const [brandVal, setBrandVal] = useState();
+  const [modelVal, setModleVal] = useState();
 
   const [CatID, setCatID] = useLocalStorage("category_id", "");
   const { citiesOptions, loadingcitiesOptions } = useGetCities();
+  console.log("====================================");
+  console.log(CatID);
+  console.log("====================================");
 
   const dispatch = useDispatch();
 
@@ -49,29 +55,25 @@ const AddDescription = () => {
   ];
 
   const adsDescrisption = (values) => {
-    dispatch(addAds(values));
+    dispatch(addAds({ ...values, model: modelVal, brand: brandVal }));
     history.push(routes.app.ceratitems.uploadImage);
   };
 
   const adsDescrisptionSchema = Yup.object({
-    title: Yup.string().max(10).required("Required field"),
+    title: Yup.string().max(15).required("Required field"),
     price: Yup.string().max(8).required("Required field"),
     description: Yup.string().required("Required field"),
     usage: Yup.string().required("Required field"),
     year: Yup.string().required("Required field"),
-    brand: Yup.string().required("Required field"),
-    model: Yup.string().required("Required field"),
-    citie: Yup.string().required("Required field"),
+    city: Yup.string().required("Required field"),
   });
 
   const { run, isLoading } = useAxios([]);
   useEffect(() => {
     run(
-      axios
-        .get(api.app.ViewCategoriesFromData("63f299c76b80690068d00423"))
-        .then((res) => {
-          setCategoriesFromData(res?.data?.data);
-        })
+      axios.get(api.app.ViewCategoriesFromData(CatID)).then((res) => {
+        setCategoriesFromData(res?.data?.data);
+      })
     );
   }, [CatID, run]);
 
@@ -115,8 +117,6 @@ const AddDescription = () => {
           title: "",
           price: "",
           description: "",
-          model: "",
-          brand: "",
           usage: "",
           year: "",
           citie: "",
@@ -131,21 +131,35 @@ const AddDescription = () => {
                 <FormikInput name="title" type="text" placeholder="TITLE" />
               </div>
               <div className={addBrand ? "w-full mt-10 " : "hidden h-0 "}>
-                <FormikInput name="brand" type="text" placeholder="BRAND" />
+                <Form.Input
+                  className="bg-white p-3 rounded-full  "
+                  type="text"
+                  placeholder="BRAND"
+                  onChange={(e, { value }) => {
+                    setBrandVal(value);
+                  }}
+                />
               </div>
               <div
                 className={
                   addBrand ? "hidden " : " mt-10 flex gap-x-3 justify-between "
                 }
               >
-                <div className="w-full ">
-                  <FormikMultiDropdown
-                    name="brand"
+                <div className="w-full mt-3 ">
+                  <Form.Dropdown
+                    className="bg-white p-3 rounded-full  "
+                    placeholder="brand"
                     selection
-                    placeholder={"BRAND"}
-                    options={BrandOptions}
+                    clearable
+                    compact
+                    search
+                    required
                     loading={loadingBrand}
-                    onChange={(e) => setBrandID(e)}
+                    options={BrandOptions}
+                    onChange={(e, { value }) => {
+                      setBrandId(value);
+                      setBrandVal(e.target.textContent);
+                    }}
                   />
                 </div>
                 <button
@@ -156,20 +170,34 @@ const AddDescription = () => {
                 </button>
               </div>
               <div className={addModel ? "w-full mt-10 " : "hidden h-0 "}>
-                <FormikInput name="model" type="text" placeholder="MODEL" />
+                <Form.Input
+                  className="bg-white p-3 rounded-full "
+                  type="text"
+                  placeholder="MODEL"
+                  onChange={(e, { value }) => {
+                    setModleVal(value);
+                  }}
+                />
               </div>
               <div
                 className={
                   addModel ? "hidden " : " mt-10 flex gap-x-3 justify-between "
                 }
               >
-                <div className="w-full ">
-                  <FormikMultiDropdown
-                    name="model"
+                <div className="w-full mt-3 ">
+                  <Form.Dropdown
+                    className="bg-white p-3 rounded-full  "
+                    placeholder="Model"
                     selection
-                    placeholder={"MODEL"}
-                    options={ModelOptions}
+                    clearable
+                    compact
+                    search
+                    required
                     loading={loadingModel}
+                    options={ModelOptions}
+                    onChange={(e, { value }) => {
+                      setModleVal(e.target.textContent);
+                    }}
                   />
                 </div>
                 <button
@@ -209,8 +237,8 @@ const AddDescription = () => {
               ))}
               <div className="w-full mt-10">
                 <FormikMultiDropdown
-                  name="citie"
-                  placeholder={"citie"}
+                  name="city"
+                  placeholder={"city"}
                   options={citiesOptions}
                   loading={loadingcitiesOptions}
                 />

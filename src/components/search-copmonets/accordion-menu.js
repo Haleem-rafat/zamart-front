@@ -3,11 +3,13 @@ import { Accordion, Dropdown, Form, Input, Menu } from "semantic-ui-react";
 import useFilter from "../../hooks/use-filter";
 import useGetGatogry from "../../hooks/use-get-gatogry";
 import { useDebouncedCallback } from "use-debounce";
+import useGetBrand from "../../hooks/use-get-brand";
+import useLocalStorage from "../../hooks/use-localstorage";
 
 const AccordionMenu = () => {
-  const { GatogryOptions, loadingGatogry } = useGetGatogry();
-  const [CatID, setGatogryId] = useState();
-  const [categoriesFilter, setCategoriesFiter] = useFilter("category", "");
+  const [CatID, setCatID] = useLocalStorage("category_id", "");
+  const { BrandOptions, loadingBrand } = useGetBrand({ CatID });
+  const [brandFilter, setBrandFiter] = useFilter("brand", "");
   const [transimision, setTransmission] = useFilter("transimision", "");
   const [priceFrom, setPriceFrom] = useFilter("priceFrom", "");
   const [priceTo, setPriceTo] = useFilter("priceTo", "");
@@ -26,15 +28,14 @@ const AccordionMenu = () => {
   const ALLMANUFACTURES = (
     <Form className="py-4">
       <Form.Group className="bg-primary-black-med text-white text-2xl " grouped>
-        {GatogryOptions?.map((e) => (
+        {BrandOptions?.map((e) => (
           <Form.Checkbox
             className="text-white py-2 mx-6"
             label={e?.text}
             name={e?.text}
             value={e?.value}
             onChange={(e, { value }) => {
-              setGatogryId(value);
-              setCategoriesFiter(value);
+              setBrandFiter(value);
             }}
           />
         ))}
@@ -89,7 +90,11 @@ const AccordionMenu = () => {
   };
 
   return (
-    <Accordion className="w-full p-0 bg-black text-white " as={Menu} vertical>
+    <Accordion
+      className="w-full p-0 bg-black text-white mx-8 "
+      as={Menu}
+      vertical
+    >
       <Menu.Item className="w-full p-0 m-0">
         <Accordion.Title
           className="my-4"

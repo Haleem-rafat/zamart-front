@@ -52,9 +52,10 @@ const Askqustion = () => {
       dispatch(On());
     }
   };
+
   return (
     <div>
-      <h1 className="text-3xl text-white pt-10">ASK THE DEALER A QUESTION</h1>
+      <h1 className="text-3xl text-white pt-8">ASK THE DEALER A QUESTION</h1>
       <div className=" ">
         <Formik
           initialValues={{
@@ -69,7 +70,7 @@ const Askqustion = () => {
           {(formik) => (
             <Form onSubmit={formik.handleSubmit}>
               <div className="mx-auto">
-                <div className="md:w-[341px]  w-full mt-8">
+                <div className="md:w-[341px] w-full mt-5">
                   <FormikTextarea
                     name="description"
                     placeholder={"I'M INTERESTED, PLEASE CONTACT ME?"}
@@ -96,11 +97,11 @@ const Askqustion = () => {
                     placeholder={"PHONE NUMBER"}
                   />
                 </div>
-                <div className="flex flex-col sm:mt-5 mt-8 ml-2">
+                <div className="flex flex-col sm:mt-5 mt-6 ml-2">
                   <label className="text-gray-500 text-xs sm:text-base font-normal cursor-pointer pt-2">
                     <input
                       onClick={() => setReason("CONTACT ME ABOUT INSURANCE")}
-                      className="sm:mt-0.5 mt-2  mr-3"
+                      className="sm:mt-0.5   mr-3"
                       type="checkbox"
                     />
                     CONTACT ME ABOUT INSURANCE
@@ -108,7 +109,7 @@ const Askqustion = () => {
                   <label className="text-gray-500 text-xs sm:text-base font-normal cursor-pointer pt-2">
                     <input
                       onClick={() => setReason("CONFIRM DEALER'S RESPONSE")}
-                      className="sm:mt-0.5 mt-2  mr-3"
+                      className="sm:mt-0.5  mr-3"
                       type="checkbox"
                     />
                     CONFIRM DEALER'S RESPONSE
@@ -118,7 +119,7 @@ const Askqustion = () => {
                       onClick={() =>
                         setReason("FILL IN THIS FORM FOR ME NEXT TIME")
                       }
-                      className="sm:mt-0.5 mt-2  mr-3"
+                      className="sm:mt-0.5   mr-3"
                       type="checkbox"
                     />
                     FILL IN THIS FORM FOR ME NEXT TIME

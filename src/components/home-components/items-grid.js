@@ -24,28 +24,26 @@ const ItemsDrid = () => {
   }, [run, search]);
 
   return (
-    <div id="category">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-y-10 gap-x-5 my-10 mx-5 relative  h-[534px] sm:h-full ">
-        <Dimmer
-          className=" animate-pulse bg-primary-black-light  h-full"
-          active={isLoading}
-        >
-          {/* <Loader active /> */}
-          <ZamartLoading />
-        </Dimmer>
-        {data?.map((e) => (
-          <ItemCard
-            id={e?._id}
-            itemImge={e?.images[0]?.img || ""}
-            itemName={e?.brand || ""}
-            price={e?.price || ""}
-            date={new Date(e?.updatedAt).toLocaleDateString("en-GB") || ""}
-            adsName={e?.title || ""}
-            userName={e?.user?.fullName || ""}
-            KM={e?.kiloMeters || ""}
-          />
-        ))}
-      </div>
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-5 my-10 sm:mx-5 mx-auto ">
+      <Dimmer
+        className=" animate-pulse bg-primary-black-light "
+        active={isLoading}
+      >
+        {/* <Loader active /> */}
+        <ZamartLoading />
+      </Dimmer>
+      {data?.map((e) => (
+        <ItemCard
+          id={e?._id}
+          itemImge={e?.images[0]?.img || ""}
+          adsName={e?.brand || ""}
+          price={e?.price || ""}
+          date={new Date(e?.updatedAt).toLocaleDateString("en-GB") || ""}
+          itemName={e?.title || ""}
+          userName={e?.user?.fullName || ""}
+          KM={e?.kiloMeters || ""}
+        />
+      ))}
     </div>
   );
 };

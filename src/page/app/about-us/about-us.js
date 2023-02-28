@@ -3,8 +3,8 @@ import React from "react";
 import aboutus from "../../../../src/assets/img/about-us.png";
 const AboutUs = () => {
   return (
-    <div className="flex justify-between my-5 animate-in">
-      <div className="mx-40 mt-40">
+    <div className="md:flex grid grid-cols-1 justify-between  my-5 animate-in">
+      <div className="sm:mx-40 mx-8 sm:mt-40 mt-8 mb-8">
         <p className="text-primary-gray text-xl font-normal">OUR STORY</p>
         <h1 className=" text-white text-7xl pt-2 pb-12">ABOUT US</h1>
         <p className="text-primary-gray text-xl font-normal">
@@ -29,7 +29,11 @@ const AboutUs = () => {
         </p>
       </div>
       <div>
-        <img src={aboutus} alt="aboutus" />
+        <img
+          className="w-full h-full object-cover"
+          src={aboutus}
+          alt="aboutus"
+        />
       </div>
     </div>
   );

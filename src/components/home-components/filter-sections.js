@@ -68,7 +68,7 @@ const FilterSections = () => {
               {lang === "en" ? e?.nameEn : e?.nameAr}
             </button>
           ))}
-          <div className="flex gap-2 mx-5">
+          {/* <div className="flex gap-2 mx-5">
             <IoMdArrowDropleftCircle
               size={40}
               className="text-white cursor-pointer"
@@ -77,7 +77,7 @@ const FilterSections = () => {
               size={40}
               className="text-white cursor-pointer"
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
