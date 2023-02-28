@@ -114,7 +114,7 @@ const MyProfile = () => {
           src={myProfileImg}
           alt="myProfileImg"
         />
-        <div className="flex justify-between flex-wrap sm:mx-14 mx-auto">
+        <div className="flex sm:justify-between justify-center flex-wrap sm:mx-14 mx-auto">
           {/* left */}
           <div className="sm:flex block  py-2 ">
             <div className="">
