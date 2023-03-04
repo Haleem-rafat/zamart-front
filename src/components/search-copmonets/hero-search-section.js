@@ -8,6 +8,9 @@ import useGetModel from "../../hooks/use-get-model";
 import useGetCities from "../../hooks/use-get-cities";
 import { useHistory } from "react-router-dom";
 import routes from "../../routes";
+import { useLanguage } from "../../context/language-context";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const HeroSearchSection = () => {
   const [CatID, setGatogryId] = useState();
@@ -17,6 +20,9 @@ const HeroSearchSection = () => {
   const [keyword, setKeyword] = useState();
   const [cities, setCities] = useState();
   const [usage, setUsage] = useState();
+
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   const { GatogryOptions, loadingGatogry } = useGetGatogry();
   const { BrandOptions, loadingBrand } = useGetBrand({ CatID });
@@ -48,7 +54,7 @@ const HeroSearchSection = () => {
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none Edit_Dropdown_Search "
-                    placeholder="Type"
+                    placeholder={selectedContent[localizationKeys.Type]}
                     selection
                     clearable
                     search
@@ -57,12 +63,14 @@ const HeroSearchSection = () => {
                     options={GatogryOptions}
                     onChange={(e, { value }) => setGatogryId(value)}
                   />
-                  <p className="text-base text-gray-500 pl-4">Choose Type</p>
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
+                    {selectedContent[localizationKeys.ChooseType]}
+                  </p>{" "}
                 </div>
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none Edit_Dropdown_Search "
-                    placeholder="Make"
+                    placeholder={selectedContent[localizationKeys.make]}
                     selection
                     clearable
                     compact
@@ -74,12 +82,14 @@ const HeroSearchSection = () => {
                       setBrandVal(e.target.textContent);
                     }}
                   />
-                  <p className="text-base text-gray-500 pl-4">Choose make</p>
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
+                    {selectedContent[localizationKeys.Choosemake]}
+                  </p>{" "}
                 </div>
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none Edit_Dropdown_Search "
-                    placeholder="Model"
+                    placeholder={selectedContent[localizationKeys.Model]}
                     selection
                     clearable
                     search
@@ -90,13 +100,15 @@ const HeroSearchSection = () => {
                       setModeVal(e.target.textContent)
                     }
                   />
-                  <p className="text-base text-gray-500 pl-4">Choose year</p>
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
+                    {selectedContent[localizationKeys.ChooseModel]}
+                  </p>{" "}
                 </div>
                 <div>
                   <div>
                     <Input
                       className="Edit_Input  mt-0.5 "
-                      placeholder="Keyword..."
+                      placeholder={selectedContent[localizationKeys.Keyword]}
                       onChange={(e, { value }) => setKeyword(value)}
                     />
                   </div>
@@ -120,7 +132,9 @@ const HeroSearchSection = () => {
             >
               <div className="flex justify-center gap-x-2">
                 <SlMagnifier size={30} />
-                <p className="text-2xl">SEARCH NOW</p>
+                <p className="text-2xl">
+                  {selectedContent[localizationKeys.SEARCHNOW]}
+                </p>
               </div>
             </button>
           </div>
@@ -130,7 +144,7 @@ const HeroSearchSection = () => {
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none py-0 Edit_Dropdown_Location "
-                    placeholder="Location"
+                    placeholder={selectedContent[localizationKeys.Location]}
                     selection
                     clearable
                     fluid
@@ -143,7 +157,7 @@ const HeroSearchSection = () => {
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none py-0 Edit_Dropdown_Location "
-                    placeholder="New & Used"
+                    placeholder={selectedContent[localizationKeys.NewUsed]}
                     selection
                     clearable
                     fluid

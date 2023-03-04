@@ -13,6 +13,7 @@ import ItemOverview from "../../../components/item-details-component/item-overvi
 import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import ItemCard from "../../../components/home-components/item-card";
 import { date } from "yup";
+import { useAuthState } from "../../../context/auth-context";
 
 const ItemDetails = () => {
   const [data, setData] = useState();
@@ -20,8 +21,10 @@ const ItemDetails = () => {
 
   const { itemId } = useParams();
 
+  const { user } = useAuthState();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
   const { run, isLoading } = useAxios([]);
@@ -44,6 +47,10 @@ const ItemDetails = () => {
     );
   }, [data?.data?.category?._id, runitemData]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="w-full animate-in relative mt-10">
       <Dimmer
@@ -57,7 +64,13 @@ const ItemDetails = () => {
         <div className="mx-auto">
           <ImgSlider images={data?.data?.images} />
         </div>
-        <div className="sm:flex grid grid-cols-1 justify-end md:justify-center  w-full ml-auto mx-auto">
+        <div
+          className={
+            user?.id === data?.data?.user?._id
+              ? "hidden"
+              : "sm:flex grid grid-cols-1 justify-end md:justify-center  w-full ml-auto mx-auto"
+          }
+        >
           <BuySections data={data} />
           <div className="w-[419px] h-[680px] bg-black overflow-y-auto  px-11">
             <Askqustion />

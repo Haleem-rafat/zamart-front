@@ -14,10 +14,14 @@ import routes from "../../../routes";
 import { resizeFile } from "../../../utils/resizeImageFn";
 import { On } from "../../../redux/sidebare-slice.js";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { useLanguage } from "../../../context/language-context";
+import content from "../../../localization/content";
 
 const fileTypes = ["JPEG", "PNG", "GIF"];
 
 const UploadImage = () => {
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const history = useHistory();
   const [CatID, setCatID] = useLocalStorage("category_id", "");
   const [subCatID, setCubCatID] = useLocalStorage("subCategory_Id", "");
@@ -81,7 +85,9 @@ const UploadImage = () => {
           }
           if (status === "PENDING") {
             toast.success(
-              "The ad has been added successfully and is still under review by  ZAMART admin"
+              lang === "en"
+                ? "The ad has been added successfully and is still under review by  ZAMART admin"
+                : "تمت إضافة الإعلان بنجاح ولا يزال قيد المراجعة بواسطة Zamart Admin"
             );
             history.push(routes.app.myProfile);
           } else
@@ -94,7 +100,9 @@ const UploadImage = () => {
           if (err?.response?.data?.errors[0]?.message === "Forbidden Access") {
             dispatch(On());
             toast.error(
-              "There is an error, you must be logged in in order for the ad to be placed"
+              lang === "en"
+                ? "There is an error, you must be logged in in order for the ad to be placed"
+                : "هناك خطأ ، يجب تسجيل الدخول من أجل وضع الإعلان"
             );
           } else toast.error(err.errors[0].message) || console.log(err);
         })
@@ -280,8 +288,8 @@ const UploadImage = () => {
           </div>
         </Button> */}
         <Button
-          onClick={fileThree ? () => postads("PENDING") : ""}
           loading={isLoadingPostads}
+          onClick={fileThree ? () => postads("PENDING") : ""}
           className={
             "md:w-[400px] w-full h-16 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple  md:mt-6 mt-8 flex justify-between px-1 gap-x-2 "
           }

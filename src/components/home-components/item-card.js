@@ -29,12 +29,12 @@ const ItemCard = ({
 
   return (
     <div className="mx-auto">
-      <div className="relative w-full  mb-8 overflow-hidden">
+      <div className="relative w-full mb-8 overflow-hidden">
         <div className="">
           <div
             className={`${
               isSmall && " h-[417px] overflow-hidden"
-            } w-full  h-[534px] flex items-end absolute  z-20 bg-gradient-to-t from-black text-white `}
+            } w-full h-[534px] flex items-end absolute  z-20 bg-gradient-to-t from-black text-white `}
           >
             <div className="w-full">
               <div
@@ -102,7 +102,9 @@ const ItemCard = ({
           </div>
           <img
             className={`${
-              isSmall ? "w-[307px] h-[417px] " : "w-[400px] h-[534px] "
+              isSmall
+                ? "w-[307px] h-[417px] "
+                : "sm:w-[400px] w-[360px] h-[534px] "
             } object-cover `}
             src={`data:image/jpeg;base64,${itemImge}`}
             alt="imgTest "

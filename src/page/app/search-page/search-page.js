@@ -26,6 +26,10 @@ const SearchPage = () => {
     );
   }, [run, search]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="h-full">
       <div>

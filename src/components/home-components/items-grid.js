@@ -24,7 +24,7 @@ const ItemsDrid = () => {
   }, [run, search]);
 
   return (
-    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-5 my-10 sm:mx-5 mx-auto ">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-x-5 gap-x-0 my-10 sm:mx-5 mx-auto ">
       <Dimmer
         className=" animate-pulse bg-primary-black-light "
         active={isLoading}

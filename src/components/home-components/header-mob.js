@@ -95,8 +95,8 @@ const Headermob = () => {
   };
 
   return (
-    <div className="w-full h-[90px] ">
-      <div className="flex justify-between mx-2">
+    <div className="w-full ">
+      <div className="flex justify-between mx-2 ">
         <div className="" onClick={handelNav}>
           <p className="text-white py-6">
             {nav ? (
@@ -128,7 +128,9 @@ const Headermob = () => {
 
       <div
         className={
-          nav ? "bg-primary-black-light h-[800px] z-20 relative " : "hidden"
+          nav
+            ? "bg-primary-black-light h-screen z-20 relative  overflow-y-auto"
+            : "hidden"
         }
       >
         <Dimmer
@@ -234,7 +236,7 @@ const Headermob = () => {
             </button>
           </div>
           <h1 className="text-2xl text-white mx-5 mt-6">Select language</h1>
-          <div className="mx-4 mt-8">
+          <div className="mx-4 mt-8 pb-4">
             <DropdownLang />
           </div>
         </div>

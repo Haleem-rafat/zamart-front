@@ -13,8 +13,13 @@ import { useState } from "react";
 import { Off } from "../../redux/sidebare-slice.js";
 import { useDispatch } from "react-redux";
 import auth from "../../utils/auth";
+import { useLanguage } from "../../context/language-context";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const Login = ({ isLogin, setIsLogin }) => {
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const [IsForgetPass, setIsForgetPass] = useState(false);
   const dispatch = useDispatch();
 
@@ -47,7 +52,9 @@ const Login = ({ isLogin, setIsLogin }) => {
     runForgetPass(axios.post(api.auth.fogetpass, values))
       .then((res) => {
         toast.loading(
-          "A verification mail has been sent to your mail please check it...."
+          lang === "en"
+            ? "A verification mail has been sent to your mail please check it...."
+            : "تم إرسال بريد تحقق إلى بريدك ، يرجى التحقق منه ...."
         );
       })
       .catch((err) => {
@@ -69,11 +76,20 @@ const Login = ({ isLogin, setIsLogin }) => {
         src={ZAMARTlogo}
         alt="ZAMARTlogo"
       />
-      <h1 className="md:text-6xl text-4xl text-start mt-10">LOGIN</h1>
-      <h3 className="md:text-xl text-lg text-start mt-6">Hi there!</h3>
+      <h1 className="md:text-6xl text-4xl text-start mt-10">
+        {selectedContent[localizationKeys.LOGIN]}
+      </h1>
+      <h3 className="md:text-xl text-lg text-start mt-6">
+        {selectedContent[localizationKeys.Hithere]}
+      </h3>
       <p className="text-start mt-4 text-sm md:text-base">
-        Log in to manage your translators' lists and filter the <br></br>
-        results to suit your desired job type
+        {
+          selectedContent[
+            localizationKeys.Logintomanageyourtranslatorslistsandfilterthe
+          ]
+        }
+        <br></br>
+        {selectedContent[localizationKeys.resultstosuityourdesiredjobtype]}
       </p>
 
       <div className={IsForgetPass ? "animate-out hidden h-0" : "animate-in"}>
@@ -92,8 +108,7 @@ const Login = ({ isLogin, setIsLogin }) => {
                   <FormikInput
                     name="email"
                     type={"email"}
-                    label={"E-mail"}
-                    placeholder={"E-mail"}
+                    placeholder={selectedContent[localizationKeys.Email]}
                   />
                 </div>
                 <div className="md:w-[460px] w-full mt-6">
@@ -101,20 +116,23 @@ const Login = ({ isLogin, setIsLogin }) => {
                     name="password"
                     type={"password"}
                     label={"Password"}
-                    placeholder={"Password"}
+                    placeholder={selectedContent[localizationKeys.Password]}
                   />
                 </div>
-                <div className="flex md:gap-x-48 gap-x-14 mx-1 mt-6">
+                <div className="flex md:gap-x-48 rtl:md:gap-x-72 gap-x-14  mx-1 mt-6">
                   <Link
                     onClick={() => setIsForgetPass(true)}
                     className="text-gray-500 text-xs sm:text-base font-normal pt-1"
                   >
-                    FORGOT PASSWORD ?
+                    {selectedContent[localizationKeys.FORGOTPASSWORD]}
                   </Link>
                   <div>
                     <label className="text-gray-500 ext-xs sm:text-base font-normal cursor-pointer">
-                      <input className="mt-1 mr-3" type="checkbox" />
-                      Remember Me
+                      <input
+                        className="mt-1 ltr:mr-3 rtl:ml-3"
+                        type="checkbox"
+                      />
+                      {selectedContent[localizationKeys.RememberMe]}
                     </label>
                   </div>
                 </div>
@@ -124,9 +142,9 @@ const Login = ({ isLogin, setIsLogin }) => {
                     onClick={() => {
                       // history.push(routes.dashboard.app);
                     }}
-                    className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white"
+                    className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white font-serifAR"
                   >
-                    LOGIN
+                    {selectedContent[localizationKeys.LOGIN]}
                   </Button>
                 </div>
               </div>
@@ -136,7 +154,7 @@ const Login = ({ isLogin, setIsLogin }) => {
         <div className="mx-auto relative mt-20">
           <p className="border-t-[1px] border-[#707070] md:w-[460px] w-full my-2 left-0.5">
             <p className="absolute text-white bg-black px-4 -bottom-3 md:left-56 left-36 text-xl">
-              OR
+              {selectedContent[localizationKeys.OR]}
             </p>
           </p>
         </div>
@@ -146,7 +164,7 @@ const Login = ({ isLogin, setIsLogin }) => {
           }}
           className="pt-14 text-primary-gray cursor-pointer text-center"
         >
-          CREATE NEW ACCOUNT
+          {selectedContent[localizationKeys.CREATENEWACCOUNT]}
         </p>
       </div>
 
@@ -166,7 +184,7 @@ const Login = ({ isLogin, setIsLogin }) => {
                     name="email"
                     type={"email"}
                     label={"E-mail"}
-                    placeholder={"E-mail"}
+                    placeholder={selectedContent[localizationKeys.Email]}
                   />
                 </div>
 
@@ -176,9 +194,9 @@ const Login = ({ isLogin, setIsLogin }) => {
                     onClick={() => {
                       // history.push(routes.dashboard.app);
                     }}
-                    className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white"
+                    className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white font-serifAR"
                   >
-                    sent verification
+                    {selectedContent[localizationKeys.sentverification]}
                   </Button>
                 </div>
               </div>
@@ -188,7 +206,7 @@ const Login = ({ isLogin, setIsLogin }) => {
         <div className="mx-auto relative mt-20">
           <p className="border-t-[1px] border-[#707070] md:w-[460px] w-full my-2 left-0.5">
             <p className="absolute text-white bg-black px-4 -bottom-3 md:left-56 left-36 text-xl">
-              OR
+              {selectedContent[localizationKeys.OR]}
             </p>
           </p>
         </div>
@@ -196,7 +214,7 @@ const Login = ({ isLogin, setIsLogin }) => {
           onClick={() => setIsForgetPass(false)}
           className="pt-14 text-primary-gray cursor-pointer text-center"
         >
-          BACK TO LOGIN
+          {selectedContent[localizationKeys.GOTOLOGIN]}
         </p>
       </div>
     </div>

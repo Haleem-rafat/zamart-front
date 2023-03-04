@@ -15,12 +15,12 @@ const ItemOverview = ({ data }) => {
   useEffect(() => {
     runCategoriesFromData(
       axios
-        .get(api.app.ViewCategoriesFromData("63f299c76b80690068d00423"))
+        .get(api.app.ViewCategoriesFromData(data?.data?.category?._id))
         .then((res) => {
           setCategoriesFromData(res?.data?.data);
         })
     );
-  }, [runCategoriesFromData]);
+  }, [runCategoriesFromData, data?.data?.category?._id]);
   return (
     <div className="sm:px-36 px-4 text-white">
       <h1 className="text-white text-6xl pt-20 pb-14">ITEM OVERVIEW</h1>
@@ -77,7 +77,7 @@ const ItemOverview = ({ data }) => {
         </div>
         <div className="w-full">
           <div className="w-full">
-            {categoriesFromData?.formDataFields?.map((e) =>
+            {categoriesFromData?.map((e) =>
               objectLop?.map((key) => (
                 <>
                   {key === e?.key && (

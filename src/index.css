@@ -83,7 +83,7 @@ input[type=number] {
   @apply text-primary-black-light !important
 }
 .Edit_Dropdown_Search .ui.selection.dropdown>.delete.icon, .ui.selection.dropdown>.dropdown.icon, .ui.selection.dropdown>.search.icon{
-  @apply text-primary-cyan-med  text-2xl top-2 right-3 !important
+  @apply text-primary-cyan-med  text-2xl top-2 ltr:right-3 rtl:left-3 !important
 }
 
 .ui.fluid.dropdown>.dropdown.icon{
@@ -91,7 +91,7 @@ input[type=number] {
 }
 
 .ui.input>input{
-  @apply  bg-transparent outline-none border-none placeholder:text-primary-black-light focus:bg-transparent
+  @apply  bg-transparent outline-none border-none placeholder:text-primary-black-light focus:bg-transparent font-serifAR
 }
 
 .ui.accordion.menu .item .title{

@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Button, Form } from "semantic-ui-react";
 import * as Yup from "yup";
@@ -14,6 +14,10 @@ import { TbBrandTelegram } from "react-icons/tb";
 
 const ContactUs = () => {
   const { run, isLoading } = useAxios({});
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   const sendContactUs = (values) => {
     run(axios.post(api.app.contactUs, values))

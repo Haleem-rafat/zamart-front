@@ -36,6 +36,10 @@ const UserProfile = () => {
 
   const history = useHistory();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   const { run: runUSerProfile, isLoading: isLoadingUserProfile } = useAxios([]);
   useEffect(() => {
     runUSerProfile(

@@ -8,8 +8,13 @@ import api from "../../api";
 import useAxios from "../../hooks/use-axios";
 import { axios } from "../../config/axios-config";
 import toast from "react-hot-toast";
+import content from "../../localization/content";
+import { useLanguage } from "../../context/language-context";
+import localizationKeys from "../../localization/localization-keys";
 
 const SignUp = ({ isLogin, setIsLogin }) => {
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const { run, isLoading } = useAxios();
 
   const signup = (values) => {
@@ -40,11 +45,21 @@ const SignUp = ({ isLogin, setIsLogin }) => {
         src={ZAMARTlogo}
         alt="ZAMARTlogo"
       />
-      <h1 className="md:text-6xl text-4xl text-start mt-10">NEW Account</h1>
-      <h3 className="md:text-xl text-lg text-start mt-6">Hi there!</h3>
+      <h1 className="md:text-6xl text-4xl text-start mt-10">
+        {selectedContent[localizationKeys.NEWAccount]}
+      </h1>
+      <h3 className="md:text-xl text-lg text-start mt-6">
+        {" "}
+        {selectedContent[localizationKeys.Hithere]}
+      </h3>
       <p className="text-start mt-4 text-sm md:text-base">
-        Log in to manage your translators' lists and filter the <br></br>
-        results to suit your desired job type
+        {
+          selectedContent[
+            localizationKeys.Logintomanageyourtranslatorslistsandfilterthe
+          ]
+        }{" "}
+        <br></br>
+        {selectedContent[localizationKeys.resultstosuityourdesiredjobtype]}
       </p>
 
       <div>
@@ -65,28 +80,28 @@ const SignUp = ({ isLogin, setIsLogin }) => {
                   <FormikInput
                     name="fullName"
                     type={"text"}
-                    placeholder={"FULL NAME"}
+                    placeholder={selectedContent[localizationKeys.FULLNAME]}
                   />
                 </div>
                 <div className="md:w-[460px] w-full mt-6">
                   <FormikInput
                     name="email"
                     type={"email"}
-                    placeholder={"E-MAIL"}
+                    placeholder={selectedContent[localizationKeys.Email]}
                   />
                 </div>
                 <div className="md:w-[460px] w-full mt-6">
                   <FormikInput
                     name="phone"
                     type={"text"}
-                    placeholder={"PHONE"}
+                    placeholder={selectedContent[localizationKeys.PHONE]}
                   />
                 </div>
                 <div className="md:w-[460px] w-full mt-6">
                   <FormikInput
                     name="password"
                     type={"password"}
-                    placeholder={"PASSWORD"}
+                    placeholder={selectedContent[localizationKeys.PASSWORD]}
                   />
                 </div>
                 <div className="flex justify-start sm:mt-5 mt-8 ml-2">

@@ -8,6 +8,9 @@ import useGetModel from "../../hooks/use-get-model";
 import useGetCities from "../../hooks/use-get-cities";
 import { useHistory } from "react-router-dom";
 import routes from "../../routes";
+import { useLanguage } from "../../context/language-context";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const HeroSection = () => {
   const [CatID, setGatogryId] = useState();
@@ -18,10 +21,8 @@ const HeroSection = () => {
   const [cities, setCities] = useState();
   const [usage, setUsage] = useState();
 
-  console.log("====================================");
-  console.log(brandId);
-  console.log(brandVal);
-  console.log("====================================");
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   const { GatogryOptions, loadingGatogry } = useGetGatogry();
   const { BrandOptions, loadingBrand } = useGetBrand({ CatID });
@@ -31,12 +32,12 @@ const HeroSection = () => {
   const usageOptions = [
     {
       key: "used",
-      text: "Used",
+      text: selectedContent[localizationKeys.Used],
       value: "used",
     },
     {
       key: "new",
-      text: "New",
+      text: selectedContent[localizationKeys.New],
       value: "new",
     },
   ];
@@ -48,19 +49,24 @@ const HeroSection = () => {
       <div className="text-white ">
         <div className="w-full h-[720px] bg-gradient-to-r from-primary-black absolute z-10">
           <p className="md:text-7xl text-5xl text-center pt-64">
-            TRY ZAMART APP
+            {selectedContent[localizationKeys.TRY]} ZAMART APP
           </p>
           <p className="md:text-2xl text-xl text-center pt-2 ">
-            Buy, sell and find just about anything using the app on your mobile.
+            {
+              selectedContent[
+                localizationKeys
+                  .Buysellandfindjustaboutanythingusingtheapponyourmobile
+              ]
+            }
           </p>
 
           <div className="flex justify-center flex-wrap gap-x-2 mt-14">
-            <div className="backdrop-blur-xl bg-gradient-to-r from-white/70 bg-white/40 lg:w-[730px] w-full lg:h-[84px] h-full z-10">
+            <div className="backdrop-blur-xl ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-white/70 bg-white/40 lg:w-[730px] w-full lg:h-[84px] h-full z-10">
               <div className="flex justify-between mx-8 pt-2 flex-wrap  text-primary-black-light text-xl z-20">
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none Edit_Dropdown_Search "
-                    placeholder="Type"
+                    placeholder={selectedContent[localizationKeys.Type]}
                     selection
                     clearable
                     search
@@ -69,12 +75,14 @@ const HeroSection = () => {
                     options={GatogryOptions}
                     onChange={(e, { value }) => setGatogryId(value)}
                   />
-                  <p className="text-base text-gray-500 pl-4">Choose Type</p>
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
+                    {selectedContent[localizationKeys.ChooseType]}
+                  </p>
                 </div>
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none Edit_Dropdown_Search "
-                    placeholder="Make"
+                    placeholder={selectedContent[localizationKeys.make]}
                     selection
                     clearable
                     compact
@@ -86,12 +94,14 @@ const HeroSection = () => {
                       setBrandVal(e.target.textContent);
                     }}
                   />
-                  <p className="text-base text-gray-500 pl-4">Choose make</p>
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
+                    {selectedContent[localizationKeys.Choosemake]}
+                  </p>
                 </div>
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none Edit_Dropdown_Search "
-                    placeholder="Model"
+                    placeholder={selectedContent[localizationKeys.Model]}
                     selection
                     clearable
                     search
@@ -102,17 +112,19 @@ const HeroSection = () => {
                       setModeVal(e.target.textContent)
                     }
                   />
-                  <p className="text-base text-gray-500 pl-4">Choose year</p>
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
+                    {selectedContent[localizationKeys.ChooseModel]}
+                  </p>
                 </div>
                 <div>
                   <div>
                     <Input
-                      className="Edit_Input  mt-0.5 "
-                      placeholder="Keyword..."
+                      className="Edit_Input  mt-0.5 font-serifAR "
+                      placeholder={selectedContent[localizationKeys.Keyword]}
                       onChange={(e, { value }) => setKeyword(value)}
                     />
                   </div>
-                  <p className="text-base text-gray-500 mt-0.5 pl-4">
+                  <p className="text-base text-gray-500 ltr:pl-4 rtl:pr-4">
                     Ex: KIA 2010
                   </p>
                 </div>
@@ -132,17 +144,19 @@ const HeroSection = () => {
             >
               <div className="flex justify-center gap-x-2">
                 <SlMagnifier size={30} />
-                <p className="text-2xl">SEARCH NOW</p>
+                <p className="text-2xl">
+                  {selectedContent[localizationKeys.SEARCHNOW]}
+                </p>
               </div>
             </button>
           </div>
           <div className="flex justify-center flex-wrap">
-            <div className="backdrop-blur-md bg-gradient-to-r from-white/80 bg-white/25 lg:w-[967px] w-full lg:h-[30px] h-auto mt-[1px] ">
+            <div className="backdrop-blur-md ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-white/80 bg-white/25 lg:w-[967px] w-full lg:h-[30px] h-auto mt-[1px] ">
               <div className="flex gap-x-[45px] mx-[30px] pt-2 text-primary-black-light z-20">
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none py-0 Edit_Dropdown_Location "
-                    placeholder="Location"
+                    placeholder={selectedContent[localizationKeys.Location]}
                     selection
                     clearable
                     fluid
@@ -155,7 +169,7 @@ const HeroSection = () => {
                 <div>
                   <Dropdown
                     className="bg-transparent outline-none border-none py-0 Edit_Dropdown_Location "
-                    placeholder="New & Used"
+                    placeholder={selectedContent[localizationKeys.NewUsed]}
                     selection
                     clearable
                     fluid

@@ -8,9 +8,13 @@ import api from "../../api";
 import { useLanguage } from "../../context/language-context";
 import { Dimmer, Loader } from "semantic-ui-react";
 import ZamartLoading from "../shared/lotties/zamart-loading";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const CategoriesSections = () => {
   const [lang] = useLanguage("");
+  const selectedContent = content[lang];
+
   const [categories, setCategories] = useState();
   const { run, isLoading } = useAxios([]);
 
@@ -45,16 +49,16 @@ const CategoriesSections = () => {
         ))}
       </div>
       {/* google play and app store */}
-      <div className="flex md:flex-row flex-col justify-between bg-black mx-8 h-44 md:px-24 px-4 ">
+      <div className="flex md:flex-row flex-col justify-between bg-black mx-8 py-12 h-auto md:px-24 px-4 ">
         <div className="text-white my-auto ">
           <p className="md:text-5xl text-2xl font-light">
-            Find amazing deals on the go.
+            {selectedContent[localizationKeys.Findamazingdealsonthego]}
           </p>
           <p className="md:text-xl text-lg md:pt-4 pt-2">
-            Download the app now!
+            {selectedContent[localizationKeys.Downloadtheappnow]}
           </p>
         </div>
-        <div className="flex mx-auto md:mx-0 gap-x-5 md:gap-x-0 my-auto">
+        <div className="flex mx-auto md:mx-0 gap-x-5 md:gap-x-0 my-auto pt-4">
           <img
             className="md:w-56 w-40 h-16 cursor-pointer"
             src={googlePlay}

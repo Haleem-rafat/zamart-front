@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import aboutus from "../../../../src/assets/img/about-us.png";
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
     <div className="md:flex grid grid-cols-1 justify-between  my-5 animate-in">
       <div className="sm:mx-40 mx-8 sm:mt-40 mt-8 mb-8">

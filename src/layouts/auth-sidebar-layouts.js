@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, Segment, Sidebar } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Off, On } from "../redux/sidebare-slice.js";
@@ -32,6 +32,10 @@ const AuthSidebarLayouts = ({ isreset }) => {
   if (isreset === "reset") {
     dispatch(On());
   }
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="h-screen p-0 m-0 border-none border-0 scrollbar-hide ">

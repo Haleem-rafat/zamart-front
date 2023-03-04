@@ -10,10 +10,13 @@ import { axios } from "../../../config/axios-config";
 import { useLanguage } from "../../../context/language-context";
 import useAxios from "../../../hooks/use-axios";
 import { useQuery } from "../../../hooks/use-query";
+import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 import routes from "../../../routes";
 
 const SelectCategories = () => {
   const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   const history = useHistory();
   const query = useQuery();
@@ -42,17 +45,25 @@ const SelectCategories = () => {
         <BreadCrumbAddAds />
       </div>
       <h1 className="text-center text-6xl pt-12 font-serifCUS">
-        Now choose the right category<br></br> for your ad:
+        {selectedContent[localizationKeys.Nowchoosetherightcategory]}
+        <br></br> {selectedContent[localizationKeys.foryourad]}
         <p className="text-primary-gray text-2xl pt-6">
-          Consultant Psychiatrist - Experience In Adult Psychiatry <br></br>
-          And Addiction Medicine I Treat Many
+          {
+            selectedContent[
+              localizationKeys.ConsultantPsychiatristExperienceInAdultPsychiatry
+            ]
+          }{" "}
+          <br></br>
+          {
+            selectedContent[localizationKeys.AndAddictionMedicineITreatMany]
+          }{" "}
         </p>
       </h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-14 mt-20 mx-4  ">
         {categories?.map((e) => (
           <ButtonCategory
             id={e?._id}
-            category={"Category"}
+            category={selectedContent[localizationKeys.Category]}
             ctegoryName={lang === "en" ? e?.nameEn : e?.nameAr}
           />
         ))}
@@ -72,9 +83,9 @@ const SelectCategories = () => {
         >
           <div className="flex justify-between px-1 gap-x-2">
             <p className="text-white text-xl md:pt-1 pt-0 w-full text-end">
-              Next
+              {selectedContent[localizationKeys.next]}{" "}
             </p>
-            <p className="text-white flex justify-end my-auto md:px-24 px-20">
+            <p className="text-white flex justify-end my-auto md:px-24 px-20 rtl:rotate-180">
               <FaLongArrowAltRight size={25} />
             </p>
           </div>

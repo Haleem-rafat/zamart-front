@@ -25,6 +25,11 @@ const api = {
     sendCallRequest: (id) => `items/user/${id}/make-call`,
     contactUs: "/contact-us",
   },
+  notifications: {
+    default: "/notifications?page=1&perPage=10",
+    read: (notificationsid = ":notificationsid") =>
+      `/notifications/${notificationsid}/set-read`,
+  },
   cities: {
     default: "/regions/cities",
   },

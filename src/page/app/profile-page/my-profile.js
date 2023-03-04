@@ -10,11 +10,16 @@ import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import PaginationApp from "../../../components/shared/pagination";
 import { authAxios } from "../../../config/axios-config";
 import { useAuthState } from "../../../context/auth-context";
+import { useLanguage } from "../../../context/language-context";
 import useAxios from "../../../hooks/use-axios";
 import useFilter from "../../../hooks/use-filter";
+import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 import routes from "../../../routes";
 
 const MyProfile = () => {
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const sectionsOne = [
     {
       key: "home",
@@ -24,7 +29,11 @@ const MyProfile = () => {
         </>
       ),
     },
-    { key: "My Account", content: "My Account", active: true },
+    {
+      key: "My Account",
+      content: selectedContent[localizationKeys.MyAccout],
+      active: true,
+    },
   ];
 
   const { logout } = useAuthState();
@@ -38,6 +47,10 @@ const MyProfile = () => {
   const { search } = useLocation();
 
   const history = useHistory();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   const { run: runMyProfile, isLoading: isLoadingMyProfile } = useAxios([]);
   useEffect(() => {
@@ -99,7 +112,7 @@ const MyProfile = () => {
         <ZamartLoading />
       </Dimmer>
       <p className="flex text-white text-2xl mt-14 pb-8 border-b-[1px] border-primary-gray-dark  ">
-        My Account
+        {selectedContent[localizationKeys.MyAccout]}
         <span>
           <Breadcrumb
             className="w-full ml-2 text-white "
@@ -159,7 +172,10 @@ const MyProfile = () => {
               <h1 className="text-4xl text-center font-medium">
                 {myProfileData?.profileViews}
               </h1>
-              <p className="text-lg font-medium">Total Page View</p>
+              <p className="text-lg font-medium">
+                {" "}
+                {selectedContent[localizationKeys.TotalPageView]}
+              </p>
             </div>
           </div>
         </div>
@@ -174,7 +190,18 @@ const MyProfile = () => {
                 status === e?.status ? "bg-primary-cyan-med text-white" : ""
               } group flex justify-between text-2xl p-9 cursor-pointer `}
             >
-              <p>{e?.status}</p>
+              {/* REJECTED-PENDING-PUBLISHED-DRAFTED-EXPIRED */}
+              <p>
+                {e?.status === "REJECTED"
+                  ? selectedContent[localizationKeys.REJECTED]
+                  : e?.status === "PENDING"
+                  ? selectedContent[localizationKeys.PENDING]
+                  : e?.status === "PUBLISHED"
+                  ? selectedContent[localizationKeys.PUBLISHED]
+                  : e?.status === "DRAFTED"
+                  ? selectedContent[localizationKeys.DRAFTED]
+                  : selectedContent[localizationKeys.EXPIRED]}
+              </p>
               <p
                 className={`${
                   status === e?.status ? "text-white" : "group-hover:text-white"
@@ -190,7 +217,7 @@ const MyProfile = () => {
             className="text-2xl flex gap-x-3 p-8 mx-auto cursor-pointer"
           >
             <FiLogOut size={30} className="text-primary-cyan-med" />
-            <p>LOGOUT</p>
+            <p> {selectedContent[localizationKeys.logout]}</p>
           </div>
         </div>
 

@@ -34,8 +34,8 @@ const Buttoncomplmentart = ({ id, ctegoryName }) => {
             className={`
           ${
             ComplmentartCategoriesFilter === id
-              ? "text-white mt-6"
-              : "text-primary-cyan mt-6"
+              ? "text-white mt-6 rtl:rotate-180"
+              : "text-primary-cyan mt-6 rtl:rotate-180 "
           } 
           } mt-7" `}
             size={25}

@@ -17,11 +17,13 @@ import { useLanguage } from "../../context/language-context";
 import useFilter from "../../hooks/use-filter";
 import ZamartLoading from "../shared/lotties/zamart-loading";
 
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { RiNotification3Line } from "react-icons/ri";
 import { useAuthState } from "../../context/auth-context";
 import { toast } from "react-hot-toast";
 import Headermob from "./header-mob";
 import DropdownLang from "../shared/drop-down-lang";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const HeaderHome = () => {
   const dispatch = useDispatch();
@@ -30,7 +32,9 @@ const HeaderHome = () => {
   const [SubCategories, setSubCategories] = useState();
   const [sameId, setSameId] = useState();
   const [myProfileData, setMyProfileData] = useState();
+  const [notificationsData, setNotificationsData] = useState();
   const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const [categoriesFilter, setCategoriesFiter] = useFilter("category", "");
   const [subCategoriesFilter, setSubCategoriesFilter] = useFilter(
     "subCategory",
@@ -91,18 +95,51 @@ const HeaderHome = () => {
     );
   }, [runMyProfile]);
 
-  const [nav, setNave] = useState(false);
-  const handelNav = () => {
-    setNave(!nav);
+  const { run: runnotifications, isLoading: isLoadingnotifications } = useAxios(
+    []
+  );
+  useEffect(() => {
+    runnotifications(
+      authAxios
+        .get(api.notifications.default)
+        .then((res) => {
+          setNotificationsData(res?.data?.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  }, [runnotifications]);
+
+  const [noti, setnoti] = useState(false);
+  const handelNoti = () => {
+    setnoti(!noti);
   };
 
   const handelAddNewSell = () => {
     if (user) {
       history.push(routes.app.ceratitems.selectCategory);
     } else {
-      toast.error("You must be logged in to add new sell");
+      toast.error(
+        lang === "en"
+          ? "You must be logged in to add new sell"
+          : "يجب عليك تسجيل الدخول لإضافة بيع جديد"
+      );
       dispatch(On());
     }
+  };
+
+  const { run: runred, isLoading: isLoadingred } = useAxios([]);
+  const handelClickMas = (id) => {
+    runred(
+      authAxios
+        .patch(api.notifications.read(id))
+        .then((res) => {
+          history.push(routes.app.viewItemById(id));
+          setnoti(false);
+        })
+        .catch((err) => console.log(err))
+    );
   };
 
   return (
@@ -142,7 +179,7 @@ const HeaderHome = () => {
                     alt="plusIcon"
                   />
                   <p className="text-white text-xs md:text-xl md:pt-1 pt-0">
-                    SELL MY BIKE
+                    {selectedContent[localizationKeys.SELL]}
                   </p>
                 </div>
               </button>
@@ -154,7 +191,7 @@ const HeaderHome = () => {
                   ? () => history.push(routes.app.myProfile)
                   : () => dispatch(On())
               }
-              className="flex  cursor-pointe ml-12 mt-2"
+              className="flex  cursor-pointe ml-12 mr-12 mt-2"
             >
               <p
                 className={
@@ -180,13 +217,60 @@ const HeaderHome = () => {
                       ?.substring(0, 1)
                       .toUpperCase()}
               </p>
-              <div className="md:mt-6 mt-9 ml-4 cursor-pointer">
+              <div className="md:mt-6 mt-9 ltr:ml-4 rtl:mr-4 cursor-pointer">
                 <p className="text-primary-cyan-light md:text-sm text-xs font-normal">
-                  Welcome
+                  {selectedContent[localizationKeys.Welcome]}
                 </p>
                 <p className="text-white md:text-2xl text-sm font-medium relative">
-                  {myProfileData?.fullName ? myProfileData?.fullName : "Login"}
+                  {myProfileData?.fullName
+                    ? myProfileData?.fullName
+                    : selectedContent[localizationKeys.LOGIN]}
                 </p>
+              </div>
+            </div>
+            <div className={user ? "my-auto" : "hidden"}>
+              <div
+                onClick={handelNoti}
+                className="text-white my-auto ltr:ml-14 rtl:mr:14 relative cursor-pointer"
+              >
+                <p
+                  className={`${
+                    notificationsData?.map((e) => {
+                      const isreadArr = [];
+                      isreadArr.push(e?.isRead);
+                      isreadArr.includes(false);
+                    })
+                      ? "bg-[#E4576C] w-3 h-3 rounded-full absolute top-0 right-0"
+                      : "hidden"
+                  }`}
+                ></p>
+                <RiNotification3Line size={30} />
+              </div>
+              <div
+                className={
+                  noti
+                    ? "bg-white w-96 h-auto absolute z-20 top-24 ltr:right-28 rtl:left-28 rounded-lg"
+                    : "hidden"
+                }
+              >
+                <div>
+                  {notificationsData?.map((e) => (
+                    <div className="border-b-2 py-2 mx-4">
+                      <p
+                        className={`${
+                          notificationsData?.isRead
+                            ? "bg-white"
+                            : " hover:bg-white cursor-pointer rounded"
+                        }  text-black text-center p-2 py-2 text-xl `}
+                        onClick={() => handelClickMas(e?.clickableItem)}
+                      >
+                        {lang === "en"
+                          ? e?.message?.enBody
+                          : e?.message?.arBody}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -221,7 +305,10 @@ const HeaderHome = () => {
             ))}
 
             <div className="w-72 md:h-[76px] h-[40px] md:pt-6 pt-3 text-center border-x-[1px]">
-              <Dropdown className="px-5 " text="All Categories">
+              <Dropdown
+                className="px-5 "
+                text={selectedContent[localizationKeys.AllCategories]}
+              >
                 <Dropdown.Menu className="w-48 ">
                   {categories?.map((e) => (
                     <Dropdown.Item

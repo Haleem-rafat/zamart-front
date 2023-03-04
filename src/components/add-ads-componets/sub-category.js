@@ -35,8 +35,8 @@ const ButtonSubCategory = ({ id, ctegoryName, setIScomplment }) => {
           <FaLongArrowAltRight
             className={`${
               subCategoriesFilter === id
-                ? "text-white mt-6"
-                : "text-primary-cyan mt-6"
+                ? "text-white mt-6 rtl:rotate-180"
+                : "text-primary-cyan mt-6 rtl:rotate-180"
             }`}
             size={25}
           />

@@ -30,7 +30,7 @@ const ButtonCategory = ({ category, ctegoryName, id }) => {
         </div>
         <div>
           <FaLongArrowAltRight
-            className={` " mt-5 "} 
+            className={` " mt-5 rtl:rotate-180 "} 
           ${categoriesFilter === id ? "text-white" : "text-primary-cyan "} `}
             size={25}
           />

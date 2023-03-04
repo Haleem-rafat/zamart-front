@@ -20,9 +20,11 @@ import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import useGetBrand from "../../../hooks/use-get-brand";
 import useGetModel from "../../../hooks/use-get-model";
 import useGetCities from "../../../hooks/use-get-cities";
+import content from "../../../localization/content";
 
 const AddDescription = () => {
   const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const history = useHistory();
 
   const [categoriesFromData, setCategoriesFromData] = useState("");
@@ -70,11 +72,15 @@ const AddDescription = () => {
 
   const { run, isLoading } = useAxios([]);
   useEffect(() => {
-    run(
-      axios.get(api.app.ViewCategoriesFromData(CatID)).then((res) => {
-        setCategoriesFromData(res?.data?.data);
-      })
-    );
+    if (CatID)
+      run(
+        axios.get(api.app.ViewCategoriesFromData(CatID)).then((res) => {
+          console.log("====================================");
+          console.log(res?.data);
+          console.log("====================================");
+          setCategoriesFromData(res?.data?.data);
+        })
+      );
   }, [CatID, run]);
 
   const { BrandOptions, loadingBrand } = useGetBrand({
@@ -119,7 +125,7 @@ const AddDescription = () => {
           description: "",
           usage: "",
           year: "",
-          citie: "",
+          city: "",
         }}
         onSubmit={adsDescrisption}
         validationSchema={adsDescrisptionSchema}
@@ -226,15 +232,16 @@ const AddDescription = () => {
                   options={usageOptions}
                 />
               </div>
-              {categoriesFromData?.formDataFields?.map((e) => (
-                <div className="w-full mt-10">
-                  <FormikInput
-                    name={e?.key}
-                    type={e?.type}
-                    placeholder={lang === "en" ? e?.labelEn : e?.labelAr}
-                  />
-                </div>
-              ))}
+              {categoriesFromData &&
+                categoriesFromData?.map((e) => (
+                  <div className="w-full mt-10">
+                    <FormikInput
+                      name={e?.key}
+                      type={e?.type}
+                      placeholder={lang === "en" ? e?.labelEn : e?.labelAr}
+                    />
+                  </div>
+                ))}
               <div className="w-full mt-10">
                 <FormikMultiDropdown
                   name="city"
