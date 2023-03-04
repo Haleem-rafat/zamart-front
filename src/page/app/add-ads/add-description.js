@@ -234,7 +234,7 @@ const AddDescription = () => {
               </div>
               {categoriesFromData &&
                 categoriesFromData?.map((e) => (
-                  <div className="w-full mt-10">
+                  <div className="w-full mt-10 text-black">
                     <FormikInput
                       name={e?.key}
                       type={e?.type}

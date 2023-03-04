@@ -77,22 +77,23 @@ const ItemOverview = ({ data }) => {
         </div>
         <div className="w-full">
           <div className="w-full">
-            {categoriesFromData?.map((e) =>
-              objectLop?.map((key) => (
-                <>
-                  {key === e?.key && (
-                    <div className="flex my-8">
-                      <p className="text-white font-medium text-2xl w-52">
-                        {e?.labelEn}
-                      </p>
-                      <p className="text-primary-gray text-lg sm:mx-10 mx-auto border-b-[1px] border-primary-gray w-full ">
-                        {data?.data?.[key]}
-                      </p>
-                    </div>
-                  )}
-                </>
-              ))
-            )}
+            {categoriesFromData &&
+              categoriesFromData?.map((e) =>
+                objectLop?.map((key) => (
+                  <>
+                    {key === e?.key && (
+                      <div className="flex my-8">
+                        <p className="text-white font-medium text-2xl w-52">
+                          {e?.labelEn}
+                        </p>
+                        <p className="text-primary-gray text-lg sm:mx-10 mx-auto border-b-[1px] border-primary-gray w-full ">
+                          {data?.data?.[key]}
+                        </p>
+                      </div>
+                    )}
+                  </>
+                ))
+              )}
           </div>
         </div>
       </div>

@@ -33,6 +33,7 @@ const HeaderHome = () => {
   const [sameId, setSameId] = useState();
   const [myProfileData, setMyProfileData] = useState();
   const [notificationsData, setNotificationsData] = useState();
+  const [isTN, setIsTN] = useState();
   const [lang] = useLanguage("");
   const selectedContent = content[lang];
   const [categoriesFilter, setCategoriesFiter] = useFilter("category", "");
@@ -130,12 +131,12 @@ const HeaderHome = () => {
   };
 
   const { run: runred, isLoading: isLoadingred } = useAxios([]);
-  const handelClickMas = (id) => {
+  const handelClickMas = (CL_id, NO_id) => {
     runred(
       authAxios
-        .patch(api.notifications.read(id))
+        .patch(api.notifications.read(NO_id))
         .then((res) => {
-          history.push(routes.app.viewItemById(id));
+          history.push(routes.app.viewItemById(CL_id));
           setnoti(false);
         })
         .catch((err) => console.log(err))
@@ -235,11 +236,7 @@ const HeaderHome = () => {
               >
                 <p
                   className={`${
-                    notificationsData?.map((e) => {
-                      const isreadArr = [];
-                      isreadArr.push(e?.isRead);
-                      isreadArr.includes(false);
-                    })
+                    notificationsData?.map((e) => e?.isRead === false)
                       ? "bg-[#E4576C] w-3 h-3 rounded-full absolute top-0 right-0"
                       : "hidden"
                   }`}
@@ -262,7 +259,7 @@ const HeaderHome = () => {
                             ? "bg-white"
                             : " hover:bg-white cursor-pointer rounded"
                         }  text-black text-center p-2 py-2 text-xl `}
-                        onClick={() => handelClickMas(e?.clickableItem)}
+                        onClick={() => handelClickMas(e?.clickableItem, e?._id)}
                       >
                         {lang === "en"
                           ? e?.message?.enBody
