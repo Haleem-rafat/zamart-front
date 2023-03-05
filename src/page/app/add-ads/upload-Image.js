@@ -16,6 +16,7 @@ import { On } from "../../../redux/sidebare-slice.js";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useLanguage } from "../../../context/language-context";
 import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 
 const fileTypes = ["JPEG", "PNG", "GIF"];
 
@@ -26,12 +27,6 @@ const UploadImage = () => {
   const [CatID, setCatID] = useLocalStorage("category_id", "");
   const [subCatID, setCubCatID] = useLocalStorage("subCategory_Id", "");
   const [comCatID, setComCatID] = useLocalStorage("complment_Id", "");
-
-  console.log("====================================");
-  console.log(CatID);
-  console.log(subCatID);
-  console.log(comCatID);
-  console.log("====================================");
 
   const [fileOne, setFileOne] = useState(null);
   const [fileTwo, setFileTwo] = useState(null);
@@ -52,9 +47,6 @@ const UploadImage = () => {
   };
 
   const ads = useSelector((state) => state.addAds.addAds);
-  console.log("====================================");
-  console.log(ads);
-  console.log("====================================");
   const dispatch = useDispatch();
 
   const { run: runPostads, isLoading: isLoadingPostads } = useAxios([]);
@@ -117,10 +109,14 @@ const UploadImage = () => {
       <div className=" md:grid grid-cols-3 flex flex-wrap">
         <div className="w-full"></div>
         <h1 className="text-center text-6xl pt-12  animate-in mx-auto mb-4 w-full font-serifCUS">
-          You’re almost there!
+          {selectedContent[localizationKeys.Yourealmostthere]}
           <p className="text-primary-gray text-2xl pt-6">
-            Include as much details and pictures as possible, <br></br>and set
-            the right price!
+            {
+              selectedContent[
+                localizationKeys.Includeasmuchdetailsandpicturesaspossible
+              ]
+            }{" "}
+            <br></br> {selectedContent[localizationKeys.andsettherightprice]}
           </p>
         </h1>
         <div
@@ -140,8 +136,10 @@ const UploadImage = () => {
                     <div className="bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white w-72 h-20 flex justify-between px-8  cursor-pointer ">
                       <img className="my-auto" src={imgIcon} alt="imgIcon" />
                       <p className="my-auto">
-                        <h1 className="text-2xl">UPLOAD</h1>
-                        <p>YOUR PHOTO</p>
+                        <h1 className="text-2xl">
+                          {selectedContent[localizationKeys.UPLOAD]}
+                        </h1>
+                        <p> {selectedContent[localizationKeys.YOURPHOTO]}</p>
                       </p>
                     </div>
                   </FileUploader>
@@ -159,8 +157,10 @@ const UploadImage = () => {
                     <div className="bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white w-72 h-20 flex justify-between px-8 cursor-pointer ">
                       <img className="my-auto" src={imgIcon} alt="imgIcon" />
                       <p className="my-auto">
-                        <h1 className="text-2xl">UPLOAD</h1>
-                        <p>YOUR PHOTO</p>
+                        <h1 className="text-2xl">
+                          {selectedContent[localizationKeys.UPLOAD]}
+                        </h1>
+                        <p> {selectedContent[localizationKeys.YOURPHOTO]}</p>
                       </p>
                     </div>
                   </FileUploader>
@@ -181,8 +181,10 @@ const UploadImage = () => {
                     <div className="bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white w-72 h-20 flex justify-between px-8 cursor-pointer ">
                       <img className="my-auto" src={imgIcon} alt="imgIcon" />
                       <p className="my-auto">
-                        <h1 className="text-2xl">UPLOAD</h1>
-                        <p>YOUR PHOTO</p>
+                        <h1 className="text-2xl">
+                          {selectedContent[localizationKeys.UPLOAD]}
+                        </h1>
+                        <p> {selectedContent[localizationKeys.YOURPHOTO]}</p>
                       </p>
                     </div>
                   </FileUploader>
@@ -199,8 +201,10 @@ const UploadImage = () => {
                     <div className="bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white w-72 h-20 flex justify-between px-8 cursor-pointer ">
                       <img className="my-auto" src={imgIcon} alt="imgIcon" />
                       <p className="my-auto">
-                        <h1 className="text-2xl">UPLOAD</h1>
-                        <p>YOUR PHOTO</p>
+                        <h1 className="text-2xl">
+                          {selectedContent[localizationKeys.UPLOAD]}
+                        </h1>
+                        <p> {selectedContent[localizationKeys.YOURPHOTO]}</p>
                       </p>
                     </div>
                   </FileUploader>
@@ -295,9 +299,9 @@ const UploadImage = () => {
           }
         >
           <p className="text-white text-xl md:pt-1 pt-0 w-full text-end">
-            POST
+            {selectedContent[localizationKeys.POST]}
           </p>
-          <p className="text-white flex justify-end my-auto md:px-24 px-20">
+          <p className="text-white flex justify-end my-auto md:px-24 px-20 rtl:rotate-180">
             <FaLongArrowAltRight size={25} />
           </p>
         </Button>

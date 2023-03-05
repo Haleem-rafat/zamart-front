@@ -18,9 +18,12 @@ import shareicon from "../../../src/assets/icons/share_icon.svg";
 import CopyToClipboard from "react-copy-to-clipboard";
 import ZamartLoading from "../shared/lotties/zamart-loading";
 import CardItemMedium from "../shared/card-item-medium";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const BuySections = ({ data }) => {
   const [lang, setLang] = useLanguage("");
+  const selectedContent = content[lang];
 
   const history = useHistory();
 
@@ -51,7 +54,11 @@ const BuySections = ({ data }) => {
           })
       );
     } else {
-      toast.error("You must be logged in to call this user's profile");
+      toast.error(
+        lang === "en"
+          ? "You must be logged in to call this user's profile"
+          : "يجب تسجيل الدخول للاتصال بملف تعريف هذا المستخدم"
+      );
       dispatch(On());
     }
   };
@@ -75,7 +82,11 @@ const BuySections = ({ data }) => {
         setOpen(true);
       }
     } else {
-      toast.error("You must be logged in to view this user's profile");
+      toast.error(
+        lang === "en"
+          ? "You must be logged in to view this user's profile"
+          : "يجب عليك تسجيل الدخول لعرض ملف تعريف هذا المستخدم"
+      );
       dispatch(On());
     }
   };
@@ -96,7 +107,9 @@ const BuySections = ({ data }) => {
           className="text-white border-white border-2 rounded-full flex w-[245px] h-[36px]"
         >
           <MdKeyboardArrowLeft size={32} className="mx-2" />
-          <p className="my-auto">BACK TO CATEGORY</p>
+          <p className="my-auto">
+            {selectedContent[localizationKeys.BACKTOCATEGORY]}
+          </p>
         </button>
         <h1 className="text-5xl text-white mt-16">{data?.data?.title}</h1>
         <p className="text-lg text-primary-gray-subMed pt-6">
@@ -143,7 +156,7 @@ const BuySections = ({ data }) => {
               onClick={() => handelOnclickShowDelar(data?.data?.user?._id)}
               className="text-xs text-primary-cyan-light cursor-pointer"
             >
-              ABOUT THIS DEALER
+              {selectedContent[localizationKeys.ABOUTTHISDEALER]}
             </p>
           </div>
         </div>
@@ -151,9 +164,9 @@ const BuySections = ({ data }) => {
         <Button
           loading={isLoadingsendCallRequest}
           onClick={() => sendCallRequest(data?.data?._id)}
-          className="rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink w-[232px] h-[53px] mt-32 text-lg text-white  mb-8"
+          className="rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink w-[232px] h-[53px] mt-32 text-lg text-white font-serifAR mb-8"
         >
-          CALL NOW
+          {selectedContent[localizationKeys.CALLNOW]}
         </Button>
       </div>
       <Modal
@@ -196,7 +209,7 @@ const BuySections = ({ data }) => {
           <p className="text-primary-gray-dark text-2xl text-center pt-3">
             {userProfileData?.email}
           </p>
-          <div className="flex justify-center gap-x-5 mt-5">
+          {/* <div className="flex justify-center gap-x-5 mt-5">
             <p>
               <p className="text-xl uppercase  ">total Calls</p>
               <p className="text-center text-xl pt-1 text-primary-gray-light">
@@ -221,7 +234,7 @@ const BuySections = ({ data }) => {
                 {userProfileData?.mostViewedItem?.totalViews}
               </p>
             </p>
-          </div>
+          </div> */}
           <div className="flex justify-center gap-x-12 mt-12 mb-8">
             <CopyToClipboard
               text={userProfileData?.email}

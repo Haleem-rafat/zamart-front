@@ -111,7 +111,11 @@ const SignUp = ({ isLogin, setIsLogin }) => {
                       type="checkbox"
                       required
                     />
-                    I AGREE TO THE TERMS AND CONDITIONS
+                    {
+                      selectedContent[
+                        localizationKeys.IAGREETOTHETERMSANDCONDITIONS
+                      ]
+                    }
                   </label>
                 </div>
                 <div className="flex justify-start">
@@ -122,7 +126,7 @@ const SignUp = ({ isLogin, setIsLogin }) => {
                     }}
                     className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-8 text-white"
                   >
-                    SIGN UP
+                    {selectedContent[localizationKeys.SIGNUP]}
                   </Button>
                 </div>
               </div>
@@ -132,7 +136,7 @@ const SignUp = ({ isLogin, setIsLogin }) => {
         <div className="mx-auto relative mt-20">
           <p className="border-t-[1px] border-[#707070] md:w-[460px] w-full my-2 left-0.5">
             <p className="absolute text-white bg-black px-4 -bottom-3 md:left-56 left-36 text-xl">
-              OR
+              {selectedContent[localizationKeys.OR]}
             </p>
           </p>
         </div>
@@ -142,7 +146,7 @@ const SignUp = ({ isLogin, setIsLogin }) => {
           }}
           className="pt-14 pb-5 text-primary-gray cursor-pointer text-center"
         >
-          GO TO LOG IN
+          {selectedContent[localizationKeys.GOTOLOGIN]}
         </p>
       </div>
     </div>

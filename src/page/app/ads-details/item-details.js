@@ -14,8 +14,12 @@ import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import ItemCard from "../../../components/home-components/item-card";
 import { date } from "yup";
 import { useAuthState } from "../../../context/auth-context";
+import localizationKeys from "../../../localization/localization-keys";
+import content from "../../../localization/content";
 
 const ItemDetails = () => {
+  const [lang, setLang] = useLanguage("");
+  const selectedContent = content[lang];
   const [data, setData] = useState();
   const [itemData, setItemData] = useState();
 
@@ -80,10 +84,10 @@ const ItemDetails = () => {
       <ItemOverview data={data} />
       <div>
         <h1 className="text-white text-6xl text-center mt-32">
-          YOU MAY ALSO LIKE
+          {selectedContent[localizationKeys.YOUMAYALSOLIKE]}
         </h1>
         <p className="text-xl text-primary-gray-subMed text-center">
-          MORE OPTION YOU LIKE
+          {selectedContent[localizationKeys.MOREOPTIONYOULIKE]}
         </p>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-5 my-12 sm:mx-5 mx-auto relative h-full ">

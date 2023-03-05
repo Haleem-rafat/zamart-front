@@ -12,10 +12,12 @@ import { useHistory } from "react-router-dom";
 import { useQuery } from "../../hooks/use-query";
 import useLocalStorage from "../../hooks/use-localstorage";
 import FormikInput from "../../components/shared/formik/formik-input";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const ResetPasswordPage = () => {
   const [lang] = useLanguage("");
-  // const selectedContent = content[lang];
+  const selectedContent = content[lang];
   const history = useHistory();
   const query = useQuery();
   const tokenEdit = query.get("token");
@@ -56,7 +58,7 @@ const ResetPasswordPage = () => {
             alt="ZAMARTlogo"
           />
           <h1 className="md:text-6xl text-4xl text-start mt-10">
-            RESET PASSWORD
+            {selectedContent[localizationKeys.RESETPASSWORD]}
           </h1>
 
           <div className="">
@@ -75,14 +77,18 @@ const ResetPasswordPage = () => {
                       <FormikInput
                         name="password"
                         type={"password"}
-                        placeholder={"New Password"}
+                        placeholder={
+                          selectedContent[localizationKeys.NewPassword]
+                        }
                       />
                     </div>
                     <div className="md:w-[460px] w-full mt-6">
                       <FormikInput
                         name="confarmpassword"
                         type={"password"}
-                        placeholder={"Re Enter Password"}
+                        placeholder={
+                          selectedContent[localizationKeys.ReEnterPassword]
+                        }
                       />
                     </div>
                     <div className="">
@@ -91,9 +97,9 @@ const ResetPasswordPage = () => {
                         onClick={() => {
                           // history.push(routes.dashboard.app);
                         }}
-                        className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white"
+                        className="md:w-[460px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-10 text-white font-serifAR"
                       >
-                        RESET PASSWORD
+                        {selectedContent[localizationKeys.RESETPASSWORD]}
                       </Button>
                     </div>
                   </div>
@@ -113,7 +119,7 @@ const ResetPasswordPage = () => {
               }}
               className="pt-14 text-primary-gray cursor-pointer text-center pr-40"
             >
-              GO TO HOME
+              {selectedContent[localizationKeys.GOTOLOGIN]}
             </p>
           </div>
         </div>

@@ -80,7 +80,7 @@ const ItemCard = ({
                       } w-[174px] h-[54px] rounded bg-white text-black `}
                     >
                       <div className="flex gap-x-2 justify-center ">
-                        <p className="font-thin pt-1">BUY</p>
+                        <p className="font-thin pt-1">$ BUY</p>
                         <p className="text-lg ">{price}</p>
                       </div>
                     </button>

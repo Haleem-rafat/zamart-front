@@ -21,6 +21,9 @@ const ar = {
   [localizationKeys.IAGREETOTHETERMSANDCONDITIONS]: "أوافق على الشروط والأحكام",
   [localizationKeys.SIGNUP]: "انشاء الحساب",
   [localizationKeys.GOTOLOGIN]: "الانتقال إلى تسجيل الدخول",
+  [localizationKeys.RESETPASSWORD]: "تغير كلمه المرور",
+  [localizationKeys.NewPassword]: "كلمة المرور الجديدة",
+  [localizationKeys.ReEnterPassword]: "عادة إدخال كلمة المرور",
   // home
   [localizationKeys.SELL]: "بيع",
   [localizationKeys.Welcome]: "مرحبًا",
@@ -79,13 +82,33 @@ const ar = {
     "قم بتضمين أكبر قدر ممكن من التفاصيل والصور",
   [localizationKeys.andsettherightprice]: "وتعيين السعر الصحيح!",
   [localizationKeys.UPLOAD]: "تحميل",
+  [localizationKeys.YOURPHOTO]: "صورك الخاصة للاعلان",
+  [localizationKeys.POST]: "انشر الاعلان",
   [localizationKeys.title]: "العنوان",
   [localizationKeys.price]: "السعر",
   [localizationKeys.DESCRIPTIONYOURAD]: "وصف إعلانك ...",
+  [localizationKeys.description]: "الوصف",
+  [localizationKeys.brand]: "العلامة التجارية",
+  [localizationKeys.model]: "الموديل",
   [localizationKeys.AddBrand]: "إضافة العلامة التجارية",
   [localizationKeys.AddModel]: "إضافة الموديل",
   [localizationKeys.city]: "المدينة",
   [localizationKeys.usage]: "الاستخدام",
+  [localizationKeys.ITEMOVERVIEW]: "نظرة عامة على العنصر",
+  [localizationKeys.YOUMAYALSOLIKE]: "ربما تعجبك جدًا",
+  [localizationKeys.MOREOPTIONYOULIKE]: "المزيد من الخيارات التي تحبها",
+  //
+  [localizationKeys.BACKTOCATEGORY]: "عودة إلى الفئة",
+  [localizationKeys.ABOUTTHISDEALER]: "حول هذا البائع",
+  [localizationKeys.CALLNOW]: "اتصل الان",
+  [localizationKeys.Emailcopysuccess]: "نجاح نسخ البريد الإلكتروني",
+  [localizationKeys.ASKTHEDEALERAQUESTION]: "اسأل البائع عن سؤال",
+  [localizationKeys.IMINTERESTEDPLEASECONTACTME]: "نا مهتم ، يرجى الاتصال بي؟",
+  [localizationKeys.CONTACTMEABOUTINSURANCE]: "اتصل بي بخصوص التأمين",
+  [localizationKeys.CONFIRMDEALERRESPONSE]: " تأكيد استجابة البائع",
+  [localizationKeys.FILLINTHISFORMFORMENEXTTIME]:
+    "املأ هذا النموذج لي في المرة القادمة",
+  [localizationKeys.SENDENQUIRY]: "أرسل إستفسار",
 };
 
 export default ar;

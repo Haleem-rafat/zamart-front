@@ -98,6 +98,12 @@ const MyProfile = () => {
     );
   }, [runviewItemsAnalytics]);
 
+  console.log("====================================");
+  console.log(myProfileData);
+  console.log(viewAllOwner);
+  console.log(viewItemsAnalytics);
+  console.log("====================================");
+
   return (
     <div className="max-w-[1650px] mx-auto  animate-in relative">
       <Dimmer

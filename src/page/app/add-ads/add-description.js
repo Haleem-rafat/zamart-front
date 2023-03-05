@@ -21,6 +21,7 @@ import useGetBrand from "../../../hooks/use-get-brand";
 import useGetModel from "../../../hooks/use-get-model";
 import useGetCities from "../../../hooks/use-get-cities";
 import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 
 const AddDescription = () => {
   const [lang] = useLanguage("");
@@ -37,21 +38,18 @@ const AddDescription = () => {
 
   const [CatID, setCatID] = useLocalStorage("category_id", "");
   const { citiesOptions, loadingcitiesOptions } = useGetCities();
-  console.log("====================================");
-  console.log(CatID);
-  console.log("====================================");
 
   const dispatch = useDispatch();
 
   const usageOptions = [
     {
       key: "used",
-      text: "Used",
+      text: selectedContent[localizationKeys.Used],
       value: "used",
     },
     {
       key: "new",
-      text: "New",
+      text: selectedContent[localizationKeys.New],
       value: "new",
     },
   ];
@@ -75,9 +73,6 @@ const AddDescription = () => {
     if (CatID)
       run(
         axios.get(api.app.ViewCategoriesFromData(CatID)).then((res) => {
-          console.log("====================================");
-          console.log(res?.data);
-          console.log("====================================");
           setCategoriesFromData(res?.data?.data);
         })
       );
@@ -112,10 +107,14 @@ const AddDescription = () => {
         <BreadCrumbAddAds />
       </div>
       <h1 className="text-center text-6xl pt-12  animate-in mx-auto mb-4 font-serifCUS ">
-        You’re almost there!
+        {selectedContent[localizationKeys.Yourealmostthere]}
         <p className="text-primary-gray text-2xl pt-6">
-          Include as much details and pictures as possible, <br></br>and set the
-          right price!
+          {
+            selectedContent[
+              localizationKeys.Includeasmuchdetailsandpicturesaspossible
+            ]
+          }
+          <br></br> {selectedContent[localizationKeys.andsettherightprice]}
         </p>
       </h1>
       <Formik
@@ -134,13 +133,17 @@ const AddDescription = () => {
           <Form onSubmit={formik.handleSubmit}>
             <div className="max-w-2xl sm:mx-auto mx-4">
               <div className="w-full mt-10">
-                <FormikInput name="title" type="text" placeholder="TITLE" />
+                <FormikInput
+                  name="title"
+                  type="text"
+                  placeholder={selectedContent[localizationKeys.title]}
+                />
               </div>
               <div className={addBrand ? "w-full mt-10 " : "hidden h-0 "}>
                 <Form.Input
                   className="bg-white p-3 rounded-full  "
                   type="text"
-                  placeholder="BRAND"
+                  placeholder={selectedContent[localizationKeys.brand]}
                   onChange={(e, { value }) => {
                     setBrandVal(value);
                   }}
@@ -153,8 +156,8 @@ const AddDescription = () => {
               >
                 <div className="w-full mt-3 ">
                   <Form.Dropdown
-                    className="bg-white p-3 rounded-full  "
-                    placeholder="brand"
+                    className="bg-white p-3 rounded-full edit_TES  "
+                    placeholder={selectedContent[localizationKeys.brand]}
                     selection
                     clearable
                     compact
@@ -169,17 +172,17 @@ const AddDescription = () => {
                   />
                 </div>
                 <button
-                  className="bg-gradient-to-r from-primary-cyan to-primary-pink rounded-full w-32 h-16 mt-3"
+                  className="bg-gradient-to-r from-primary-cyan to-primary-pink rounded-full w-40 h-16 mt-3"
                   onClick={() => handelAddbrand()}
                 >
-                  Add Brand
+                  {selectedContent[localizationKeys.AddBrand]}
                 </button>
               </div>
               <div className={addModel ? "w-full mt-10 " : "hidden h-0 "}>
                 <Form.Input
                   className="bg-white p-3 rounded-full "
                   type="text"
-                  placeholder="MODEL"
+                  placeholder={selectedContent[localizationKeys.model]}
                   onChange={(e, { value }) => {
                     setModleVal(value);
                   }}
@@ -192,8 +195,8 @@ const AddDescription = () => {
               >
                 <div className="w-full mt-3 ">
                   <Form.Dropdown
-                    className="bg-white p-3 rounded-full  "
-                    placeholder="Model"
+                    className="bg-white p-3 rounded-full edit_TES  "
+                    placeholder={selectedContent[localizationKeys.model]}
                     selection
                     clearable
                     compact
@@ -207,28 +210,38 @@ const AddDescription = () => {
                   />
                 </div>
                 <button
-                  className="bg-gradient-to-r from-primary-cyan to-primary-pink rounded-full w-32 h-16 mt-3"
+                  className="bg-gradient-to-r from-primary-cyan to-primary-pink rounded-full w-40 h-16 mt-3"
                   onClick={() => handelAddModel()}
                 >
-                  Add Model
+                  {selectedContent[localizationKeys.AddModel]}
                 </button>
               </div>
               <div className="w-full mt-10">
-                <FormikInput name="price" type="number" placeholder="PRICE" />
+                <FormikInput
+                  name="price"
+                  type="number"
+                  placeholder={selectedContent[localizationKeys.price]}
+                />
               </div>
               <div className="w-full mt-6">
                 <FormikTextarea
                   name="description"
-                  placeholder={"DESCRIPTION YOUR AD"}
+                  placeholder={
+                    selectedContent[localizationKeys.DESCRIPTIONYOURAD]
+                  }
                 />
               </div>
               <div className="w-full mt-10">
-                <FormikInput name="year" type="number" placeholder="YEAR" />
+                <FormikInput
+                  name="year"
+                  type="number"
+                  placeholder={selectedContent[localizationKeys.year]}
+                />
               </div>
               <div className="w-full mt-10">
                 <FormikMultiDropdown
                   name="usage"
-                  placeholder={"usage"}
+                  placeholder={selectedContent[localizationKeys.usage]}
                   options={usageOptions}
                 />
               </div>
@@ -259,9 +272,9 @@ const AddDescription = () => {
               >
                 <div className="flex justify-between px-1 gap-x-2">
                   <p className="text-white text-xl md:pt-1 pt-0 w-full text-end">
-                    Next
+                    {selectedContent[localizationKeys.next]}
                   </p>
-                  <p className="text-white flex justify-end my-auto md:px-24 px-20">
+                  <p className="text-white flex justify-end my-auto md:px-24 px-20 rtl:rotate-180">
                     <FaLongArrowAltRight size={25} />
                   </p>
                 </div>

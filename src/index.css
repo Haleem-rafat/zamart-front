@@ -126,3 +126,12 @@ input[type=number] {
 .Edit_Lang_Dropdown.ui.dropdown .menu>.item{
   @apply font-normal text-base text-black 
 }
+
+.edit_TES .ui.selection.dropdown{
+  @apply border-none outline-none  !important
+}
+
+
+.ui.form input:not([type]), .ui.form input[type="date"], .ui.form input[type="datetime-local"], .ui.form input[type="email"], .ui.form input[type="file"], .ui.form input[type="number"], .ui.form input[type="password"], .ui.form input[type="search"], .ui.form input[type="tel"], .ui.form input[type="text"], .ui.form input[type="time"], .ui.form input[type="url"]{
+  @apply font-serifAR !important
+}

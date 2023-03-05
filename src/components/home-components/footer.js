@@ -10,13 +10,13 @@ const Footer = () => {
   return (
     <div>
       <div>
-        <div className="md:grid grid-cols-4 hidden  text-white text-2xl py-9 md:pl-36 pl-12 ">
+        <div className="md:grid grid-cols-4 hidden  text-white text-2xl py-9 ltr:md:pl-36 rtl:md:pr-36 ltr:pl-12 rtl:pr-12 ">
           <p>Bikes for sale</p>
           <p>News & Reviews</p>
           <p>General Help</p>
           <p>Our App</p>
         </div>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-black  text-white py-12 md:pl-36 pl-12">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-black  text-white py-12 ltr:md:pl-36 rtl:md:pr-36 ltr:pl-12 rtl:pr-12">
           <p className="md:hidden block text-white text-2xl py-4">
             Bikes for sale
           </p>
