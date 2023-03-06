@@ -17,13 +17,14 @@ const ItemOverview = ({ data }) => {
   const { run: runCategoriesFromData, isLoading: isLoadingCategoriesFromData } =
     useAxios([]);
   useEffect(() => {
-    runCategoriesFromData(
-      axios
-        .get(api.app.ViewCategoriesFromData(data?.data?.category?._id))
-        .then((res) => {
-          setCategoriesFromData(res?.data?.data);
-        })
-    );
+    if (data?.data?.category?._id)
+      runCategoriesFromData(
+        axios
+          .get(api.app.ViewCategoriesFromData(data?.data?.category?._id))
+          .then((res) => {
+            setCategoriesFromData(res?.data?.data);
+          })
+      );
   }, [runCategoriesFromData, data?.data?.category?._id]);
   return (
     <div className="sm:px-36 px-4 text-white">
