@@ -64,10 +64,10 @@ const UploadImage = () => {
     if (comCatID) {
       formData.append("complementaryCategory", comCatID);
     }
-    formData.append("images", new Compressor(fileOne, { quality: 0.8 }));
-    formData.append("images", new Compressor(fileTwo, { quality: 0.8 }));
-    formData.append("images", new Compressor(fileThree, { quality: 0.8 }));
-    formData.append("images", new Compressor(fileFour, { quality: 0.8 }));
+    formData.append("images", fileOne);
+    formData.append("images", fileTwo);
+    formData.append("images", fileThree);
+    formData.append("images", fileFour);
     formData.append("status", status);
     runPostads(
       authAxios
@@ -130,6 +130,7 @@ const UploadImage = () => {
               <div className={fileOne && "hidden"}>
                 <div className="cursor-pointer">
                   <FileUploader
+                    maxSize={2}
                     handleChange={handleChangeOne}
                     name="file"
                     types={fileTypes}
@@ -151,6 +152,7 @@ const UploadImage = () => {
               >
                 <div className="cursor-pointer">
                   <FileUploader
+                    maxSize={2}
                     handleChange={handleChangeTwo}
                     name="file"
                     types={fileTypes}
@@ -174,6 +176,7 @@ const UploadImage = () => {
               >
                 <div className="cursor-pointer">
                   <FileUploader
+                    maxSize={2}
                     className="hidden"
                     handleChange={handleChangeThree}
                     name="file"
@@ -194,6 +197,7 @@ const UploadImage = () => {
               <div className={fileThree ? "" : "hidden"}>
                 <div className="cursor-pointer">
                   <FileUploader
+                    maxSize={2}
                     className="hidden"
                     handleChange={handleChangeFour}
                     name="file"
@@ -220,7 +224,11 @@ const UploadImage = () => {
           <div>
             {fileOne ? (
               <div>
-                <FileUploader handleChange={handleChangeOne} name="file">
+                <FileUploader
+                  maxSize={2}
+                  handleChange={handleChangeOne}
+                  name="file"
+                >
                   <img
                     className="sm:w-[404px] w-[250px] h-[393px] object-cover mt-14 mx-auto"
                     src={URL?.createObjectURL(fileOne)}
@@ -235,7 +243,11 @@ const UploadImage = () => {
           <div className="mt-14 mx-5">
             {fileTwo ? (
               <div>
-                <FileUploader handleChange={handleChangeTwo} name="file">
+                <FileUploader
+                  maxSize={2}
+                  handleChange={handleChangeTwo}
+                  name="file"
+                >
                   <img
                     className="sm:w-[157px] w-[130px] h-[121px] object-cover  mx-auto"
                     src={URL?.createObjectURL(fileTwo)}
@@ -248,7 +260,11 @@ const UploadImage = () => {
             )}
             {fileThree ? (
               <div>
-                <FileUploader handleChange={handleChangeThree} name="file">
+                <FileUploader
+                  maxSize={2}
+                  handleChange={handleChangeThree}
+                  name="file"
+                >
                   <img
                     className="sm:w-[157px] w-[130px] h-[121px] object-cover my-[14px] "
                     src={URL?.createObjectURL(fileThree)}
@@ -261,7 +277,11 @@ const UploadImage = () => {
             )}
             {fileFour ? (
               <div>
-                <FileUploader handleChange={handleChangeFour} name="file">
+                <FileUploader
+                  maxSize={2}
+                  handleChange={handleChangeFour}
+                  name="file"
+                >
                   <img
                     className="sm:w-[157px] w-[130px] h-[121px] object-cover "
                     src={URL?.createObjectURL(fileFour)}
