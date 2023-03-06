@@ -33,22 +33,24 @@ const ItemDetails = () => {
 
   const { run, isLoading } = useAxios([]);
   useEffect(() => {
-    run(
-      axios.get(api.app.viewItemById(itemId)).then((res) => {
-        setData(res?.data);
-      })
-    );
+    if (itemId)
+      run(
+        axios.get(api.app.viewItemById(itemId)).then((res) => {
+          setData(res?.data);
+        })
+      );
   }, [itemId, run, data?.length]);
 
   const { run: runitemData, isLoading: isloadingitemData } = useAxios([]);
   useEffect(() => {
-    runitemData(
-      axios
-        .get(`${api.app.viewAllItems}?category=${data?.data?.category?._id}`)
-        .then((res) => {
-          setItemData(res?.data?.data);
-        })
-    );
+    if (data?.data?.category?._id)
+      runitemData(
+        axios
+          .get(`${api.app.viewAllItems}?category=${data?.data?.category?._id}`)
+          .then((res) => {
+            setItemData(res?.data?.data);
+          })
+      );
   }, [data?.data?.category?._id, runitemData]);
 
   useEffect(() => {

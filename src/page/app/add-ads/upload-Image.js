@@ -17,6 +17,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useLanguage } from "../../../context/language-context";
 import content from "../../../localization/content";
 import localizationKeys from "../../../localization/localization-keys";
+import Compressor from "compressorjs";
 
 const fileTypes = ["JPEG", "PNG", "GIF"];
 
@@ -63,10 +64,10 @@ const UploadImage = () => {
     if (comCatID) {
       formData.append("complementaryCategory", comCatID);
     }
-    formData.append("images", fileOne);
-    formData.append("images", fileTwo);
-    formData.append("images", fileThree);
-    formData.append("images", fileFour);
+    formData.append("images", new Compressor(fileOne, { quality: 0.8 }));
+    formData.append("images", new Compressor(fileTwo, { quality: 0.8 }));
+    formData.append("images", new Compressor(fileThree, { quality: 0.8 }));
+    formData.append("images", new Compressor(fileFour, { quality: 0.8 }));
     formData.append("status", status);
     runPostads(
       authAxios
