@@ -11,20 +11,21 @@ const useGetBrand = ({ CatID }) => {
   const { run, isLoading, error, isError } = useAxios();
 
   React.useEffect(() => {
-    run(axios.get(api.brand.default(CatID))).then(({ data }) => {
-      const BrandOptions = data.data;
-      const options = [];
+    if (CatID)
+      run(axios.get(api.brand.default(CatID))).then(({ data }) => {
+        const BrandOptions = data.data;
+        const options = [];
 
-      BrandOptions.forEach((d) =>
-        options.push({
-          text: d?.name,
-          key: d._id,
-          value: d._id,
-        })
-      );
+        BrandOptions.forEach((d) =>
+          options.push({
+            text: d?.name,
+            key: d._id,
+            value: d._id,
+          })
+        );
 
-      setBrandOptions(options);
-    });
+        setBrandOptions(options);
+      });
   }, [lang, run, CatID]);
 
   return {

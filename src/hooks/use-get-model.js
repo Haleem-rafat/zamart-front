@@ -11,20 +11,21 @@ const useGetModel = ({ brandId }) => {
   const { run, isLoading, error, isError } = useAxios();
 
   React.useEffect(() => {
-    run(axios.get(api.model.default(brandId))).then(({ data }) => {
-      const ModelOptions = data.data;
-      const options = [];
+    if (brandId)
+      run(axios.get(api.model.default(brandId))).then(({ data }) => {
+        const ModelOptions = data.data;
+        const options = [];
 
-      ModelOptions.forEach((d) =>
-        options.push({
-          text: d?.name,
-          key: d._id,
-          value: d._id,
-        })
-      );
+        ModelOptions.forEach((d) =>
+          options.push({
+            text: d?.name,
+            key: d._id,
+            value: d._id,
+          })
+        );
 
-      setModelOptions(options);
-    });
+        setModelOptions(options);
+      });
   }, [lang, run, brandId]);
 
   return {

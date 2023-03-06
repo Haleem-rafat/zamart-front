@@ -109,6 +109,25 @@ const ar = {
   [localizationKeys.FILLINTHISFORMFORMENEXTTIME]:
     "املأ هذا النموذج لي في المرة القادمة",
   [localizationKeys.SENDENQUIRY]: "أرسل إستفسار",
+  //
+  [localizationKeys.Bikesforsale]: "دراجات للبيع",
+  [localizationKeys.NewsReviews]: "خبار ومراجعات",
+  [localizationKeys.GeneralHelp]: "تعليمات عامة",
+  [localizationKeys.OurApp]: "تطبيقنا",
+
+  [localizationKeys.Usedbikesforsale]: "دراجات مستعملة للبيع",
+  [localizationKeys.Newbikesforsale]: "دراجات جديدة للبيع",
+  [localizationKeys.BikeFactsHistoryReports]: "تقارير سجل حقائق الدراجة",
+  [localizationKeys.BikeNews]: "أخبار الدراجة",
+  [localizationKeys.BikeReviews]: "مراجعات الدراجة",
+  [localizationKeys.BikeAdvice]: "نصيحة الدراجة",
+  [localizationKeys.BikeVideos]: "مقاطع فيديو الدراجة",
+  [localizationKeys.TermsConditions]: "الشروط والأحكام",
+  [localizationKeys.Privacy]: "الخصوصية",
+  [localizationKeys.ContactUs]: "اتصل بنا",
+  [localizationKeys.AboutUs]: "نبذة عنا",
+  [localizationKeys.DownloadOurAppNow]: "قم بتنزيل تطبيقنا الآن",
+  [localizationKeys.OnAppStoreGooglePlay]: "على App Store / Google Play",
 };
 
 export default ar;

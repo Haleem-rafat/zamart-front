@@ -104,6 +104,24 @@ const localizationKeys = {
   CONFIRMDEALERRESPONSE: "CONFIRMDEALERRESPONSE",
   FILLINTHISFORMFORMENEXTTIME: "FILLINTHISFORMFORMENEXTTIME",
   SENDENQUIRY: " SENDENQUIRY",
+
+  Usedbikesforsale: "Usedbikesforsale",
+  Newbikesforsale: "Newbikesforsale",
+  BikeFactsHistoryReports: "BikeFactsHistoryReports",
+  BikeNews: "BikeNews",
+  BikeReviews: "BikeReviews",
+  BikeAdvice: "BikeAdvice",
+  BikeVideos: "BikeVideos",
+  TermsConditions: "TermsConditions",
+  Privacy: "Privacy",
+  ContactUs: "ContactUs",
+  AboutUs: "AboutsUs",
+  DownloadOurAppNow: "DownloadOurAppNow",
+  OnAppStoreGooglePlay: "OnAppStoreGooglePlay",
+  //
+  TALKTOUS: "TALKTOUS",
+  CONTACT: "CONTACT",
+  US: "US",
 };
 
 export default localizationKeys;

@@ -11,9 +11,14 @@ import useAxios from "../../../hooks/use-axios";
 import facbook from "../../../../src/assets/img/facbook.png";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
+import { useLanguage } from "../../../context/language-context";
+import content from "../../../localization/content";
 
 const ContactUs = () => {
   const { run, isLoading } = useAxios({});
+
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -38,7 +43,7 @@ const ContactUs = () => {
   return (
     <div>
       <div className="grid sm:grid-cols-5 grid-cols-1 gap-x-10  animate-in">
-        <div className="col-span-2 sm:ml-36 ml-0">
+        <div className="col-span-2 ltr:sm:ml-36 rtl:sm:mr-36 ml-0">
           <p className="text-primary-gray text-xl mt-16">TALK TO US</p>
           <h1 className="text-white text-7xl md:text-6xl">
             CONTACT <br></br>US
@@ -110,7 +115,7 @@ const ContactUs = () => {
           </div>
         </div>
         <div className="mx-auto flex flex-col justify-between gap-y-10 mt-7">
-          <div className="bg-primary-gray-subdark text-primary-gray h-full pl-6">
+          <div className="bg-primary-gray-subdark text-primary-gray h-full ltr:pl-6 rtl:pr-6">
             <p className="text-xl pt-10 ">CONTACT US</p>
             <h1 className="text-white text-3xl md:text-2xl pt-2">
               DO YOU <br></br>HAVE ANY<br></br> QUESTIONS?
@@ -124,7 +129,7 @@ const ContactUs = () => {
           </div>
           <img src={facbook} alt="facbook" />
         </div>
-        <div className="col-span-2 bg-primary-gray-subdark mt-7 pl-14">
+        <div className="col-span-2 bg-primary-gray-subdark mt-7 ltr:pl-14 rtl:pr-14">
           <h1 className="text-7xl md:text-6xl text-white pt-16">
             For Buyers <br></br>By Buyers
           </h1>

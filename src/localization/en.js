@@ -113,6 +113,25 @@ const en = {
   [localizationKeys.FILLINTHISFORMFORMENEXTTIME]:
     " FILL IN THIS FORM FOR ME NEXT TIME",
   [localizationKeys.SENDENQUIRY]: "SEND ENQUIRY",
+  //
+  [localizationKeys.Bikesforsale]: "Bikes for sale",
+  [localizationKeys.NewsReviews]: "News & Reviews",
+  [localizationKeys.GeneralHelp]: "General Help",
+  [localizationKeys.OurApp]: "Our App",
+
+  [localizationKeys.Usedbikesforsale]: "Used bikes for sale",
+  [localizationKeys.Newbikesforsale]: "New bikes for sale",
+  [localizationKeys.BikeFactsHistoryReports]: "BikeFacts History Reports",
+  [localizationKeys.BikeNews]: "Bike News",
+  [localizationKeys.BikeReviews]: "Bike Reviews",
+  [localizationKeys.BikeAdvice]: "Bike Advice",
+  [localizationKeys.BikeVideos]: "Bike Videos",
+  [localizationKeys.TermsConditions]: "Terms & Conditions",
+  [localizationKeys.Privacy]: "Privacy",
+  [localizationKeys.ContactUs]: "Contact Us",
+  [localizationKeys.AboutUs]: "About Us",
+  [localizationKeys.DownloadOurAppNow]: "Download Our App Now",
+  [localizationKeys.OnAppStoreGooglePlay]: "On App Store / Google Play",
 };
 
 export default en;
