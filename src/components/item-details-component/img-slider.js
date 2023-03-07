@@ -23,14 +23,14 @@ const ImgSlider = ({ images }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative overflow-scroll  ">
       <div className="">
-        <div className="flex left-3 absolute bottom-10  z-30">
+        <div className="flex left-3 absolute  bottom-10 z-30 ">
           {images2?.map((image, i) => (
             <div
               className={
                 i === 0
-                  ? "md:w-[157px] w-full h-[121px] mx-3 object-cover cursor-pointer "
+                  ? "md:w-[157px] w-full h-[121px] mx-3 object-cover cursor-pointer"
                   : "md:w-[157px] w-full h-[121px] mx-3 object-cover cursor-pointer"
               }
               key={i}
@@ -45,7 +45,7 @@ const ImgSlider = ({ images }) => {
             </div>
           ))}
         </div>
-        <div className="sm:w-[750px] w-full h-[680px] object-cover bg-gradient-to-t from-primary-black/90  relative  ">
+        <div className="sm:w-[750px] w-full h-[680px] object-cover bg-gradient-to-t from-primary-black/90 relative ">
           {img ? (
             <img
               className="absolute -z-10 sm:w-[750px] w-full h-[680px] object-cover "

@@ -293,7 +293,7 @@ const HeaderHome = () => {
                 id={e?._id}
                 className={`${
                   e?._id === subCategoriesFilter
-                    ? "w-72 h-[76px] pt-7 bg-gradient-to-r from-primary-cyan to-primary-pink shadow-primary-purple text-white text-center cursor-pointer border-r-[1px] hidden md:block"
+                    ? "w-72 h-[76px] pt-7  text-center cursor-pointer border-r-[1px] hidden md:block"
                     : "w-72 h-[76px] pt-7 text-center cursor-pointer border-r-[1px] hidden md:block text-black"
                 }`}
               >

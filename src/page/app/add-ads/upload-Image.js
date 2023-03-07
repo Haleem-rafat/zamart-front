@@ -130,7 +130,7 @@ const UploadImage = () => {
               <div className={fileOne && "hidden"}>
                 <div className="cursor-pointer">
                   <FileUploader
-                    maxSize={2}
+                    maxSize={1}
                     handleChange={handleChangeOne}
                     name="file"
                     types={fileTypes}
@@ -152,7 +152,7 @@ const UploadImage = () => {
               >
                 <div className="cursor-pointer">
                   <FileUploader
-                    maxSize={2}
+                    maxSize={1}
                     handleChange={handleChangeTwo}
                     name="file"
                     types={fileTypes}
@@ -176,7 +176,7 @@ const UploadImage = () => {
               >
                 <div className="cursor-pointer">
                   <FileUploader
-                    maxSize={2}
+                    maxSize={1}
                     className="hidden"
                     handleChange={handleChangeThree}
                     name="file"
@@ -197,7 +197,7 @@ const UploadImage = () => {
               <div className={fileThree ? "" : "hidden"}>
                 <div className="cursor-pointer">
                   <FileUploader
-                    maxSize={2}
+                    maxSize={1}
                     className="hidden"
                     handleChange={handleChangeFour}
                     name="file"
@@ -225,7 +225,7 @@ const UploadImage = () => {
             {fileOne ? (
               <div>
                 <FileUploader
-                  maxSize={2}
+                  maxSize={1}
                   handleChange={handleChangeOne}
                   name="file"
                 >
@@ -244,7 +244,7 @@ const UploadImage = () => {
             {fileTwo ? (
               <div>
                 <FileUploader
-                  maxSize={2}
+                  maxSize={1}
                   handleChange={handleChangeTwo}
                   name="file"
                 >
@@ -261,7 +261,7 @@ const UploadImage = () => {
             {fileThree ? (
               <div>
                 <FileUploader
-                  maxSize={2}
+                  maxSize={1}
                   handleChange={handleChangeThree}
                   name="file"
                 >
@@ -278,7 +278,7 @@ const UploadImage = () => {
             {fileFour ? (
               <div>
                 <FileUploader
-                  maxSize={2}
+                  maxSize={1}
                   handleChange={handleChangeFour}
                   name="file"
                 >

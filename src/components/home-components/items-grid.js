@@ -32,18 +32,21 @@ const ItemsDrid = () => {
         {/* <Loader active /> */}
         <ZamartLoading />
       </Dimmer>
-      {data?.map((e) => (
-        <ItemCard
-          id={e?._id}
-          itemImge={e?.images[0]?.img || ""}
-          adsName={e?.brand || ""}
-          price={e?.price || ""}
-          date={new Date(e?.updatedAt).toLocaleDateString("en-GB") || ""}
-          itemName={e?.title || ""}
-          userName={e?.user?.fullName || ""}
-          KM={e?.kiloMeters || ""}
-        />
-      ))}
+      {data?.map(
+        (e, index) =>
+          index < 8 && (
+            <ItemCard
+              id={e?._id}
+              itemImge={e?.images[0]?.img || ""}
+              adsName={e?.brand || ""}
+              price={e?.price || ""}
+              date={new Date(e?.updatedAt).toLocaleDateString("en-GB") || ""}
+              itemName={e?.title || ""}
+              userName={e?.user?.fullName || ""}
+              KM={e?.kiloMeters || ""}
+            />
+          )
+      )}
     </div>
   );
 };
