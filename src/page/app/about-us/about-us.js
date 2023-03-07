@@ -1,34 +1,62 @@
 import React, { useEffect } from "react";
 
 import aboutus from "../../../../src/assets/img/about-us.png";
+import { useLanguage } from "../../../context/language-context";
+import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 const AboutUs = () => {
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
   return (
     <div className="md:flex grid grid-cols-1 justify-between  my-5 animate-in">
       <div className="sm:mx-40 mx-8 sm:mt-40 mt-8 mb-8">
-        <p className="text-primary-gray text-xl font-normal">OUR STORY</p>
-        <h1 className=" text-white text-7xl pt-2 pb-12">ABOUT US</h1>
         <p className="text-primary-gray text-xl font-normal">
-          it is a long established fact that a reader will be distracted by the
-          readable content<br></br> of a page when looking at its layout. the
-          point of using lorem ipsum is that it has a<br></br> more-or-less
-          normal <br></br>it is a long established fact that a reader will be
-          distracted by the readable content <br></br>of a page when looking at
-          its layout. the point of using lorem ipsum is that it has a<br></br>
-          more-or-less normal
+          {selectedContent[localizationKeys.OURSTORY]}
         </p>
-        <p className="text-primary-gray text-xl font-normal py-12">
-          it is a long established fact that a reader will be distracted by the
-          readable content<br></br> of a page when looking at its layout. the
-          point of using lorem ipsum is that it has<br></br> a more-or-less
-          normal
+        <h1 className=" text-white text-7xl pt-2 pb-12">
+          {" "}
+          {selectedContent[localizationKeys.AboutUs]}
+        </h1>
+        <p className="text-primary-gray  text-xl font-normal">
+          {
+            selectedContent[
+              localizationKeys.itisalongestablishedfactthatareaderwillbe
+            ]
+          }
           <br></br>
+          {selectedContent[localizationKeys.distractedbythereadablecontent]}
+          <br></br> {selectedContent[localizationKeys.loremipsumisthatithasa]}
+          <br></br> {selectedContent[localizationKeys.TALKTOUS]}
+        </p>
+        s{" "}
+        <p className="text-primary-gray text-xl font-normal py-12">
+          <p className="text-primary-gray  text-xl font-normal">
+            {
+              selectedContent[
+                localizationKeys.itisalongestablishedfactthatareaderwillbe
+              ]
+            }
+            <br></br>
+            {selectedContent[localizationKeys.distractedbythereadablecontent]}
+            <br></br> {selectedContent[localizationKeys.loremipsumisthatithasa]}
+            <br></br> {selectedContent[localizationKeys.TALKTOUS]}
+          </p>
         </p>
         <p className="text-primary-gray text-xl font-normal">
-          it is a long established fact that a reader will be distracted by the
-          readable content
+          <p className="text-primary-gray text-xl font-normal">
+            {
+              selectedContent[
+                localizationKeys.itisalongestablishedfactthatareaderwillbe
+              ]
+            }
+            <br></br>
+            {selectedContent[localizationKeys.distractedbythereadablecontent]}
+            <br></br> {selectedContent[localizationKeys.loremipsumisthatithasa]}
+            <br></br> {selectedContent[localizationKeys.TALKTOUS]}
+          </p>
         </p>
       </div>
       <div>

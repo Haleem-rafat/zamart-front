@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import speedometer from "../../../src/assets/icons/speedometer.svg";
+import { useLanguage } from "../../context/language-context";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 import routes from "../../routes";
 
 const ItemCard = ({
@@ -26,6 +29,8 @@ const ItemCard = ({
   }, "250");
 
   const history = useHistory();
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   return (
     <div className="mx-auto">
@@ -61,7 +66,8 @@ const ItemCard = ({
                 >
                   <div className="text-start  px-2 ">
                     <p className="text-base font-normal py-5 px-8">
-                      SUBMIT {date} . {userName}
+                      {selectedContent[localizationKeys.SUBMIT]} {date} .{" "}
+                      {userName}
                     </p>
                     <p className="text-2xl border-b-[1px] border-white  pb-5 px-8">
                       {adsName}
@@ -80,7 +86,9 @@ const ItemCard = ({
                       } w-[174px] h-[54px] rounded bg-white text-black `}
                     >
                       <div className="flex gap-x-2 justify-center ">
-                        <p className="font-thin pt-1">$ BUY</p>
+                        <p className="font-thin pt-1">
+                          $ {selectedContent[localizationKeys.buy]}{" "}
+                        </p>
                         <p className="text-lg ">{price}</p>
                       </div>
                     </button>
@@ -95,7 +103,7 @@ const ItemCard = ({
                   </div>
                 </div>
                 <p className={mouseMovedelay ? "animate-out" : "animate-in"}>
-                  LEARN MORE
+                  {selectedContent[localizationKeys.LEARNMORE]}
                 </p>
               </button>
             </div>

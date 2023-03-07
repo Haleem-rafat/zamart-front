@@ -13,6 +13,7 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
 import { useLanguage } from "../../../context/language-context";
 import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 
 const ContactUs = () => {
   const { run, isLoading } = useAxios({});
@@ -44,9 +45,12 @@ const ContactUs = () => {
     <div>
       <div className="grid sm:grid-cols-5 grid-cols-1 gap-x-10  animate-in">
         <div className="col-span-2 ltr:sm:ml-36 rtl:sm:mr-36 ml-0">
-          <p className="text-primary-gray text-xl mt-16">TALK TO US</p>
+          <p className="text-primary-gray text-xl mt-16">
+            {selectedContent[localizationKeys.TALKTOUS]}
+          </p>
           <h1 className="text-white text-7xl md:text-6xl">
-            CONTACT <br></br>US
+            {selectedContent[localizationKeys.CONTACT]} <br></br>{" "}
+            {selectedContent[localizationKeys.US]}
           </h1>
           <div className="bg-primary-gray-subdark mt-11 ">
             <Formik
@@ -64,21 +68,25 @@ const ContactUs = () => {
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="mx-12">
                     <h1 className="text-white text-5xl md:text-4xl text-center py-7">
-                      TAKE A COFFEE WITH US
+                      {selectedContent[localizationKeys.TAKEACOFFEEWITHUS]}
                     </h1>
                     <div className="flex gap-x-5 ">
                       <div className="w-full">
                         <FormikInput
                           name="firstName"
                           type={"text"}
-                          placeholder={"firstName"}
+                          placeholder={
+                            selectedContent[localizationKeys.firstName]
+                          }
                         />
                       </div>
                       <div className="w-full">
                         <FormikInput
                           name="familyName"
                           type={"text"}
-                          placeholder={"FAMILY NAME"}
+                          placeholder={
+                            selectedContent[localizationKeys.familyName]
+                          }
                         />
                       </div>
                     </div>
@@ -86,26 +94,29 @@ const ContactUs = () => {
                       <FormikInput
                         name="email"
                         type={"email"}
-                        placeholder={"E-MAIL"}
+                        placeholder={selectedContent[localizationKeys.Email]}
                       />
                     </div>
                     <div className="w-full pb-5">
                       <FormikInput
                         name="subject"
                         type={"text"}
-                        placeholder={"SUBJECT"}
+                        placeholder={selectedContent[localizationKeys.subject]}
                       />
                     </div>
                     <div className="w-full">
-                      <FormikTextarea name="message" placeholder={"MESSAGE"} />
+                      <FormikTextarea
+                        name="message"
+                        placeholder={selectedContent[localizationKeys.message]}
+                      />
                     </div>
 
                     <div className="">
                       <Button
                         loading={isLoading}
-                        className="md:w-[276px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-12 mb-14 text-white"
+                        className="md:w-[276px] w-full sm:h-16 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-pink text-xl mt-12 mb-14 text-white font-serifAR"
                       >
-                        SEND
+                        {selectedContent[localizationKeys.SEND]}
                       </Button>
                     </div>
                   </div>
@@ -116,9 +127,14 @@ const ContactUs = () => {
         </div>
         <div className="mx-auto flex flex-col justify-between gap-y-10 mt-7">
           <div className="bg-primary-gray-subdark text-primary-gray h-full ltr:pl-6 rtl:pr-6">
-            <p className="text-xl pt-10 ">CONTACT US</p>
+            <p className="text-xl pt-10 ">
+              {" "}
+              {selectedContent[localizationKeys.contactUs]}
+            </p>
             <h1 className="text-white text-3xl md:text-2xl pt-2">
-              DO YOU <br></br>HAVE ANY<br></br> QUESTIONS?
+              {selectedContent[localizationKeys.DOYOU]}
+              <br></br> {selectedContent[localizationKeys.HAVEANY]}
+              <br></br> {selectedContent[localizationKeys.QUESTIONS]}?
             </h1>
             <AiOutlineWhatsApp className="mt-8" size={30} />
             <p className="text-white text-2xl md:text-xl">+20 01111664236</p>
@@ -131,20 +147,31 @@ const ContactUs = () => {
         </div>
         <div className="col-span-2 bg-primary-gray-subdark mt-7 ltr:pl-14 rtl:pr-14">
           <h1 className="text-7xl md:text-6xl text-white pt-16">
-            For Buyers <br></br>By Buyers
+            {selectedContent[localizationKeys.ForBuyers]}
+            <br></br> {selectedContent[localizationKeys.ByBuyers]}
           </h1>
           <p className="border-4 border-primary-cyan-light w-32 my-14"></p>
           <p className="text-primary-gray my-4 text-xl font-normal">
-            it is a long established fact that a reader will be <br></br>
-            distracted by the readable content<br></br> of a page when looking
-            at its layout. the point of using<br></br> lorem ipsum is that it
-            has a <br></br> more-or-less normal
+            {
+              selectedContent[
+                localizationKeys.itisalongestablishedfactthatareaderwillbe
+              ]
+            }
+            <br></br>
+            {selectedContent[localizationKeys.distractedbythereadablecontent]}
+            <br></br> {selectedContent[localizationKeys.loremipsumisthatithasa]}
+            <br></br> {selectedContent[localizationKeys.TALKTOUS]}
           </p>
-          <p className="text-primary-gray text-xl font-normal mt-14">
-            it is a long established fact that a reader will be <br></br>
-            distracted by the readable content<br></br> of a page when looking
-            at its layout. the point of using<br></br> lorem ipsum is that it
-            has a <br></br> more-or-less normal
+          <p className="text-primary-gray my-4 text-xl font-normal">
+            {
+              selectedContent[
+                localizationKeys.itisalongestablishedfactthatareaderwillbe
+              ]
+            }
+            <br></br>
+            {selectedContent[localizationKeys.distractedbythereadablecontent]}
+            <br></br> {selectedContent[localizationKeys.loremipsumisthatithasa]}
+            <br></br> {selectedContent[localizationKeys.TALKTOUS]}
           </p>
         </div>
       </div>

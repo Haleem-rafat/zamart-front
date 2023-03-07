@@ -10,7 +10,10 @@ import CardItemMedium from "../../../components/shared/card-item-medium";
 import ZamartEmty from "../../../components/shared/lotties/zamart-emty";
 import ZamartLoading from "../../../components/shared/lotties/zamart-loading";
 import PaginationApp from "../../../components/shared/pagination";
+import { useLanguage } from "../../../context/language-context";
 import useAxios from "../../../hooks/use-axios";
+import content from "../../../localization/content";
+import localizationKeys from "../../../localization/localization-keys";
 
 const SearchPage = () => {
   const { search } = useLocation();
@@ -29,6 +32,9 @@ const SearchPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   return (
     <div className="h-full">
@@ -53,7 +59,9 @@ const SearchPage = () => {
                 <AccordionMenu />
               </div>
               <div className="sm:mx-14 mx-auto">
-                <p className="text-white text-4xl py-10 px-6">Search Ruslt</p>
+                <p className="text-white text-4xl py-10 px-6">
+                  {selectedContent[localizationKeys.SearchRuslt]}
+                </p>
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-5 my-auto sm:mx-5  ">
                   {data?.map((e) => (
                     <CardItemMedium

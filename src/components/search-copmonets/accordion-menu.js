@@ -5,8 +5,13 @@ import useGetGatogry from "../../hooks/use-get-gatogry";
 import { useDebouncedCallback } from "use-debounce";
 import useGetBrand from "../../hooks/use-get-brand";
 import useLocalStorage from "../../hooks/use-localstorage";
+import { useLanguage } from "../../context/language-context";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const AccordionMenu = () => {
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
   const [CatID, setCatID] = useLocalStorage("category_id", "");
   const { BrandOptions, loadingBrand } = useGetBrand({ CatID });
   const [brandFilter, setBrandFiter] = useFilter("brand", "");
@@ -97,9 +102,9 @@ const AccordionMenu = () => {
     >
       <Menu.Item className="w-full p-0 m-0">
         <Accordion.Title
-          className="my-4"
+          className="my-4 font-serifAR"
           active={activeIndex === 0}
-          content="ALL MANUFACTURES"
+          content={selectedContent[localizationKeys.ALLMANUFACTURES]}
           index={0}
           onClick={handleClick}
         />
@@ -111,9 +116,9 @@ const AccordionMenu = () => {
 
       <Menu.Item className="w-full p-0 m-0">
         <Accordion.Title
-          className="my-4"
+          className="my-4 font-serifAR"
           active={activeIndex === 1}
-          content="TRANSMISSION TYPEF"
+          content={selectedContent[localizationKeys.TRANSMISSIONTYPEF]}
           index={1}
           onClick={handleClick}
         />
@@ -125,9 +130,9 @@ const AccordionMenu = () => {
 
       <Menu.Item className="w-full p-0 m-0">
         <Accordion.Title
-          className="my-4"
+          className="my-4 font-serifAR"
           active={activeIndex === 2}
-          content="PRICE"
+          content={selectedContent[localizationKeys.PRICE]}
           index={2}
           onClick={handleClick}
         />

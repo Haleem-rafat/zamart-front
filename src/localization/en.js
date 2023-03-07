@@ -132,6 +132,42 @@ const en = {
   [localizationKeys.AboutUs]: "About Us",
   [localizationKeys.DownloadOurAppNow]: "Download Our App Now",
   [localizationKeys.OnAppStoreGooglePlay]: "On App Store / Google Play",
+  //
+
+  [localizationKeys.TALKTOUS]: "TALK TO US",
+  [localizationKeys.CONTACT]: "CONTACT",
+  [localizationKeys.US]: "US",
+  [localizationKeys.TAKEACOFFEEWITHUS]: "TAKE A COFFEE WITH US",
+  [localizationKeys.CONTACTUS]: "CONTACT US",
+  [localizationKeys.DOYOU]: "DO YOU",
+  [localizationKeys.HAVEANY]: "HAVE ANY",
+  [localizationKeys.QUESTIONS]: "QUESTIONS",
+  [localizationKeys.firstName]: "first Name",
+  [localizationKeys.familyName]: "family Name",
+  [localizationKeys.subject]: "subject",
+  [localizationKeys.MESSAGE]: "MESSAGE",
+  [localizationKeys.SEND]: "SEND",
+  [localizationKeys.ForBuyers]: "For Buyers",
+  [localizationKeys.ByBuyers]: "By Buyers",
+  [localizationKeys.itisalongestablishedfactthatareaderwillbe]:
+    "it is a long established fact that a reader will be",
+  [localizationKeys.distractedbythereadablecontent]:
+    "distracted by the readable content",
+  [localizationKeys.ofapagewhenlookingatitslayoutthepointofusing]:
+    "of a page when looking at its layout. the point of using",
+  [localizationKeys.loremipsumisthatithasa]: "lorem ipsum is that it has a",
+  //
+  [localizationKeys.OURSTORY]: "OUR STORY",
+  [localizationKeys.ABOUTUS]: "ABOUT US",
+
+  [localizationKeys.buy]: "buy",
+  [localizationKeys.LEARNMORE]: "LEARN MORE",
+  [localizationKeys.SUBMIT]: "SUBMIT",
+  //
+  [localizationKeys.ALLMANUFACTURES]: "ALL MANUFACTURES",
+  [localizationKeys.SearchRuslt]: "Search Ruslt",
+  [localizationKeys.TRANSMISSIONTYPEF]: "TRANSMISSION TYPEF",
+  [localizationKeys.PRICE]: "PRICE",
 };
 
 export default en;

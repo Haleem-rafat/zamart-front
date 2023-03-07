@@ -54,7 +54,7 @@ const FilterSections = () => {
             }}
             className=" px-8 border-[1px] rounded-full text-white  focus:bg-primary-cyan-light md:text-lg text-sm"
           >
-            ALL
+            {lang === "en" ? "ALL" : "الكل"}
           </button>
           {categories?.map((e) => (
             <button

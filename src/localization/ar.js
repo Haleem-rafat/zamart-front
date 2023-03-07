@@ -128,6 +128,40 @@ const ar = {
   [localizationKeys.AboutUs]: "نبذة عنا",
   [localizationKeys.DownloadOurAppNow]: "قم بتنزيل تطبيقنا الآن",
   [localizationKeys.OnAppStoreGooglePlay]: "على App Store / Google Play",
+  //
+  [localizationKeys.TALKTOUS]: "تحدث إلينا",
+  [localizationKeys.CONTACT]: "اتصل",
+  [localizationKeys.US]: "بنا",
+  [localizationKeys.TAKEACOFFEEWITHUS]: "تناول القهوة معنا",
+  [localizationKeys.CONTACTUS]: "اتصل بنا",
+  [localizationKeys.DOYOU]: "هل أنت",
+  [localizationKeys.HAVEANY]: "لديك أي",
+  [localizationKeys.QUESTIONS]: "أسئلة",
+  [localizationKeys.firstName]: "الاسم الأول",
+  [localizationKeys.familyName]: "اسم العائلة",
+  [localizationKeys.subject]: "الموضوع",
+  [localizationKeys.MESSAGE]: "رسالة",
+  [localizationKeys.SEND]: "إرسال",
+  [localizationKeys.ForBuyers]: "للمشترين",
+  [localizationKeys.ByBuyers]: "بواسطة المشترين",
+  [localizationKeys.itisalongestablishedfactthatareaderwillbe]:
+    "هناك حقيقة مثبتة منذ زمن طويل وهي أن القارئ سيكون كذلك",
+  [localizationKeys.distractedbythereadablecontent]: "يصرف المحتوى المقروء",
+  [localizationKeys.ofapagewhenlookingatitslayoutthepointofusing]:
+    "من الصفحة عند النظر إلى تخطيطها. نقطة الاستخدام",
+  [localizationKeys.loremipsumisthatithasa]: "هو أنه يحتوي على",
+  //
+  [localizationKeys.OURSTORY]: "قصتنا",
+  [localizationKeys.ABOUTUS]: "معلومات عنا",
+
+  [localizationKeys.buy]: "اشتري الان",
+  [localizationKeys.LEARNMORE]: "اطلع علي المزيد",
+  [localizationKeys.SUBMIT]: "عرض من",
+  //
+  [localizationKeys.ALLMANUFACTURES]: "جميع المصانع",
+  [localizationKeys.SearchRuslt]: "نتيجة البحث",
+  [localizationKeys.TRANSMISSIONTYPEF]: "نوع الإرسال",
+  [localizationKeys.PRICE]: "سعر",
 };
 
 export default ar;

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import speedometer from "../../../src/assets/icons/speedometer.svg";
+import { useLanguage } from "../../context/language-context";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 import routes from "../../routes";
 
 const ItemCardSmall = ({
@@ -16,6 +19,9 @@ const ItemCardSmall = ({
 }) => {
   const [mouseMove, setMouseMove] = useState(false);
   const [mouseMovedelay, setMouseMovedelay] = useState(false);
+
+  const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   setTimeout(() => {
     if (mouseMove) {
@@ -61,7 +67,8 @@ const ItemCardSmall = ({
                 >
                   <div className="text-start  px-2 ">
                     <p className="text-base font-normal py-5 px-8">
-                      SUBMIT {date} . {userName}
+                      {selectedContent[localizationKeys.SUBMIT]} {date} .{" "}
+                      {userName}
                     </p>
                     <p className="text-2xl border-b-[1px] border-white  pb-5 px-8">
                       {adsName}
@@ -79,7 +86,7 @@ const ItemCardSmall = ({
                   </div>
                 </div>
                 <p className={mouseMovedelay ? "animate-out" : "animate-in"}>
-                  LEARN MORE
+                  {selectedContent[localizationKeys.LEARNMORE]}
                 </p>
               </button>
             </div>

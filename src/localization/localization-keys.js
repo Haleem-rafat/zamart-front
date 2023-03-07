@@ -122,6 +122,35 @@ const localizationKeys = {
   TALKTOUS: "TALKTOUS",
   CONTACT: "CONTACT",
   US: "US",
+  TAKEACOFFEEWITHUS: "TAKEACOFFEEWITHUS",
+  CONTACTUS: "CONTACTUS",
+  DOYOU: "DOYOU",
+  HAVEANY: "HAVEANY",
+  QUESTIONS: "QUESTIONS",
+  firstName: "firstName",
+  familyName: "familyName",
+  subject: "subject",
+  MESSAGE: "MESSAGE",
+  SEND: "SEND",
+  ForBuyers: "ForBuyers",
+  ByBuyers: "ByBuyers",
+  itisalongestablishedfactthatareaderwillbe:
+    "itisalongestablishedfactthatareaderwillbe",
+  distractedbythereadablecontent: "distractedbythereadablecontent",
+  ofapagewhenlookingatitslayoutthepointofusing:
+    "ofapagewhenlookingatitslayoutthepointofusing",
+  loremipsumisthatithasa: "loremipsumisthatithasa",
+  //
+  OURSTORY: "OURSTORY",
+  ABOUTUS: "ABOUTUS",
+  //
+  buy: "buy",
+  LEARNMORE: " LEARNMORE",
+  SUBMIT: "SUBMIT",
+  ALLMANUFACTURES: "ALLMANUFACTURES",
+  SearchRuslt: "SearchRuslt",
+  TRANSMISSIONTYPEF: "TRANSMISSIONTYPEF",
+  PRICE: "PRICE",
 };
 
 export default localizationKeys;
