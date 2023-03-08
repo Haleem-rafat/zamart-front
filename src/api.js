@@ -27,8 +27,7 @@ const api = {
   },
   notifications: {
     default: "/notifications?page=1&perPage=10",
-    read: (notificationsid = ":notificationsid") =>
-      `/notifications/${notificationsid}/set-read`,
+    read: (notificationsid) => `/notifications/${notificationsid}/set-read`,
   },
   cities: {
     default: "/regions/cities",

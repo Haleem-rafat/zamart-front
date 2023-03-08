@@ -28,11 +28,12 @@ const FilterSections = () => {
 
   const { run, isLoading } = useAxios([]);
   useEffect(() => {
-    run(
-      axios.get(api.app.viewSubCategories(categoriesFilter)).then((res) => {
-        setCategories(res?.data?.data);
-      })
-    );
+    if (categoriesFilter)
+      run(
+        axios.get(api.app.viewSubCategories(categoriesFilter)).then((res) => {
+          setCategories(res?.data?.data);
+        })
+      );
   }, [categoriesFilter, run]);
 
   return (
