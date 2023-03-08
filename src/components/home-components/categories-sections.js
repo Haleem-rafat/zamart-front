@@ -42,9 +42,7 @@ const CategoriesSections = () => {
             id={e?._id}
             img={e?.image}
             lable={lang === "en" ? e?.nameEn : e?.nameAr}
-            info={
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            }
+            info={e?.description}
           />
         ))}
       </div>

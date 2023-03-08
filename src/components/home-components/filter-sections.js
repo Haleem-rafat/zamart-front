@@ -64,8 +64,8 @@ const FilterSections = () => {
               }}
               className={
                 subCategoriesFilter === e?._id
-                  ? "bg-primary-cyan-light  px-8 border-[1px] rounded-full text-white  md:text-lg text-sm uppercase w-au"
-                  : " px-8 border-[1px] rounded-full text-white  md:text-lg text-sm uppercase w-fit"
+                  ? "bg-primary-cyan-light px-8 border-[1px] rounded-full text-white  md:text-lg text-sm uppercase py-1 "
+                  : " px-8 border-[1px] rounded-full text-white  md:text-lg text-sm uppercase w-fit py-2"
               }
             >
               {lang === "en" ? e?.nameEn : e?.nameAr}

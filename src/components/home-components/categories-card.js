@@ -15,14 +15,14 @@ const CategoriesCard = ({ img, lable, info, id }) => {
       className="w-full relative "
     >
       <div>
-        <div className=" w-full h-[300px] bg-gradient-to-t from-primary-black absolute z-10 cursor-pointer">
+        <div className=" w-full h-[320px] bg-gradient-to-t from-primary-black absolute z-10 cursor-pointer">
           <p className="border-t-4 border-primary-cyan w-16 mt-48 mx-5 "></p>
           <p className="sm:text-4xl text-2xl  text-white mx-5 pt-3 pb-2">
             {lable}
           </p>
           <p className="text-slate-400 sm:text-xl px-4 text-lg">{info}</p>
         </div>
-        <div className=" w-full h-[300px]">
+        <div className=" w-full h-[320px]">
           <img
             className=" object-cover w-full h-full relative"
             src={`data:image/jpeg;base64,${img}`}

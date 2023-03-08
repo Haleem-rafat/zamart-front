@@ -19,9 +19,12 @@ import plusIcon from "../../../src/assets/icons/plus-icon.svg";
 import DropdownLang from "../shared/drop-down-lang";
 import ZAMARTlogo from "../../../src/assets/logo/ZAMART_logo.svg";
 import ZAMARTname from "../../../src/assets/logo/ZAMART_name.svg";
+import content from "../../localization/content";
+import localizationKeys from "../../localization/localization-keys";
 
 const Headermob = () => {
   const [lang] = useLanguage("");
+  const selectedContent = content[lang];
 
   const [nav, setNave] = useState(false);
   const [myProfileData, setMyProfileData] = useState();
@@ -174,9 +177,9 @@ const Headermob = () => {
                     ?.substring(0, 1)
                     .toUpperCase()}
             </p>
-            <div className="md:mt-6 mt-9 ml-4 cursor-pointer">
+            <div className="md:mt-6 mt-9 ml-4 mr-4 cursor-pointer">
               <p className="text-primary-cyan-light md:text-sm text-xs font-normal">
-                Welcome
+                {selectedContent[localizationKeys.Welcome]}
               </p>
               <p className="text-white md:text-2xl text-sm font-medium relative">
                 {myProfileData?.fullName ? myProfileData?.fullName : "Login"}
@@ -188,7 +191,7 @@ const Headermob = () => {
           <div className="bg-white mx-5 rounded-xl ">
             <Dropdown
               className="px-5 py-6 flex justify-center text-3xl bg-transparent  "
-              text="All Categories"
+              text={selectedContent[localizationKeys.AllCategories]}
             >
               <Dropdown.Menu className="w-full ">
                 {categories?.map((e) => (
@@ -206,7 +209,9 @@ const Headermob = () => {
           </div>
         </div>
         <div>
-          <h1 className="text-2xl text-white mx-5 mt-6">Sub Categories</h1>
+          <h1 className="text-2xl text-white mx-5 mt-6">
+            {selectedContent[localizationKeys.SubCategory]}
+          </h1>
           {SubCategories?.map((e) => (
             <p
               onClick={() => {
@@ -223,7 +228,10 @@ const Headermob = () => {
         </div>
         <div>
           {/* button */}
-          <h1 className="text-2xl text-white mx-5 mt-6">Add New Sell</h1>
+          <h1 className="text-2xl text-white mx-5 mt-6">
+            {" "}
+            {selectedContent[localizationKeys.SELL]}
+          </h1>
           <div>
             <button
               onClick={handelAddNewSell}
@@ -231,11 +239,17 @@ const Headermob = () => {
             >
               <div className="flex justify-center px-1 gap-x-2">
                 <img className="w-4 md:w-auto" src={plusIcon} alt="plusIcon" />
-                <p className="text-white text-lg">SELL MY BIKE</p>
+                <p className="text-white text-lg">
+                  {" "}
+                  {selectedContent[localizationKeys.SELL]}
+                </p>
               </div>
             </button>
           </div>
-          <h1 className="text-2xl text-white mx-5 mt-6">Select language</h1>
+          <h1 className="text-2xl text-white mx-5 mt-6">
+            {" "}
+            {lang === "en" ? "select Language" : "اختر اللغة"}
+          </h1>
           <div className="mx-4 mt-8 pb-4">
             <DropdownLang />
           </div>
