@@ -8,35 +8,37 @@ const api = {
   },
   app: {
     viewCategories: "/categories/all",
-    viewSubCategories: (categoriesId) =>
+    viewSubCategories: (categoriesId = "") =>
       `/categories/sub-categories/all?category=${categoriesId}`,
-    ViewComplmentartCategories: (SubCategoriesId) =>
+    ViewComplmentartCategories: (SubCategoriesId = "") =>
       `/categories/complementary-categories/all?subCategory=${SubCategoriesId}`,
-    ViewCategoriesFromData: (categoriesId) =>
+    ViewCategoriesFromData: (categoriesId = "") =>
       `categories/${categoriesId}/form-data`,
     viewAllItems: "/items/user/all",
     createItemUser: "/items",
-    viewItemById: (itemId) => `/items/${itemId}/details`,
+    viewItemById: (itemId = "") => `/items/${itemId}/details`,
     getMyProfile: "/user/my-profile",
-    getUserProfile: (UserProfileID) => `/user/seller-profile/${UserProfileID}`,
+    getUserProfile: (UserProfileID = "") =>
+      `/user/seller-profile/${UserProfileID}`,
     viewItemsAnalytics: "/items/user/owns-items/analytics",
     viewAllOwner: "/items/user/owns-items",
-    sendEnquiry: (id) => `/items/user/${id}/send-enquiry`,
-    sendCallRequest: (id) => `items/user/${id}/make-call`,
+    sendEnquiry: (id = "") => `/items/user/${id}/send-enquiry`,
+    sendCallRequest: (id = "") => `items/user/${id}/make-call`,
     contactUs: "/contact-us",
   },
   notifications: {
     default: "/notifications?page=1&perPage=10",
-    read: (notificationsid) => `/notifications/${notificationsid}/set-read`,
+    read: (notificationsid = "") =>
+      `/notifications/${notificationsid}/set-read`,
   },
   cities: {
     default: "/regions/cities",
   },
   brand: {
-    default: (categoriesId) => `/brands?categoryId=${categoriesId}`,
+    default: (categoriesId = "") => `/brands?categoryId=${categoriesId}`,
   },
   model: {
-    default: (brandId) => `/brands/${brandId}/models`,
+    default: (brandId = "") => `/brands/${brandId}/models`,
   },
 };
 
