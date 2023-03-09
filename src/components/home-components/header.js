@@ -70,6 +70,7 @@ const HeaderHome = () => {
           .get(api.app.viewSubCategories(categories && categories[0]?._id))
           .then((res) => {
             setSubCategories(res?.data?.data);
+            setCategoriesFiter(categories && categories[0]?._id);
           })
       );
   }, [run, rungetSubCategories, categories?.length && categories[0]?._id]);
