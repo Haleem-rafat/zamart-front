@@ -11,7 +11,7 @@ const api = {
     viewSubCategories: (categoriesId) =>
       `/categories/sub-categories/all?category=${categoriesId}`,
     ViewComplmentartCategories: (SubCategoriesId) =>
-      `/categories/complementary-categories/all?subCategory=${SubCategoriesId}`,
+      `/categories/complementary-categories/all?subCategoryId=${SubCategoriesId}`,
     ViewCategoriesFromData: (categoriesId) =>
       `categories/${categoriesId}/form-data`,
     viewAllItems: "/items/user/all",

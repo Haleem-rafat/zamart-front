@@ -59,7 +59,7 @@ const AuthSidebarLayouts = ({ isreset }) => {
         </Sidebar>
 
         <Sidebar.Pusher
-          className="bg-primary-black-light p-0 m-0 border-none  border-0  "
+          className="bg-primary-black-light p-0 m-0 border-none  border-0 "
           dimmed={toggleDeleteStatus}
         >
           <div className="p-0 m-0 border-none ">
