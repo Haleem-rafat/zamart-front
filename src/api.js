@@ -39,5 +39,4 @@ const api = {
     default: (brandId) => `/brands/${brandId}/models`,
   },
 };
-
 export default api;
